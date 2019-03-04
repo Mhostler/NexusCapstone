@@ -16,13 +16,19 @@ using System.Windows.Shapes;
 namespace Nexus
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for VendorsPage.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class VendorsPage : Page
     {
-        public MainWindow()
+        public VendorsPage()
         {
             InitializeComponent();
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
         }
     }
 }

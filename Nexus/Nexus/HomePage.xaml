@@ -1,0 +1,19 @@
+﻿<Page x:Class="Nexus.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nexus"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page1">
+
+    <Grid>
+        <Button x:Name="SalesButton" Content="Sales Figures" HorizontalAlignment="Left" Margin="112,138,0,0" VerticalAlignment="Top" Width="104" Click="SalesButton_Click"/>
+        <Button x:Name="MerchButton" Content="Merchandise" HorizontalAlignment="Left" Margin="112,163,0,0" VerticalAlignment="Top" Width="104" Click="MerchButton_Click"/>
+        <Button x:Name="CustomerButton" Content="Customer Contact" HorizontalAlignment="Left" Margin="112,188,0,0" VerticalAlignment="Top" Width="104" Click="CustomerButton_Click"/>
+        <Button x:Name="VendorButton" Content="Vendors" HorizontalAlignment="Left" Margin="112,213,0,0" VerticalAlignment="Top" Width="104" Click="VendorButton_Click"/>
+        <Button x:Name="OrdersButton" Content="Orders" HorizontalAlignment="Left" Margin="112,238,0,0" VerticalAlignment="Top" Width="104" Click="OrdersButton_Click"/>
+
+    </Grid>
+</Page>
