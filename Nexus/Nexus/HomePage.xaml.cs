@@ -23,6 +23,17 @@ namespace Nexus
         public Page1()
         {
             InitializeComponent();
+            showColumnChart();
+        }
+
+        private void showColumnChart()
+        {
+            List<KeyValuePair<String, double>> valueList = new List<KeyValuePair<string, double>>();
+            valueList.Add(new KeyValuePair<string, double>("January", 1122.56));
+            valueList.Add(new KeyValuePair<string, double>("February", 1073.25));
+            valueList.Add(new KeyValuePair<string, double>("March", 950.75));
+
+            ColumnChart.DataContext = valueList;
         }
 
         private void SalesButton_Click(object sender, RoutedEventArgs e)
