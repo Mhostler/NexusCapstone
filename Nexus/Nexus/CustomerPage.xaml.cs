@@ -20,6 +20,10 @@ namespace Nexus
     /// </summary>
     public partial class CustomerPage : Page
     {
+        /*
+         * Customer Information:
+         * Name, Email, Phone, Street Addr, city, state, zip
+         */
         public CustomerPage()
         {
             InitializeComponent();

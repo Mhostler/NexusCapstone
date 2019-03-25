@@ -21,6 +21,10 @@ namespace Nexus
     /// </summary>
     public partial class VendorsPage : Page
     {
+        /*
+         * Vendor Table Information
+         * Name (required), email, phone, street addr, city, state, zip, international(string)
+         */
         public VendorsPage()
         {
             InitializeComponent();

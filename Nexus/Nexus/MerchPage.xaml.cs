@@ -20,6 +20,10 @@ namespace Nexus
     /// </summary>
     public partial class MerchPage : Page
     {
+        /*
+         * Merchandise Information
+         * Name, size, price
+         */
         public MerchPage()
         {
             InitializeComponent();

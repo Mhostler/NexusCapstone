@@ -20,6 +20,11 @@ namespace Nexus
     /// </summary>
     public partial class OrdersPage : Page
     {
+        /*
+         * Orders information
+         * before any other field is selected a vendor needs to be selected
+         * vendor, items, #of units ordered, price(total), date ordered, date receieved
+         */
         public OrdersPage()
         {
             InitializeComponent();
