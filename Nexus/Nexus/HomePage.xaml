@@ -25,5 +25,6 @@
                 IndependentValuePath="Key"
                 ItemsSource="{Binding}" />
         </chartingToolkit:Chart>
+        <Button Content="DataBaseTest" HorizontalAlignment="Left" Margin="112,263,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click"/>
     </Grid>
 </Page>

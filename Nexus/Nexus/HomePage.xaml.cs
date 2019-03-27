@@ -65,5 +65,10 @@ namespace Nexus
             Uri uri = new Uri("OrdersPage.xaml", UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri()
+        }
     }
 }
