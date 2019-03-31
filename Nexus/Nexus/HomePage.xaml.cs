@@ -68,7 +68,8 @@ namespace Nexus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri()
+            Uri uri = new Uri("dbTestPage.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
         }
     }
 }

@@ -3,12 +3,21 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:currency="clr-namespace:CurrencyTextBoxControl;assembly=CurrencyTextBoxControl"
       xmlns:local="clr-namespace:Nexus"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="dbTestPage">
 
     <Grid>
-        
+        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="23" Margin="130,164,0,0" TextWrapping="Wrap" Text="Insert Name!" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="InsertButton" Content="Insert" HorizontalAlignment="Left" Margin="130,139,0,0" VerticalAlignment="Top" Width="75" Click="InsertButton_Click"/>
+        <Button x:Name="RetrieveNameButton" Content="Retrieve" HorizontalAlignment="Left" Margin="458,139,0,0" VerticalAlignment="Top" Width="75" Click="RetrieveNameButton_Click"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="136" Margin="393,165,0,0" VerticalAlignment="Top" Width="397">
+            <TextBlock x:Name="NameRetrievalText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Empty" VerticalAlignment="Top" />
+        </ScrollViewer>
+        <TextBox x:Name="SizeTextBox" HorizontalAlignment="Left" Height="23" Margin="130,192,0,0" TextWrapping="Wrap" Text="Insert Size" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="QuantityTextBox" HorizontalAlignment="Left" Height="23" Margin="130,220,0,0" TextWrapping="Wrap" Text="Insert Quantity" PreviewTextInput="numOnly" VerticalAlignment="Top" Width="120"/>
+        <currency:CurrencyTextBox x:Name="PriceBox" HorizontalAlignment="Left" Height="23" Margin="130,248,0,0" VerticalAlignment="Top" Width="120" />
     </Grid>
 </Page>
