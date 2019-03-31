@@ -21,8 +21,6 @@ namespace Nexus
     /// </summary>
     public partial class dbTestPage : Page
     {
-        DBHandler db = new DBHandler();
-
         public dbTestPage()
         {
             InitializeComponent();
@@ -30,29 +28,32 @@ namespace Nexus
 
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
-            String name = NameBox.Text;
-            String size = SizeTextBox.Text;
-            int quantity = Convert.ToInt32(QuantityTextBox.Text);
-            decimal price = PriceBox.Number;
-            db.InsertItem(name, size, quantity, price);
+            Merchandise m = new Merchandise
+            {
+                Name = NameBox.Text,
+                Size = SizeTextBox.Text,
+                Inventory = Int32.Parse(QuantityTextBox.Text),
+                Price = PriceBox.Number
+            };
+            m.InsertItem();
         }
 
         private void RetrieveNameButton_Click(object sender, RoutedEventArgs e)
         {
-            List<String> [] result = db.Select();
-            String ind, name, size, quantity, price;
-            String text = "";
-            for (int i = 0; i < result[0].Count; i++)
-            {
-                ind = result[0][i];
-                name = result[1][i];
-                size = result[2][i];
-                quantity = result[3][i];
-                price = result[4][i];
-                text += ind + " " + name + " " + size + " " + quantity + " " +
-                    price + "\n";
-            }
-            NameRetrievalText.Text = text;
+            //List<String> [] result = db.Select();
+            //String ind, name, size, quantity, price;
+            //String text = "";
+            //for (int i = 0; i < result[0].Count; i++)
+            //{
+            //    ind = result[0][i];
+            //    name = result[1][i];
+            //    size = result[2][i];
+            //    quantity = result[3][i];
+            //    price = result[4][i];
+            //    text += ind + " " + name + " " + size + " " + quantity + " " +
+            //        price + "\n";
+            //}
+            //NameRetrievalText.Text = text;
         }
 
         private void numOnly(object sender, TextCompositionEventArgs e)

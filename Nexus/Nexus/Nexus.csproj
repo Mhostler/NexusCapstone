@@ -77,6 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Customer.cs" />
     <Compile Include="CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
     </Compile>
@@ -84,15 +85,22 @@
     <Compile Include="dbTestPage.xaml.cs">
       <DependentUpon>dbTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Merchandise.cs" />
     <Compile Include="MerchPage.xaml.cs">
       <DependentUpon>MerchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderItem.cs" />
     <Compile Include="OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SalesPage.xaml.cs">
       <DependentUpon>SalesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Transaction.cs" />
+    <Compile Include="TransactionItem.cs" />
+    <Compile Include="Vendor.cs" />
+    <Compile Include="VendorItem.cs" />
     <Compile Include="VendorsPage.xaml.cs">
       <DependentUpon>VendorsPage.xaml</DependentUpon>
     </Compile>
