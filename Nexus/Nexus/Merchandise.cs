@@ -37,7 +37,16 @@ namespace Nexus
             Name = name;
             Size = size;
             Inventory = inventory;
-            price = Price;
+            Price = price;
+        }
+
+        public void SetMerchandise(Merchandise m)
+        {
+            ItemID = m.ItemID;
+            Name = m.Name;
+            Size = m.Size;
+            Inventory = m.Inventory;
+            Price = m.Price;
         }
 
         public void InsertItem()

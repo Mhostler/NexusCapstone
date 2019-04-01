@@ -40,6 +40,8 @@ namespace Nexus
             OrderItem[] oItem = items.ToArray();
 
             DBHandler.ExecuteNoReturn(orderQuery);
+            OrderID = DBHandler.SelectLastOrder();
+
             OrderID = DBHandler.SelectMostRecentOrder(OrderVendor.Id, today);
 
             for (int i = 0; i < items.Count; i++)
@@ -52,7 +54,7 @@ namespace Nexus
             DBHandler.ExecuteMultipleNoReturn(itemQueries);
         }
 
-        private void CalcTotal()
+        public decimal CalcTotal()
         {
             decimal tot = 0.0M;
             foreach (OrderItem item in items)
@@ -60,6 +62,7 @@ namespace Nexus
                 tot += item.getPrice();
             }
             total = tot;
+            return total;
         }
     }
 }
