@@ -37,6 +37,15 @@ namespace Nexus
             UnitPrice = unitprice;
         }
 
+        public void SetVendorItem(VendorItem v)
+        {
+            SetMerchandise(v);
+            Vmid = v.Vmid;
+            VendorID = v.VendorID;
+            UnitSize = v.UnitSize;
+            UnitPrice = v.UnitPrice;
+        }
+
         public void InsertVendorItem()
         {
             String query = "INSERT INTO VendorMerch (ItemID, VendorID, UnitSize, UnitPrice) VALUES(" +

@@ -27,10 +27,15 @@ namespace Nexus
         public void InsertVendor()
         {
             String query = "INSERT INTO Vendor (Name, Email, Phone, Addr, City, State, Zip, International) VALUES(" +
-                '\'' + Name + "', '" + Email + "', '" + Phone + "', '" + Addr + "', '" + City + "', '" + State +
-                "', '" + Zip + "', '" + International + "')";
+                  '\'' + Name + "', '" + Email + "', '" + Phone + "', '" + Addr + "', '" + City + "', '" + State +
+                 "', '" + Zip + "', '" + International + "')";
 
             DBHandler.ExecuteNoReturn(query);
+        }
+
+        public void getCatalogue()
+        {
+            catalogue = DBHandler.SelectVendorItems(this);
         }
     }
 }

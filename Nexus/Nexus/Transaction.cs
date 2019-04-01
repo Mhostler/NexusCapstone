@@ -10,17 +10,23 @@ namespace Nexus
     {
         public int TransactionID { get; set; }
         public Customer Cust { get; set; }
-        public List<TransactionItem> TList;
+        public List<TransactionItem> TList { get; set; }
         public decimal Total { get; }
 
         public Transaction()
         {
             TList = new List<TransactionItem>();
+            Cust = new Customer();
+            TransactionID = 0;
+            Total = 0.0M;
         }
 
-        public void addItem(Merchandise m)
+        public void AddItem(Merchandise m, int quantity)
         {
-
+            TransactionItem t = new TransactionItem();
+            t.SetMerchandise(m);
+            t.Quantity = quantity;
+            TList.Add(t);
         }
 
         public void InsertTransaction()

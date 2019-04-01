@@ -1,0 +1,29 @@
+﻿<Page x:Class="Nexus.DBInsertionTesting"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nexus"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DBInsertionTesting">
+
+    <Grid>
+        <Button x:Name="InsertButton" Content="Insert" HorizontalAlignment="Left" Margin="84,66,0,0" VerticalAlignment="Top" Width="75" Click="InsertButton_Click"/>
+        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="23" Margin="84,91,0,0" TextWrapping="Wrap" Text="Insert Name" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Height="23" Margin="84,119,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="PhoneBox" HorizontalAlignment="Left" Height="23" Margin="84,147,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="AddrBox" HorizontalAlignment="Left" Height="23" Margin="84,175,0,0" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="CityBox" HorizontalAlignment="Left" Height="23" Margin="84,203,0,0" TextWrapping="Wrap" Text="City" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="StateBox" HorizontalAlignment="Left" Height="23" Margin="84,231,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ZipBox" HorizontalAlignment="Left" Height="23" Margin="84,259,0,0" TextWrapping="Wrap" Text="Zip" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="InternationalBox" HorizontalAlignment="Left" Height="23" Margin="84,287,0,0" TextWrapping="Wrap" Text="International Information" VerticalAlignment="Top" Width="163"/>
+        <Button x:Name="VIInsertButton" Content="Insert Vendor Item" HorizontalAlignment="Left" Margin="331,66,0,0" VerticalAlignment="Top" Width="120" Click="VIInsertButton_Click"/>
+        <TextBox x:Name="ItemIDBox" HorizontalAlignment="Left" Height="23" Margin="331,91,0,0" TextWrapping="Wrap" Text="Item ID" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="VendorIDBox" HorizontalAlignment="Left" Height="23" Margin="331,119,0,0" TextWrapping="Wrap" Text="Vendor ID" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="UnitSizeBox" HorizontalAlignment="Left" Height="23" Margin="331,147,0,0" TextWrapping="Wrap" Text="Unit Size" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="UnitPriceBox" HorizontalAlignment="Left" Height="23" Margin="331,175,0,0" TextWrapping="Wrap" Text="Unit Price" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="VendorCatalogueButton" Content="Vendor Catalogue" HorizontalAlignment="Left" Margin="544,66,0,0" VerticalAlignment="Top" Width="110" Click="VendorCatalogueButton_Click"/>
+
+    </Grid>
+</Page>

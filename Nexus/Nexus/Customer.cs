@@ -15,6 +15,15 @@ namespace Nexus
         public String Address { get; set; }
         public String City { get; set; }
         public String State { get; set; }
-        public String International { get; set; }
+        public String Zip { get; set; }
+
+        public void InsertCustomer()
+        {
+            string query = "INSERT INTO Customer (Name, Email, Phone, Addr, City, State, Zip) VALUES ('" +
+                Name + "', '" + Email + "', '" + Phone + "', '" + Address + "', '" + City + "', '" + State +
+                "', '" + Zip + "')";
+
+            DBHandler.ExecuteNoReturn(query);
+        }
     }
 }
