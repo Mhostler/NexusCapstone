@@ -10,6 +10,27 @@
 
     <Grid>
         <Button x:Name="HomeButton" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="HomeButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="44" Margin="134,56,0,0" TextWrapping="Wrap" Text="Customer Lookup : Please Enter One" VerticalAlignment="Top" Width="219"/>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="134,105,0,0" VerticalAlignment="Top" Width="29"/>
+        <Label Content="Phone Number:" HorizontalAlignment="Left" Height="26" Margin="320,105,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="563,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="49">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="1.901"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button Name ="LookUp" Content="LookUp" HorizontalAlignment="Left" Height="38" Margin="145,203,0,0" VerticalAlignment="Top" Width="208" Click="Button_Click"/>
+        <Button Name ="Full" Content="Full Customer List" HorizontalAlignment="Left" Height="38" Margin="436,203,0,0" VerticalAlignment="Top" Width="272" Click="Button_Click_1"/>
+        <DataGrid Name = "List"  HorizontalAlignment="Left" Height="160" Margin="145,263,0,0" VerticalAlignment="Top" Width="563" SelectionChanged="DataGrid_SelectionChanged"/>
+        <TextBox Name="IdBox"  HorizontalAlignment="Left" Height="27" Margin="163,105,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name ="PhoneBox" HorizontalAlignment="Left" Height="27" Margin="417,105,0,0" TextWrapping="Wrap" Text="Enter Phone #" VerticalAlignment="Top" Width="138" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name ="EmailBox" HorizontalAlignment="Left" Height="26" Margin="627,105,0,0" TextWrapping="Wrap" Text="Enter Email" VerticalAlignment="Top" Width="142" TextChanged="TextBox_TextChanged_1"/>
+        <TextBlock HorizontalAlignment="Left" Height="21" Margin="23,52,0,0" TextWrapping="Wrap" Text="Add Customer" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Height="22" Margin="23,78,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_2"/>
 
     </Grid>
 </Page>
