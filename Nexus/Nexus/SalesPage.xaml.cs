@@ -30,5 +30,12 @@ namespace Nexus
             Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
+
+        private void showLineChart()
+        {
+            List<KeyValuePair<DateTime, decimal>> values = new List<KeyValuePair<DateTime, decimal>>();
+
+            ProfitLineChart.DataContext = values;
+        }
     }
 }

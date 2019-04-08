@@ -419,5 +419,42 @@ namespace Nexus
 
             return t;
         }
+
+        public static List<Customer> getAllCustomer()
+        {
+            List<Customer> cust = new List<Customer>();
+            string query = "SELECT * FROM Customer";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Customer c = new Customer();
+                    c.Id = Int32.Parse(reader["CustID"] + "");
+                    c.Name = reader["Name"] + "";
+                    c.Email = reader["Email"] + "";
+                    c.Phone = reader["Phone"] + "";
+                    c.Address = reader["Addr"] + "";
+                    c.City = reader["City"] + "";
+                    c.State = reader["State"] + "";
+                    c.Zip = reader["Zip"] + "";
+
+                    cust.Add(c);
+                }
+
+                CloseConnection();
+            }
+
+            return cust;
+        }
+
+        public static Earnings[] getEarningsByRange(DateTime start, DateTime end)
+        {
+            Earnings[] e = new Earnings[5];
+            return e;
+        }
     }
 }
