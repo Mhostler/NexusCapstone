@@ -80,6 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API.cs" />
     <Compile Include="APITestpage.xaml.cs">
       <DependentUpon>APITestpage.xaml</DependentUpon>
     </Compile>
@@ -107,6 +108,7 @@
     <Compile Include="SalesPage.xaml.cs">
       <DependentUpon>SalesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="shopifyCustomer.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionItem.cs" />
     <Compile Include="Vendor.cs" />

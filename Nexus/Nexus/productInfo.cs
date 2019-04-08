@@ -55,9 +55,7 @@ namespace Nexus
             Merchandise merch = new Merchandise();
             int num;
             int.TryParse(this.sku, out num);
-            merch.ItemID = num;
-            merch.Name = this.title;
-            // merch.Price = this.price;
+            merch = DBHandler.getMerch(num);
             merch.Inventory = this.inventory_quantity;
             return merch;
         }
