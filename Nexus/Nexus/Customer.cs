@@ -17,6 +17,18 @@ namespace Nexus
         public String State { get; set; }
         public String Zip { get; set; }
 
+        public Customer()
+        {
+            Id = 0;
+            Name = "";
+            Phone = "";
+            Email = "";
+            Address = "";
+            City = "";
+            State = "";
+            Zip = "";
+        }
+
         public void InsertCustomer()
         {
             string query = "INSERT INTO Customer (Name, Email, Phone, Addr, City, State, Zip) VALUES ('" +

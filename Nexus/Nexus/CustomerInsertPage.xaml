@@ -1,0 +1,21 @@
+﻿<Page x:Class="Nexus.CustomerInsertPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nexus"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CustomerInsertPage">
+    <Grid>
+            <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="23" Margin="84,91,0,0" TextWrapping="Wrap" Text="Insert Name" VerticalAlignment="Top" Width="163"/>
+            <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Height="23" Margin="84,119,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="163"/>
+            <TextBox x:Name="PhoneBox" HorizontalAlignment="Left" Height="23" Margin="84,147,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="163"/>
+            <TextBox x:Name="AddrBox" HorizontalAlignment="Left" Height="23" Margin="84,175,0,0" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" Width="163"/>
+            <TextBox x:Name="CityBox" HorizontalAlignment="Left" Height="23" Margin="84,203,0,0" TextWrapping="Wrap" Text="City" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="StateBox" HorizontalAlignment="Left" Height="23" Margin="84,231,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="ZipBox" HorizontalAlignment="Left" Height="23" Margin="84,259,0,0" TextWrapping="Wrap" Text="Zip" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="InsertButton" Content="Insert" HorizontalAlignment="Left" Margin="84,315,0,0" VerticalAlignment="Top" Width="75" Click="InsertButton_Click"/>
+        <Button x:Name="Back" Content="Go Back" HorizontalAlignment="Left" Height="28" Margin="51,32,0,0" VerticalAlignment="Top" Width="127" Click="Back_Click"/>
+    </Grid>
+</Page>

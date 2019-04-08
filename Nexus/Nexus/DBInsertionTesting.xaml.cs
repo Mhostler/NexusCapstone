@@ -66,5 +66,33 @@ namespace Nexus
             String msg = v.catalogue.First().Name;
             MessageBox.Show(msg);
         }
+
+        private void Insert_Earnings_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime d = EarningDate.SelectedDate??DateTime.Now;
+            string dFormat = "yyyy-MM-dd";
+            string cash = CashEarningBox.Text;
+            string credit = CreditEarningBox.Text;
+
+            string query = "INSERT INTO DailyEarnings (Day, Cash, Credit) VALUES ('" +
+                d.ToString(dFormat) + "', " + cash + ", " + credit + ")";
+
+            DBHandler.ExecuteNoReturn(query);
+        }
+
+        private void ItemInsertButton_Click(object sender, RoutedEventArgs e)
+        {
+            Merchandise m = new Merchandise();
+            m.Name = ItemNameTextBox.Text;
+            m.Size = ItemSizeTextBox.Text;
+            m.Inventory = Int32.Parse(ItemInventoryTextBox.Text);
+            m.Price = Decimal.Parse(ItemPriceTextBox.Text);
+            m.InsertItem();
+        }
+
+        private void PageMoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello World");
+        }
     }
 }

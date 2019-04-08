@@ -21,10 +21,11 @@ namespace Nexus
     /// </summary>
     public partial class VendorsPage : Page
     {
+       
         /*
-         * Vendor Table Information
-         * Name (required), email, phone, street addr, city, state, zip, international(string)
-         */
+* Vendor Table Information
+* Name (required), email, phone, street addr, city, state, zip, international(string)
+*/
         public VendorsPage()
         {
             InitializeComponent();
@@ -34,6 +35,36 @@ namespace Nexus
         {
             Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
             this.NavigationService.Navigate(uri);
+        }
+
+        private void LookUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Vendor v = new Vendor();
+            v.Id =Int32.Parse(IdBox.Text);
+
+
+        }
+
+        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri("VendorInsertPage.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Vendor v = new Vendor();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Vendor v = new Vendor();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Vendor V = new Vendor();
         }
     }
 }
