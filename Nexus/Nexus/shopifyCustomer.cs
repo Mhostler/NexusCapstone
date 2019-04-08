@@ -52,9 +52,7 @@ namespace Nexus
             /*public Customer GetValues()
             {
                 Customer cust = new Customer();
-                
-                int.TryParse(this.sku, out num);
-                cust = DBHandler.getMerch(num);
+                cust = DBHandler.getCustomerByEmail(this.em);
                 merch.Inventory = this.inventory_quantity;
                 return cust;
             } */
