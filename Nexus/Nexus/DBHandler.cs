@@ -252,8 +252,14 @@ namespace Nexus
                         Zip = reader["Zip"] + "",
                         International = reader["International"] + ""
                     };
+                    vl.Add(v);
                 }
+
+                reader.Close();
+                CloseConnection();
             }
+
+            return vl;
         }
 
         public static Customer getCustomerById(int id)
@@ -355,6 +361,34 @@ namespace Nexus
             }
 
             return m;
+        }
+
+        public static List<Merchandise> getAllMerch()
+        {
+            List<Merchandise> ml = new List<Merchandise>();
+            string query = "SELECT * FROM Merch";
+
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Merchandise m = new Merchandise
+                    {
+                        ItemID = Int32.Parse(reader["ItemID"] + ""),
+                        Name = reader["Name"] + "",
+                        Size = reader["Size"] + "",
+                        Inventory = Int32.Parse(reader["Inventory"] + ""),
+                        Price = Decimal.Parse(reader["Price"] + "")
+                    };
+                    ml.Add(m);
+                }
+                reader.Close();
+                CloseConnection();
+            }
+
+            return ml;
         }
 
         public static VendorItem getVendorItem(int id)
