@@ -8,15 +8,32 @@ namespace Nexus
 {
     class Earnings
     {
-        int Id { get; set; }
-        decimal Cash { get; set; }
-        decimal Credit { get; set; }
+        public int Id { get; set; }
+        public DateTime Day { get; set; }
+        public decimal Cash { get; set; }
+        public decimal Credit { get; set; }
 
         public Earnings()
         {
             Id = 0;
             Cash = 0;
             Credit = 0;
+        }
+
+        public void Insert()
+        {
+            string query = "INSERT INTO DailyEarnings (Day, Cash, Credit) VALUES ('" + Day.ToString("yyyy-MM-dd") +
+                "', " + Cash.ToString() + ", " + Credit.ToString() + ")";
+
+            DBHandler.ExecuteNoReturn(query);
+        }
+
+        public void Update()
+        {
+            string query = "UPDATE DailyEarnings SET Day='" + Day.ToString("yyyy-MM-dd") + "', Cash=" + Cash.ToString() + ", Credit="
+                + Credit.ToString() + " WHERE EarningsID=" + Id.ToString();
+
+            DBHandler.ExecuteNoReturn(query);
         }
     }
 }

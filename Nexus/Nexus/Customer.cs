@@ -29,6 +29,14 @@ namespace Nexus
             Zip = "";
         }
 
+        public void UpdateCustomer()
+        {
+            string query = "UPDATE Customer SET Name='" + Name + "', Email='" + Email + "', Phone='" + Phone + "', Addr='" + Address +
+                "', City='" + City + "', State='" + State + "', Zip='" + Zip + "' WHERE CustID=" + Id.ToString();
+
+            DBHandler.ExecuteNoReturn(query);
+        }
+
         public void InsertCustomer()
         {
             string query = "INSERT INTO Customer (Name, Email, Phone, Addr, City, State, Zip) VALUES ('" +

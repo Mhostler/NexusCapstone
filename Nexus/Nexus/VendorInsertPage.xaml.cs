@@ -26,16 +26,17 @@ namespace Nexus
         }
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor();
-            
-            v.Name = NameBox.Text;
-            v.Email = EmailBox.Text;
-            v.Phone = PhoneBox.Text;
-            v.Addr = AddrBox.Text;
-            v.City = CityBox.Text;
-            v.State = StateBox.Text;
-            v.Zip = ZipBox.Text;
-            v.International = InternationalBox.Text;
+            Vendor v = new Vendor
+            {
+                Name = NameBox.Text,
+                Email = EmailBox.Text,
+                Phone = PhoneBox.Text,
+                Addr = AddrBox.Text,
+                City = CityBox.Text,
+                State = StateBox.Text,
+                Zip = ZipBox.Text,
+                International = InternationalBox.Text
+            };
             v.InsertVendor();
 
             PrintDialog p = new PrintDialog();
