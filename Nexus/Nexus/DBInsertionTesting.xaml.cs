@@ -27,40 +27,46 @@ namespace Nexus
 
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor();
-            v.Name = NameBox.Text;
-            v.Email = EmailBox.Text;
-            v.Phone = PhoneBox.Text;
-            v.Addr = AddrBox.Text;
-            v.City = CityBox.Text;
-            v.State = StateBox.Text;
-            v.Zip = ZipBox.Text;
-            v.International = InternationalBox.Text;
+            Vendor v = new Vendor
+            {
+                Name = NameBox.Text,
+                Email = EmailBox.Text,
+                Phone = PhoneBox.Text,
+                Addr = AddrBox.Text,
+                City = CityBox.Text,
+                State = StateBox.Text,
+                Zip = ZipBox.Text,
+                International = InternationalBox.Text
+            };
             v.InsertVendor();
         }
 
         private void VIInsertButton_Click(object sender, RoutedEventArgs e)
         {
-            VendorItem vi = new VendorItem();
-            vi.ItemID = Int32.Parse(ItemIDBox.Text);
-            vi.VendorID = Int32.Parse(VendorIDBox.Text);
-            vi.UnitSize = Int32.Parse(UnitSizeBox.Text);
-            vi.UnitPrice = Int32.Parse(UnitPriceBox.Text);
+            VendorItem vi = new VendorItem
+            {
+                ItemID = Int32.Parse(ItemIDBox.Text),
+                VendorID = Int32.Parse(VendorIDBox.Text),
+                UnitSize = Int32.Parse(UnitSizeBox.Text),
+                UnitPrice = Int32.Parse(UnitPriceBox.Text)
+            };
             vi.InsertVendorItem();
         }
 
         private void VendorCatalogueButton_Click(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor();
-            v.Id = 1;
-            v.Name = "Test Vendor";
-            v.Email = "Test@Testing.tst";
-            v.Phone = "1(402)727-7272";
-            v.Addr = "1234 Somewhere ave.";
-            v.City = "Omaha";
-            v.State = "Nebraska";
-            v.Zip = "68046";
-            v.International = "None";
+            Vendor v = new Vendor
+            {
+                Id = 1,
+                Name = "Test Vendor",
+                Email = "Test@Testing.tst",
+                Phone = "1(402)727-7272",
+                Addr = "1234 Somewhere ave.",
+                City = "Omaha",
+                State = "Nebraska",
+                Zip = "68046",
+                International = "None"
+            };
 
             v.getCatalogue();
             String msg = v.catalogue.First().Name;
@@ -82,11 +88,13 @@ namespace Nexus
 
         private void ItemInsertButton_Click(object sender, RoutedEventArgs e)
         {
-            Merchandise m = new Merchandise();
-            m.Name = ItemNameTextBox.Text;
-            m.Size = ItemSizeTextBox.Text;
-            m.Inventory = Int32.Parse(ItemInventoryTextBox.Text);
-            m.Price = Decimal.Parse(ItemPriceTextBox.Text);
+            Merchandise m = new Merchandise
+            {
+                Name = ItemNameTextBox.Text,
+                Size = ItemSizeTextBox.Text,
+                Inventory = Int32.Parse(ItemInventoryTextBox.Text),
+                Price = Decimal.Parse(ItemPriceTextBox.Text)
+            };
             m.InsertItem();
         }
 
