@@ -36,7 +36,9 @@ namespace Nexus
         public void UpdateVendor()
         {
             string query = "UPDATE Vendor SET Name='" + Name + "', Email='" + Email + "', Phone='" + Phone + "', Addr='" + Addr +
-                "', City='" + City + "', State=" + State + "', Zip='" + Zip + "', International='" + International + "' WHERE VendID=" + Id.ToString();
+                "', City='" + City + "', State=" + State + "', Zip='" + Zip + "', International='" + International + "' WHERE VendorID=" + Id.ToString();
+
+            DBHandler.ExecuteNoReturn(query);
         }
 
         public void getCatalogue()

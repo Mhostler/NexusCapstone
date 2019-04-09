@@ -25,82 +25,33 @@ namespace Nexus
             InitializeComponent();
         }
 
-        private void InsertButton_Click(object sender, RoutedEventArgs e)
+        private void InsertEarningsButton_Click(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor
+            Earnings earn = new Earnings
             {
-                Name = NameBox.Text,
-                Email = EmailBox.Text,
-                Phone = PhoneBox.Text,
-                Addr = AddrBox.Text,
-                City = CityBox.Text,
-                State = StateBox.Text,
-                Zip = ZipBox.Text,
-                International = InternationalBox.Text
+                Day = EarningsDatePicker.DisplayDate,
+                Cash = CashCurrencyBox.Number,
+                Credit = CreditCurrencyBox.Number
             };
-            v.InsertVendor();
+            earn.Insert();
         }
 
-        private void VIInsertButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateEarningsButton_Click(object sender, RoutedEventArgs e)
         {
-            VendorItem vi = new VendorItem
+            Earnings earn = new Earnings
             {
-                ItemID = Int32.Parse(ItemIDBox.Text),
-                VendorID = Int32.Parse(VendorIDBox.Text),
-                UnitSize = Int32.Parse(UnitSizeBox.Text),
-                UnitPrice = Int32.Parse(UnitPriceBox.Text)
+                Id = Int32.Parse(EarningsIdTextBox.Text),
+                Day = EarningsDatePicker.DisplayDate,
+                Cash = CashCurrencyBox.Number,
+                Credit = CreditCurrencyBox.Number
             };
-            vi.InsertVendorItem();
+            earn.Update();
         }
 
-        private void VendorCatalogueButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor
-            {
-                Id = 1,
-                Name = "Test Vendor",
-                Email = "Test@Testing.tst",
-                Phone = "1(402)727-7272",
-                Addr = "1234 Somewhere ave.",
-                City = "Omaha",
-                State = "Nebraska",
-                Zip = "68046",
-                International = "None"
-            };
-
-            v.getCatalogue();
-            String msg = v.catalogue.First().Name;
-            MessageBox.Show(msg);
-        }
-
-        private void Insert_Earnings_Click(object sender, RoutedEventArgs e)
-        {
-            DateTime d = EarningDate.SelectedDate??DateTime.Now;
-            string dFormat = "yyyy-MM-dd";
-            string cash = CashEarningBox.Text;
-            string credit = CreditEarningBox.Text;
-
-            string query = "INSERT INTO DailyEarnings (Day, Cash, Credit) VALUES ('" +
-                d.ToString(dFormat) + "', " + cash + ", " + credit + ")";
-
-            DBHandler.ExecuteNoReturn(query);
-        }
-
-        private void ItemInsertButton_Click(object sender, RoutedEventArgs e)
-        {
-            Merchandise m = new Merchandise
-            {
-                Name = ItemNameTextBox.Text,
-                Size = ItemSizeTextBox.Text,
-                Inventory = Int32.Parse(ItemInventoryTextBox.Text),
-                Price = Decimal.Parse(ItemPriceTextBox.Text)
-            };
-            m.InsertItem();
-        }
-
-        private void PageMoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Hello World");
+            Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
         }
     }
 }
