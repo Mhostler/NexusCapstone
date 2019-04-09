@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
-    class Merchandise
+    public class Merchandise
     {
         public int ItemID { get; set; }
         public String Name { get; set; }
