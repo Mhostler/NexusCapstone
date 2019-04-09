@@ -95,19 +95,19 @@ namespace Nexus
             // convert string to objects
             JArray json = new JArray(responseFromServer);
             var results = JsonConvert.DeserializeObject<RootObject>(responseFromServer);
-            Customer[][] custs = results.GetCustomer();
-            for (int i = 0; i < merch.Length; i++)
+            /*Customer[][] custs = results.GetCustomer();
+            for (int i = 0; i < custs.Length; i++)
             {
-                for (int j = 0; j < merch[i].Length; j++)
+                for (int j = 0; j < custs[i].Length; j++)
                 {
-                    Console.WriteLine(merch[i][j].ItemID);
+                    Console.WriteLine(custs[i][j].ItemID);
                 }
-            }
+            } */
             // Cleanup the streams and the response.
             reader.Close();
             dataStream.Close();
             response.Close();
-            return custs;
+            return null;
         }
     }
 }
