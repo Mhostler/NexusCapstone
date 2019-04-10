@@ -27,15 +27,17 @@ namespace Nexus
 
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
-           Customer c = new Customer();
-            c.Name = NameBox.Text;
-            c.Email = EmailBox.Text;
-            c.Phone = PhoneBox.Text;
-            c.Address = AddrBox.Text;
-            c.City = CityBox.Text;
-            c.State = StateBox.Text;
-            c.Zip = ZipBox.Text;
-           
+            Customer c = new Customer
+            {
+                Name = NameBox.Text,
+                Email = EmailBox.Text,
+                Phone = PhoneBox.Text,
+                Address = AddrBox.Text,
+                City = CityBox.Text,
+                State = StateBox.Text,
+                Zip = ZipBox.Text
+            };
+
             c.InsertCustomer();
         }
 

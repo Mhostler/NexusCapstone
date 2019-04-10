@@ -77,8 +77,10 @@ namespace Nexus
         {
             if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = connection;
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = connection
+                };
 
                 foreach (String query in queries)
                 {
@@ -157,16 +159,18 @@ namespace Nexus
 
                 while (reader.Read())
                 {
-                    VendorItem v = new VendorItem();
-                    v.Vmid = Int32.Parse(reader["vmID"] + "");
-                    v.ItemID = Int32.Parse(reader["ItemID"] + "");
-                    v.Name = reader["Name"] + "";
-                    v.Size = reader["Size"] + "";
-                    v.Price = Decimal.Parse(reader["Price"] + "");
-                    v.Inventory = Int32.Parse(reader["Inventory"] + "");
-                    v.VendorID = Int32.Parse(reader["VendorID"] + "");
-                    v.UnitSize = Int32.Parse(reader["UnitSize"] + "");
-                    v.UnitPrice = Decimal.Parse(reader["UnitPrice"] + "");
+                    VendorItem v = new VendorItem
+                    {
+                        Vmid = Int32.Parse(reader["vmID"] + ""),
+                        ItemID = Int32.Parse(reader["ItemID"] + ""),
+                        Name = reader["Name"] + "",
+                        Size = reader["Size"] + "",
+                        Price = Decimal.Parse(reader["Price"] + ""),
+                        Inventory = Int32.Parse(reader["Inventory"] + ""),
+                        VendorID = Int32.Parse(reader["VendorID"] + ""),
+                        UnitSize = Int32.Parse(reader["UnitSize"] + ""),
+                        UnitPrice = Decimal.Parse(reader["UnitPrice"] + "")
+                    };
                     list.Add(v);
                 }
 
@@ -268,8 +272,10 @@ namespace Nexus
 
         public static Merchandise getMerch(int id)
         {
-            Merchandise m = new Merchandise();
-            m.ItemID = -1;
+            Merchandise m = new Merchandise
+            {
+                ItemID = -1
+            };
             string query = "SELECT * FROM Merch WHERE ItemID=" + id.ToString();
 
             if(OpenConnection() == true)
@@ -318,8 +324,10 @@ namespace Nexus
             }
             else
             {
-                vi = new VendorItem();
-                vi.Vmid = vmID;
+                vi = new VendorItem
+                {
+                    Vmid = vmID
+                };
             }
 
             return vi;
@@ -337,10 +345,12 @@ namespace Nexus
 
                 while (reader.Read())
                 {
-                    OrderItem oi = new OrderItem();
-                    oi.Vmid = Int32.Parse(reader["vmID"] + "");
-                    oi.Quantity = Int32.Parse(reader["Quantity"] + "");
-                    oi.Oid = Int32.Parse(reader["oID"] + "");
+                    OrderItem oi = new OrderItem
+                    {
+                        Vmid = Int32.Parse(reader["vmID"] + ""),
+                        Quantity = Int32.Parse(reader["Quantity"] + ""),
+                        Oid = Int32.Parse(reader["oID"] + "")
+                    };
                     items.Add(oi);
                 }
                 reader.Close();
@@ -367,10 +377,12 @@ namespace Nexus
 
                 while (reader.Read())
                 {
-                    TransactionItem ti = new TransactionItem();
-                    ti.ItemID = Int32.Parse(reader["ItemID"] + "");
-                    ti.tID = Int32.Parse(reader["tID"] + "");
-                    ti.Quantity = Int32.Parse(reader["Quantity"] + "");
+                    TransactionItem ti = new TransactionItem
+                    {
+                        ItemID = Int32.Parse(reader["ItemID"] + ""),
+                        tID = Int32.Parse(reader["tID"] + ""),
+                        Quantity = Int32.Parse(reader["Quantity"] + "")
+                    };
                 }
 
                 reader.Close();
@@ -387,8 +399,10 @@ namespace Nexus
 
         public static Order getOrder(int id)
         {
-            Order o = new Order();
-            o.OrderID = -1;
+            Order o = new Order
+            {
+                OrderID = -1
+            };
             string oQuery = "SELECT * FROM Orders WHERE OrderID=" + id.ToString();
             List<int> vmIDs = new List<int>();
 
@@ -410,8 +424,10 @@ namespace Nexus
 
         public static Transaction getTransaction(int id)
         {
-            Transaction t = new Transaction();
-            t.TransactionID = -1;
+            Transaction t = new Transaction
+            {
+                TransactionID = -1
+            };
             string query = "SELECT * FROM Transactions WHERE TransactionID=" + id.ToString();
 
             if(OpenConnection() == true)
@@ -444,23 +460,60 @@ namespace Nexus
 
                 while (reader.Read())
                 {
-                    Customer c = new Customer();
-                    c.Id = Int32.Parse(reader["CustID"] + "");
-                    c.Name = reader["Name"] + "";
-                    c.Email = reader["Email"] + "";
-                    c.Phone = reader["Phone"] + "";
-                    c.Address = reader["Addr"] + "";
-                    c.City = reader["City"] + "";
-                    c.State = reader["State"] + "";
-                    c.Zip = reader["Zip"] + "";
+                    Customer c = new Customer
+                    {
+                        Id = Int32.Parse(reader["CustID"] + ""),
+                        Name = reader["Name"] + "",
+                        Email = reader["Email"] + "",
+                        Phone = reader["Phone"] + "",
+                        Address = reader["Addr"] + "",
+                        City = reader["City"] + "",
+                        State = reader["State"] + "",
+                        Zip = reader["Zip"] + ""
+                    };
 
                     cust.Add(c);
                 }
 
+                reader.Close();
                 CloseConnection();
             }
 
             return cust;
+        }
+
+        public static List<Vendor> getAllVendors()
+        {
+            List<Vendor> vend = new List<Vendor>();
+            string query = "SELECT * FROM Vendor";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Vendor v = new Vendor
+                    {
+                        Id = Int32.Parse(reader["VendorID"] + ""),
+                        Name = reader["Name"] + "",
+                        Email = reader["Email"] + "",
+                        Phone = reader["Phone"] + "",
+                        Addr = reader["Addr"] + "",
+                        City = reader["City"] + "",
+                        State = reader["State"] + "",
+                        Zip = reader["Zip"] + "",
+                        International = reader["International"] + "",
+                    };
+                    vend.Add(v);
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return vend;
         }
 
         public static Earnings[] getEarningsByRange(DateTime start, DateTime end)

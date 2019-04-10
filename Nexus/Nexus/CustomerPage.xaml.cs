@@ -37,13 +37,17 @@ namespace Nexus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Customer c = new Customer();
-            c.Id = Int32.Parse(IdBox.Text);
-            c.Phone = PhoneBox.Text;
-            c.Email = EmailBox.Text;
+            Customer c = new Customer
+            {
+                Id = Int32.Parse(IdBox.Text),
+                Phone = PhoneBox.Text,
+                Email = EmailBox.Text
+            };
             //List.GetValue(c.Id);
-            DataGrid grid = new DataGrid();
-            grid.FrozenColumnCount = 5;
+            DataGrid grid = new DataGrid
+            {
+                FrozenColumnCount = 5
+            };
 
         }
 
