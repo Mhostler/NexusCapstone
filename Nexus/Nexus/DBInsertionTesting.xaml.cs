@@ -53,5 +53,23 @@ namespace Nexus
             Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
+
+        private void CreateRandomEarningsButton_Click(object sender, RoutedEventArgs e)
+        {
+            int dayMax = 365;
+            string[] query = new string[dayMax];
+            DateTime day = new DateTime(2019, 1, 1);
+            Random r = new Random();
+            for(int i = 0; i < dayMax; i++)
+            {
+                decimal cash = r.Next(1000) + (decimal)r.Next(100) * 0.01M;
+                decimal credit = r.Next(1000) + (decimal)r.Next(100) * 0.01M;
+                query[i] = "INSERT INTO TestEarnings (Day, Cash, Credit) VALUES ('" + day.ToString("yyyy-MM-dd") + "', " + cash.ToString() +
+                    ", " + credit.ToString() + ")";
+                day = day.AddDays(1);
+            }
+
+            DBHandler.ExecuteMultipleNoReturn(query);
+        }
     }
 }
