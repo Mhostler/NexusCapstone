@@ -1,5 +1,11 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,15 +47,26 @@ namespace Nexus
             c.Id = Int32.Parse(IdBox.Text);
             c.Phone = PhoneBox.Text;
             c.Email = EmailBox.Text;
-            //List.GetValue(c.Id);
-            DataGrid grid = new DataGrid();
-            grid.FrozenColumnCount = 5;
+            DataGrid data = new DataGrid();
+            DataTable table = new DataTable();
+           var db = DBHandler.getCustomer(c.Id);
+            MySqlCommand cmd = new MySqlCommand("SELECT * from CUstomer where Id = ?");
+            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            dataAdapter.SelectCommand= cmd;
+            dataAdapter.Fill(table);
+
+                     
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Customer c = new Customer();
+            var ConnectionString = ConfigurationManager.ConnectionStrings["dbHandler"].ConnectionString;
+            //DataSet ds = new DataSet();
+            
+            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -61,6 +78,8 @@ namespace Nexus
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid grid = new DataGrid();
+            DataSet ds = new DataSet();
+
 
         }
 
