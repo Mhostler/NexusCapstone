@@ -25,20 +25,7 @@
         </Label>
         <Button Name ="LookUp" Content="LookUp" HorizontalAlignment="Left" Height="38" Margin="145,203,0,0" VerticalAlignment="Top" Width="208" Click="Button_Click"/>
         <Button Name ="Full" Content="Full Customer List" HorizontalAlignment="Left" Height="38" Margin="436,203,0,0" VerticalAlignment="Top" Width="272" Click="Button_Click_1"/>
-        <DataGrid Name = "List"  HorizontalAlignment="Left" Height="160" Margin="145,263,0,0" VerticalAlignment="Top" Width="563" SelectionChanged="DataGrid_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header = "Id" Binding ="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header = "Name" Binding ="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header = "Phone" Binding ="{Binding Phone}"></DataGridTextColumn>
-                <DataGridTextColumn Header = "Email" Binding ="{Binding Email}"></DataGridTextColumn>
-                <DataGridTextColumn Header = "Address" Binding ="{Binding Address}"></DataGridTextColumn>
-                <DataGridTextColumn Header = "City" Binding ="{Binding City}"></DataGridTextColumn>
-                <DataGridTextColumn Header = "State" Binding ="{Binding State}"></DataGridTextColumn>
-                <DataGridTextColumn Header = "Zip" Binding ="{Binding Zip}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        
-        </DataGrid>
-
+        <DataGrid Name = "List"  HorizontalAlignment="Left" Height="160" Margin="145,263,0,0" VerticalAlignment="Top" Width="563" SelectionChanged="DataGrid_SelectionChanged"/>
         <TextBox Name="IdBox"  HorizontalAlignment="Left" Height="27" Margin="163,105,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged"/>
         <TextBox Name ="PhoneBox" HorizontalAlignment="Left" Height="27" Margin="417,105,0,0" TextWrapping="Wrap" Text="Enter Phone #" VerticalAlignment="Top" Width="138" TextChanged="TextBox_TextChanged"/>
         <TextBox Name ="EmailBox" HorizontalAlignment="Left" Height="26" Margin="627,105,0,0" TextWrapping="Wrap" Text="Enter Email" VerticalAlignment="Top" Width="142" TextChanged="TextBox_TextChanged_1"/>
