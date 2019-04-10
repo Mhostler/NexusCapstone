@@ -12,7 +12,13 @@ namespace Nexus
         {
             public Address()
             {
-
+                this.address1 = " ";
+                this.address2 = " ";
+                this.city = " ";
+                this.province = " ";
+                this.country = " ";
+                this.zip = " ";
+                this.phone = " ";
             }
 
             public Address(object id, object customer_id, string first_name, string last_name, string addres1, string address2, string city, string province, 
@@ -48,14 +54,6 @@ namespace Nexus
             public string country_code { get; set; }
             public string country_name { get; set; }
             public Boolean def { get; set; }
-
-            /*public Customer GetValues()
-            {
-                Customer cust = new Customer();
-                cust = DBHandler.getCustomerByEmail(this.em);
-                merch.Inventory = this.inventory_quantity;
-                return cust;
-            } */
         }
 
         public class Default_Add
@@ -106,34 +104,53 @@ namespace Nexus
             public string admin_graphql_api_id { get; set; }
             public Default_Add default_address { get; set; }
 
-           /* public Merchandise[] GetVar()
+            public Customer GetCust()
             {
-                Merchandise[] merch = new Merchandise[variants.Count];
-                if (variants.Count > 0)
+                Customer cust = new Customer();
+                cust = DBHandler.getCustomerByEmail(email);
+                string name = first_name + " " + last_name;
+                /*Console.WriteLine("Name:" + name);
+                Console.WriteLine("Address:" + address[0].address1);
+                Console.WriteLine("City:" + address[0].city);
+                Console.WriteLine("State:" + address[0].province);
+                Console.WriteLine("Zip:" + address[0].zip);
+                Console.WriteLine("Phone:" + address[0].phone);*/
+                if ( cust.Id > 0)
                 {
-                    for (int i = 0; i < variants.Count; i++)
-                    {
-                        // Console.WriteLine(i);
-                        merch[i] = variants[i].GetValues();
-                    }
+                    cust.Name = name;
+                    cust.City = default_address.city;
+                    cust.Address = default_address.address1;
+                    cust.Phone = default_address.phone;
+                    cust.State = default_address.province;
+                    cust.Zip = default_address.zip;
+                    cust.UpdateCustomer();
+                } else
+                {
+                    cust.Name = name;
+                    cust.City = default_address.city;
+                    cust.Address = default_address.address1;
+                    cust.Phone = default_address.phone;
+                    cust.State = default_address.province;
+                    cust.Zip = default_address.zip;
+                    cust.InsertCustomer();
                 }
-                return merch;
-            }*/
+                return cust;
+            }
         }
 
-        public class RootObject
+        public class RootObject1
         {
             public List<Customers> customers { get; set; }
 
-            /*public Merchandise[][] GetMerchandise()
+            public Customer[] GetCustomers()
             {
-                Merchandise[][] merch = new Merchandise[customers.Count][];
+                Customer[] cust = new Customer[customers.Count];
                 for (int i = 0; i < customers.Count; i++)
                 {
-                    merch[i] = this.customers[i].GetVar();
+                    cust[i] = this.customers[i].GetCust();
                 }
-                return merch;
-            }*/
+                return cust;
+            }
         }
     }
 }
