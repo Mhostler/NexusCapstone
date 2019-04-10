@@ -38,18 +38,45 @@ namespace Nexus
             if(DMYComboBox.Text == "Year")
             {
                 List<KeyValuePair<int, decimal>> values = new List<KeyValuePair<int, decimal>>();
-                int i = 0;
-                for(DateTime iterYear = StartDatePicker.DisplayDate; iterYear.Year <= EndDatePicker.DisplayDate.Year; iterYear.AddYears(1))
+                DateTime startYear = StartDatePicker.DisplayDate;
+                decimal total = 0;
+                for(int i = 0; i < el.Count; i++)
                 {
-                    decimal total = 0;
-                    while(el[i].Day.Year == iterYear.Year)
+                    if(el[i].Day.Year == startYear.Year)
                     {
                         total += el[i].Total;
-                        i++;
-                        if(i >= el.Count) { break; }
                     }
-                    values.Add(new KeyValuePair<int,decimal>(iterYear.Year, total));
+                    else
+                    {
+                        KeyValuePair<int, decimal> kv = new KeyValuePair<int, decimal>(startYear.Year, total);
+                        values.Add(kv);
+                        total = el[i].Total;
+                        startYear.AddYears(1);
+                    }
                 }
+
+                ProfitLineChart.DataContext = values;
+            }
+            else if(DMYComboBox.Text == "Month")
+            {
+                List<KeyValuePair<int, decimal>> values = new List<KeyValuePair<int, decimal>>();
+                DateTime startMonth = StartDatePicker.DisplayDate;
+                decimal total = 0;
+                for (int i = 0; i < el.Count; i++)
+                {
+                    if (el[i].Day.Year == startMonth.Month)
+                    {
+                        total += el[i].Total;
+                    }
+                    else
+                    {
+                        KeyValuePair<int, decimal> kv = new KeyValuePair<int, decimal>(startMonth.Month, total);
+                        values.Add(kv);
+                        total = el[i].Total;
+                        startMonth.AddMonths(1);
+                    }
+                }
+
                 ProfitLineChart.DataContext = values;
             }
             else
