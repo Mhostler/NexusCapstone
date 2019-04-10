@@ -1,11 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,30 +37,23 @@ namespace Nexus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Customer c = new Customer();
-            c.Id = Int32.Parse(IdBox.Text);
-            c.Phone = PhoneBox.Text;
-            c.Email = EmailBox.Text;
-            DataGrid data = new DataGrid();
-            DataTable table = new DataTable();
-           var db = DBHandler.getCustomer(c.Id);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from CUstomer where Id = ?");
-            MySqlDataReader reader = cmd.ExecuteReader();
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-            dataAdapter.SelectCommand= cmd;
-            dataAdapter.Fill(table);
-
-                     
+            Customer c = new Customer
+            {
+                Id = Int32.Parse(IdBox.Text),
+                Phone = PhoneBox.Text,
+                Email = EmailBox.Text
+            };
+            //List.GetValue(c.Id);
+            DataGrid grid = new DataGrid
+            {
+                FrozenColumnCount = 5
+            };
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Customer c = new Customer();
-            var ConnectionString = ConfigurationManager.ConnectionStrings["dbHandler"].ConnectionString;
-            //DataSet ds = new DataSet();
-            
-            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -78,8 +65,6 @@ namespace Nexus
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid grid = new DataGrid();
-            DataSet ds = new DataSet();
-
 
         }
 
