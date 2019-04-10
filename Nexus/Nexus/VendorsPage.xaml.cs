@@ -39,10 +39,8 @@ namespace Nexus
 
         private void LookUpButton_Click(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor
-            {
-                Id = Int32.Parse(IdBox.Text)
-            };
+            Vendor v = new Vendor();
+            v.Id =Int32.Parse(IdBox.Text);
 
 
         }

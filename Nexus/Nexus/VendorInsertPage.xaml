@@ -9,7 +9,7 @@
       Title="Page2">
 
     <Grid>
-        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="23" Margin="84,91,0,0" TextWrapping="Wrap" Text="Insert Name" VerticalAlignment="Top" Width="163" TextChanged="NameBox_TextChanged"/>
+        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="23" Margin="84,91,0,0" TextWrapping="Wrap" Text="Insert Name" VerticalAlignment="Top" Width="163"/>
         <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Height="23" Margin="84,119,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="163"/>
         <TextBox x:Name="PhoneBox" HorizontalAlignment="Left" Height="23" Margin="84,147,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="163"/>
         <TextBox x:Name="AddrBox" HorizontalAlignment="Left" Height="23" Margin="84,175,0,0" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" Width="163"/>
