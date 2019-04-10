@@ -39,8 +39,7 @@ namespace Nexus
             };
             v.InsertVendor();
 
-            PrintDialog p = new PrintDialog();
-            p.Equals("Successful");
+            MessageBox.Show("Insert Successful");
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -48,6 +47,11 @@ namespace Nexus
             Uri u = new Uri("VendorsPage.xaml", UriKind.Relative);
             this.NavigationService.Navigate(u);
 
+        }
+
+        private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Vendor v = new Vendor();
         }
     }
 }
