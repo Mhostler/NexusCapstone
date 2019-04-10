@@ -81,7 +81,7 @@ namespace Nexus
                 {
                     Connection = connection
                 };
-
+                
                 foreach (String query in queries)
                 {
                     cmd.CommandText = query;
@@ -230,6 +230,38 @@ namespace Nexus
             return v;
         }
 
+        public static List<Vendor> getAllVendor()
+        {
+            List<Vendor> vl = new List<Vendor>();
+            string query = "SELECT * FROM Vendor";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Vendor v = new Vendor
+                    {
+                        Id = Int32.Parse(reader["VendorID"] + ""),
+                        Name = reader["Name"] + "",
+                        Email = reader["Email"] + "",
+                        Addr = reader["Addr"] + "",
+                        City = reader["City"] + "",
+                        State = reader["City"] + "",
+                        Zip = reader["Zip"] + "",
+                        International = reader["International"] + ""
+                    };
+                    vl.Add(v);
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return vl;
+        }
+
         public static Customer getCustomerById(int id)
         {
             string query = "SELECT * FROM Customer WHERE Customer.CustID=" + id.ToString();
@@ -270,6 +302,40 @@ namespace Nexus
             return c;
         }
 
+        public static List<Customer> getAllCustomer()
+        {
+            List<Customer> cust = new List<Customer>();
+            string query = "SELECT * FROM Customer";
+
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Customer c = new Customer
+                    {
+                        Id = Int32.Parse(reader["CustID"] + ""),
+                        Name = reader["Name"] + "",
+                        Email = reader["Email"] + "",
+                        Phone = reader["Phone"] + "",
+                        Address = reader["Addr"] + "",
+                        City = reader["City"] + "",
+                        State = reader["State"] + "",
+                        Zip = reader["Zip"] + ""
+                    };
+
+                    cust.Add(c);
+                }
+
+                CloseConnection();
+                reader.Close();
+            }
+
+            return cust;
+        }
+
         public static Merchandise getMerch(int id)
         {
             Merchandise m = new Merchandise
@@ -295,6 +361,34 @@ namespace Nexus
             }
 
             return m;
+        }
+
+        public static List<Merchandise> getAllMerch()
+        {
+            List<Merchandise> ml = new List<Merchandise>();
+            string query = "SELECT * FROM Merch";
+
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Merchandise m = new Merchandise
+                    {
+                        ItemID = Int32.Parse(reader["ItemID"] + ""),
+                        Name = reader["Name"] + "",
+                        Size = reader["Size"] + "",
+                        Inventory = Int32.Parse(reader["Inventory"] + ""),
+                        Price = Decimal.Parse(reader["Price"] + "")
+                    };
+                    ml.Add(m);
+                }
+                reader.Close();
+                CloseConnection();
+            }
+
+            return ml;
         }
 
         public static VendorItem getVendorItem(int id)
@@ -448,10 +542,11 @@ namespace Nexus
             return t;
         }
 
-        public static List<Customer> getAllCustomer()
+        public static List<Earnings> getEarningsByRange(DateTime start, DateTime end)
         {
-            List<Customer> cust = new List<Customer>();
-            string query = "SELECT * FROM Customer";
+            string query = "select * from TestEarnings where Day>'" + start.ToString("yyyy-MM-dd") + "' and Day<'" +
+                end.ToString("yyyy-MM-dd") + "'";
+            List<Earnings> el = new List<Earnings>();
 
             if(OpenConnection() == true)
             {
@@ -460,66 +555,19 @@ namespace Nexus
 
                 while (reader.Read())
                 {
-                    Customer c = new Customer
+                    Earnings e = new Earnings
                     {
-                        Id = Int32.Parse(reader["CustID"] + ""),
-                        Name = reader["Name"] + "",
-                        Email = reader["Email"] + "",
-                        Phone = reader["Phone"] + "",
-                        Address = reader["Addr"] + "",
-                        City = reader["City"] + "",
-                        State = reader["State"] + "",
-                        Zip = reader["Zip"] + ""
+                        Day = DateTime.Parse(reader["Day"] + ""),
+                        Cash = decimal.Parse(reader["Cash"] + ""),
+                        Credit = decimal.Parse(reader["Credit"] + "")
                     };
-
-                    cust.Add(c);
+                    el.Add(e);
                 }
-
                 reader.Close();
                 CloseConnection();
             }
 
-            return cust;
-        }
-
-        public static List<Vendor> getAllVendors()
-        {
-            List<Vendor> vend = new List<Vendor>();
-            string query = "SELECT * FROM Vendor";
-
-            if(OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Vendor v = new Vendor
-                    {
-                        Id = Int32.Parse(reader["VendorID"] + ""),
-                        Name = reader["Name"] + "",
-                        Email = reader["Email"] + "",
-                        Phone = reader["Phone"] + "",
-                        Addr = reader["Addr"] + "",
-                        City = reader["City"] + "",
-                        State = reader["State"] + "",
-                        Zip = reader["Zip"] + "",
-                        International = reader["International"] + "",
-                    };
-                    vend.Add(v);
-                }
-
-                reader.Close();
-                CloseConnection();
-            }
-
-            return vend;
-        }
-
-        public static Earnings[] getEarningsByRange(DateTime start, DateTime end)
-        {
-            Earnings[] e = new Earnings[5];
-            return e;
+            return el;
         }
     }
 }

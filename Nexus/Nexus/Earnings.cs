@@ -8,33 +8,38 @@ namespace Nexus
 {
     class Earnings
     {
-        DateTime Date { get; set; }
-        decimal Cash { get; set; }
-        decimal Credit { get; set; }
-        decimal Total
+        public int Id { get; set; }
+        public DateTime Day { get; set; }
+        public decimal Cash { get; set; }
+        public decimal Credit { get; set; }
+        public decimal Total
         {
-            get { return Cash + Credit; }
+            get
+            {
+                return Cash + Credit;
+            }
         }
-
         public Earnings()
         {
-            Date = DateTime.Today;
-            Cash = 0.0M;
-            Credit = 0.0M;
+            Id = 0;
+            Cash = 0;
+            Credit = 0;
         }
 
-        public Earnings(DateTime d, decimal cash, decimal credit)
+        public void Insert()
         {
-            Date = d;
-            Cash = cash;
-            Credit = credit;
+            string query = "INSERT INTO DailyEarnings (Day, Cash, Credit) VALUES ('" + Day.ToString("yyyy-MM-dd") +
+                "', " + Cash.ToString() + ", " + Credit.ToString() + ")";
+
+            DBHandler.ExecuteNoReturn(query);
         }
 
-        public Earnings(Earnings e)
+        public void Update()
         {
-            Date = e.Date;
-            Cash = e.Cash;
-            Credit = e.Credit;
+            string query = "UPDATE DailyEarnings SET Day='" + Day.ToString("yyyy-MM-dd") + "', Cash=" + Cash.ToString() + ", Credit="
+                + Credit.ToString() + " WHERE EarningsID=" + Id.ToString();
+
+            DBHandler.ExecuteNoReturn(query);
         }
     }
 }

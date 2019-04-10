@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
-    class Merchandise
+    public class Merchandise
     {
         public int ItemID { get; set; }
         public String Name { get; set; }
@@ -47,6 +47,14 @@ namespace Nexus
             Size = m.Size;
             Inventory = m.Inventory;
             Price = m.Price;
+        }
+
+        public void Update()
+        {
+            string query = "UPDATE Merch SET Name='" + Name + "', Size='" + Size + "', Inventory=" + Inventory.ToString() +
+                ", Price=" + Price.ToString() + " WHERE ItemID=" + ItemID.ToString();
+
+            DBHandler.ExecuteNoReturn(query);
         }
 
         public void InsertItem()
