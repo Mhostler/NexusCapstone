@@ -21,5 +21,7 @@
         <Button x:Name="InsertEarningsButton" Content="Insert" HorizontalAlignment="Left" Margin="103,166,0,0" VerticalAlignment="Top" Width="75" Click="InsertEarningsButton_Click"/>
         <Button x:Name="UpdateEarningsButton" Content="Update" HorizontalAlignment="Left" Margin="183,166,0,0" VerticalAlignment="Top" Width="75" Click="UpdateEarningsButton_Click"/>
         <Button x:Name="HomeButton" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="HomeButton_Click"/>
+        <Button x:Name="CreateRandomEarningsButton" Content="Random Earnings" HorizontalAlignment="Left" Margin="344,51,0,0" VerticalAlignment="Top" Width="100" Click="CreateRandomEarningsButton_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="344,76,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Page>

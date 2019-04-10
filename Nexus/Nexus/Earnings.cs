@@ -12,7 +12,13 @@ namespace Nexus
         public DateTime Day { get; set; }
         public decimal Cash { get; set; }
         public decimal Credit { get; set; }
-
+        public decimal Total
+        {
+            get
+            {
+                return Cash + Credit;
+            }
+        }
         public Earnings()
         {
             Id = 0;
