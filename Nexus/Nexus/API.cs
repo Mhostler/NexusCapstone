@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static Nexus.shopifyCustomer;
 
 namespace Nexus
 {
@@ -47,13 +48,13 @@ namespace Nexus
             JArray json = new JArray(responseFromServer);
             var results = JsonConvert.DeserializeObject<RootObject>(responseFromServer);
             Merchandise[][] merch = results.GetMerchandise();
-            for (int i = 0; i < merch.Length; i++)
+            /* for (int i = 0; i < merch.Length; i++)
             {
                 for (int j = 0; j < merch[i].Length; j++)
                 {
                     Console.WriteLine(merch[i][j].ItemID);
                 }
-            }
+            } */
             // Cleanup the streams and the response.
             reader.Close();
             dataStream.Close();
@@ -61,7 +62,7 @@ namespace Nexus
             return merch;
         }
 
-        public Customer[][] getCustomers()
+        public Customer[] getCustomers()
         {
             // Create a request for the URL. 
             WebRequest request = WebRequest.Create("https://nexus-gifts.myshopify.com/admin/customers.json");
@@ -94,9 +95,9 @@ namespace Nexus
             // Console.WriteLine(responseFromServer);
             // convert string to objects
             JArray json = new JArray(responseFromServer);
-            var results = JsonConvert.DeserializeObject<RootObject>(responseFromServer);
-            /*Customer[][] custs = results.GetCustomer();
-            for (int i = 0; i < custs.Length; i++)
+            var results = JsonConvert.DeserializeObject<RootObject1>(responseFromServer);
+            Customer[] custs = results.GetCustomers();
+            /*for (int i = 0; i < custs.Length; i++)
             {
                 for (int j = 0; j < custs[i].Length; j++)
                 {
@@ -107,7 +108,7 @@ namespace Nexus
             reader.Close();
             dataStream.Close();
             response.Close();
-            return null;
+            return custs;
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Nexus
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Merchandise[][] merch = api.getInventory();
+            Customer[] custs = api.getCustomers();
         }
     }
 }
