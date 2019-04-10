@@ -270,35 +270,37 @@ namespace Nexus
 
         public static Customer getCustomerByEmail(string eMail)
         {
-            string query = "SELECT * FROM Customer WHERE Email=" + eMail;
+            string query = "SELECT * FROM Customer WHERE Email='" + eMail + "'";
             return getCustomer(query);
         }
 
         public static Customer getCustomerByPhone(string phone)
         {
-            string query = "SELECT * FROM Customer WHERE Phone=" + phone;
+            string query = "SELECT * FROM Customer WHERE Phone='" + phone + "'";
             return getCustomer(query);
         }
 
         private static Customer getCustomer(string q)
         {
             Customer c = new Customer();
-            MySqlCommand cmd = new MySqlCommand(q, connection);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (OpenConnection() == true)
             {
-                c.Id = Int32.Parse(reader["CustID"] + "");
-                c.Name = reader["Name"] + "";
-                c.Email = reader["Email"] + "";
-                c.Phone = reader["Phone"] + "";
-                c.Address = reader["Addr"] + "";
-                c.City = reader["City"] + "";
-                c.State = reader["State"] + "";
-                c.Zip = reader["Zip"] + "";
-            }
-
+                MySqlCommand cmd = new MySqlCommand(q, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    c.Id = Int32.Parse(reader["CustID"] + "");
+                    c.Name = reader["Name"] + "";
+                    c.Email = reader["Email"] + "";
+                    c.Phone = reader["Phone"] + "";
+                    c.Address = reader["Addr"] + "";
+                    c.City = reader["City"] + "";
+                    c.State = reader["State"] + "";
+                    c.Zip = reader["Zip"] + "";
+                }
             reader.Close();
             CloseConnection();
+            }
             return c;
         }
 
