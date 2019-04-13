@@ -81,7 +81,7 @@ namespace Nexus
                 {
                     Connection = connection
                 };
-
+                
                 foreach (String query in queries)
                 {
                     cmd.CommandText = query;
@@ -544,10 +544,32 @@ namespace Nexus
             return t;
         }
 
-        public static Earnings[] getEarningsByRange(DateTime start, DateTime end)
+        public static List<Earnings> getEarningsByRange(DateTime start, DateTime end)
         {
-            Earnings[] e = new Earnings[5];
-            return e;
+            string query = "select * from TestEarnings where Day>'" + start.ToString("yyyy-MM-dd") + "' and Day<'" +
+                end.ToString("yyyy-MM-dd") + "'";
+            List<Earnings> el = new List<Earnings>();
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Earnings e = new Earnings
+                    {
+                        Day = DateTime.Parse(reader["Day"] + ""),
+                        Cash = decimal.Parse(reader["Cash"] + ""),
+                        Credit = decimal.Parse(reader["Credit"] + "")
+                    };
+                    el.Add(e);
+                }
+                reader.Close();
+                CloseConnection();
+            }
+
+            return el;
         }
     }
 }

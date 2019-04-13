@@ -13,11 +13,18 @@
     <Grid>
         <Button x:Name="Home" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Home_Click"/>
         <DVC:Chart Margin="355,62,10,93">
-            <DVC:LineSeries x:Name="ProfitLineChart" DependentValuePath="value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True" />
+            <DVC:LineSeries x:Name="ProfitLineChart" DependentValueBinding="{Binding Path=Value}" IndependentValueBinding="{Binding Path=Key}" ItemsSource="{Binding}" IsSelectionEnabled="True" />
         </DVC:Chart>
-        <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="92,103,0,0" VerticalAlignment="Top" DisplayDateStart="2016-11-04" DisplayDate="2016-11-04" DisplayDateEnd="2016-12-31"/>
-        <DatePicker HorizontalAlignment="Left" Margin="92,132,0,0" VerticalAlignment="Top" DisplayDate="2016-11-04" DisplayDateEnd="2016-12-31" DisplayDateStart="2016-11-04"/>
+        <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="92,103,0,0" VerticalAlignment="Top" DisplayDateStart="2019-01-01" DisplayDate="2016-11-04" DisplayDateEnd="2019-12-31"/>
+        <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="92,132,0,0" VerticalAlignment="Top" DisplayDate="2019-12-31" DisplayDateEnd="2019-12-31" DisplayDateStart="2019-01-01"/>
         <TextBlock x:Name="StartDateTextBlock" HorizontalAlignment="Left" Margin="32,107,0,0" TextWrapping="Wrap" Text="Start Date:" VerticalAlignment="Top"/>
         <TextBlock x:Name="EndDateTextBlock" HorizontalAlignment="Left" Margin="36,136,0,0" TextWrapping="Wrap" Text="End Date:" VerticalAlignment="Top"/>
+        <Button x:Name="SetRangeButton" Content="Graph" HorizontalAlignment="Left" Margin="119,161,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="SetRangeButton_Click"/>
+        <ComboBox x:Name="DMYComboBox" HorizontalAlignment="Left" Margin="92,76,0,0" VerticalAlignment="Top" Width="102" SelectedIndex="0">
+            <ComboBoxItem>Day</ComboBoxItem>
+            <ComboBoxItem>Month</ComboBoxItem>
+            <ComboBoxItem>Year</ComboBoxItem>
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="72,82,0,0" TextWrapping="Wrap" Text="By:" VerticalAlignment="Top" RenderTransformOrigin="0.65,-1.217"/>
     </Grid>
 </Page>
