@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
-  0: "acmnopsv",
-  1: "acmopsv",
+  0: "acdeimnoprstv",
+  1: "acdeimoprstv",
   2: "n"
 };
 
