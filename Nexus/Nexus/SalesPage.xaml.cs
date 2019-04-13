@@ -51,7 +51,7 @@ namespace Nexus
                         KeyValuePair<int, decimal> kv = new KeyValuePair<int, decimal>(startYear.Year, total);
                         values.Add(kv);
                         total = el[i].Total;
-                        startYear.AddYears(1);
+                        startYear = startYear.AddYears(1);
                     }
                 }
 
@@ -64,7 +64,7 @@ namespace Nexus
                 decimal total = 0;
                 for (int i = 0; i < el.Count; i++)
                 {
-                    if (el[i].Day.Year == startMonth.Month)
+                    if (el[i].Day.Month == startMonth.Month)
                     {
                         total += el[i].Total;
                     }
@@ -73,7 +73,7 @@ namespace Nexus
                         KeyValuePair<int, decimal> kv = new KeyValuePair<int, decimal>(startMonth.Month, total);
                         values.Add(kv);
                         total = el[i].Total;
-                        startMonth.AddMonths(1);
+                        startMonth = startMonth.AddMonths(1);
                     }
                 }
 
