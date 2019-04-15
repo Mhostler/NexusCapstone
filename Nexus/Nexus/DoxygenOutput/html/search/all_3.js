@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nexus',['Nexus',['../namespace_nexus.html',1,'']]]
+  ['earnings',['Earnings',['../class_nexus_1_1_earnings.html',1,'Nexus']]]
 ];
