@@ -10,13 +10,16 @@ namespace Nexus
 {
     static class DBHandler
     {
-        private static string server = "nexusgifts.c79k1z6krivv.us-east-2.rds.amazonaws.com";
-        private static string database = "NexusDB";
-        private static string user = "Nexus";
-        private static string pass = "Capstone2019";
-        private static string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+        private static readonly string server = "nexusgifts.c79k1z6krivv.us-east-2.rds.amazonaws.com";
+        private static readonly string database = "NexusDB";
+        private static readonly string user = "Nexus";
+        private static readonly string pass = "Capstone2019";
+        private static readonly string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                 database + ";" + "UID=" + user + ";" + "PASSWORD=" + pass + ";";
         private static MySqlConnection connection = new MySqlConnection(connectionString);
+
+        private static readonly string EarningsTable = "DailyEarnings";
+        private static readonly string TestEarningsTable = "TestEarnings";
 
         private static bool OpenConnection()
         {
@@ -544,10 +547,20 @@ namespace Nexus
             return t;
         }
 
-        public static List<Earnings> getEarningsByRange(DateTime start, DateTime end)
+        public static List<Earnings> getEarningsByRange(DateTime start, DateTime end, int origin = 0)
         {
-            string query = "select * from TestEarnings where Day>'" + start.ToString("yyyy-MM-dd") + "' and Day<'" +
+            string query;
+            if(origin == 0)
+            {
+                query = "select * from " + TestEarningsTable + " where Day>'" + start.ToString("yyyy-MM-dd") + "' and Day<'" +
                 end.ToString("yyyy-MM-dd") + "'";
+            }
+            else
+            {
+                query = "select * from " + EarningsTable + " where Day>'" + start.ToString("yyyy-MM-dd") + "' and Day<'" +
+                end.ToString("yyyy-MM-dd") + "'";
+            }
+
             List<Earnings> el = new List<Earnings>();
 
             if(OpenConnection() == true)
@@ -570,6 +583,66 @@ namespace Nexus
             }
 
             return el;
+        }
+
+        public static DateTime getFirstEarnings(int origin = 0)
+        {
+            string query;
+            if(origin == 0)
+            {
+                query = "select min(Day) as fDay from " + TestEarningsTable;
+            }
+            else
+            {
+                query = "select min(Day) as fDay from " + EarningsTable;
+            }
+            DateTime day = DateTime.Today;
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    day = DateTime.Parse(reader["fDay"] + "");
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return day;
+        }
+
+        public static DateTime getLastEarnings(int origin = 0)
+        {
+            string query;
+            if (origin == 0)
+            {
+                query = "select max(Day) as fDay from " + TestEarningsTable;
+            }
+            else
+            {
+                query = "select max(Day) as fDay from " + EarningsTable;
+            }
+            DateTime day = DateTime.Today;
+
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    day = DateTime.Parse(reader["fDay"] + "");
+                }
+              
+                reader.Close();
+                CloseConnection();
+            }
+
+            return day;
         }
     }
 }
