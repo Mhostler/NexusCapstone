@@ -49,12 +49,10 @@ namespace Nexus
             String Phone = c.Phone;
             c.Email = EmailBox.Text;
             String Email = c.Email;
-            var Phones = DBHandler.getCustomerByPhone(c.Phone);
-            List.TryFindResource(Phones);
-            var Idz = DBHandler.getCustomerById(c.Id);
-            List.TryFindResource(Idz);
+            List<Customer> Idz = new List<Customer>();
+            Idz.Add(DBHandler.getCustomerById(Ids));
+            List.ItemsSource = Idz;
             
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -37,21 +37,8 @@ namespace Nexus
             this.NavigationService.Navigate(uri);
         }
 
-        private void LookUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            Vendor v = new Vendor();
-            v.Id =Int32.Parse(IdBox.Text);
-
-
-
-        }
-
-        
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Uri uri = new Uri("VendorInsertPage.xaml", UriKind.Relative);
-            this.NavigationService.Navigate(uri);
-        }
+           
+       
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -67,6 +54,17 @@ namespace Nexus
         {
             Vendor V = new Vendor();
             List.ItemsSource = DBHandler.getAllVendor();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri("VendorInsertPage.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
         }
     }
 }
