@@ -105,9 +105,10 @@ namespace Nexus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //String itemTest = "dbTestPage.xaml";
-            String insertionTest = "DBInsertionTesting.xaml";
-            Uri uri = new Uri(insertionTest, UriKind.Relative);
+            //String page = "dbTestPage.xaml";
+            //String page = "DBInsertionTesting.xaml";
+            string page = "ProfitSourcePage.xaml";
+            Uri uri = new Uri(page, UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
 

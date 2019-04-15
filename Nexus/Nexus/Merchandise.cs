@@ -51,17 +51,19 @@ namespace Nexus
 
         public void Update()
         {
-            string query = "UPDATE Merch SET Name='" + Name + "', Size='" + Size + "', Inventory=" + Inventory.ToString() +
+            string n = Name.Replace("\'", "\\'");
+            string s = Size.Replace("\'", "\\'");
+            string query = "UPDATE Merch SET Name='" + n + "', Size='" + s + "', Inventory=" + Inventory.ToString() +
                 ", Price=" + Price.ToString() + " WHERE ItemID=" + ItemID.ToString();
-
             DBHandler.ExecuteNoReturn(query);
         }
 
         public void InsertItem()
         {
-            string query = "INSERT INTO Merch (Name, Size, Inventory, Price) VALUES('" + Name + "', '" +
-                Size + "', " + Inventory.ToString() + ", " + Price.ToString() + ")";
-
+            string n = Name.Replace("\'", "\\'");
+            string s = Size.Replace("\'", "\\'");
+            string query = "UPDATE Merch SET Name='" + n + "', Size='" + s + "', Inventory=" + Inventory.ToString() +
+                ", Price=" + Price.ToString() + " WHERE ItemID=" + ItemID.ToString();
             DBHandler.ExecuteNoReturn(query);
         }
     }

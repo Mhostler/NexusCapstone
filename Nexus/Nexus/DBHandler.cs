@@ -204,7 +204,7 @@ namespace Nexus
         public static Vendor getVendor(int id)
         {
             Vendor v = new Vendor();
-            string query = "SELECT * FROM Vendor WHERE Vendor.VendorID=" + id.ToString();
+            string query = "SELECT * FROM Vendor WHERE VendorID=" + id.ToString();
 
             if(OpenConnection() == true)
             {
@@ -260,6 +260,11 @@ namespace Nexus
 
                 reader.Close();
                 CloseConnection();
+            }
+
+            foreach(Vendor v in vl)
+            {
+                v.getCatalogue();
             }
 
             return vl;
@@ -521,6 +526,84 @@ namespace Nexus
             return o;
         }
 
+        public static List<Transaction> getAllTransactions()
+        {
+            List<Transaction> trans = new List<Transaction>();
+            string query = "SELECT * FROM Transactions";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Transaction t = new Transaction()
+                    {
+                        TransactionID = Int32.Parse(reader["TransactionID"] + ""),
+                        Day = DateTime.Parse(reader["Day"] + "")
+                    };
+                    t.Cust.Id = Int32.Parse(reader["CustID"] + "");
+                    trans.Add(t);
+                }
+                reader.Close();
+                CloseConnection();
+            }
+
+            for(int i = 0; i < trans.Count; i++)
+            {
+                trans[i].Cust = getCustomerById(trans[i].Cust.Id);
+                trans[i].TList = getTransactionItem(trans[i].TransactionID);
+            }
+
+            return trans;
+        }
+
+        public static List<KeyValuePair<Vendor, decimal>> getAllTransactionTotalsByVendor()
+        {
+            string query = "select VendorMerch.VendorID as VendorID, TItem.Quantity as Quantity, Merch.Price as Price " +
+                "from ((TItem INNER JOIN Merch ON TItem.ItemID = Merch.ItemID) INNER JOIN VendorMerch ON VendorMerch.ItemID = TItem.ItemID)";
+            List<decimal> totals = new List<decimal>();
+            Dictionary<int, int> vendors = new Dictionary<int, int>();
+            List<KeyValuePair<Vendor, decimal>> pairs = new List<KeyValuePair<Vendor, decimal>>();
+
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int v = Int32.Parse(reader["VendorID"] + "");
+                    int quant = Int32.Parse(reader["Quantity"] + "");
+                    decimal price = decimal.Parse(reader["Price"] + "");
+
+                    if (vendors.ContainsKey(v))
+                    {
+                        totals[vendors[v]] += quant * price;
+                    }
+                    else
+                    {
+                        decimal tot = quant * price;
+                        totals.Add(tot);
+                        vendors.Add(v, totals.Count - 1);
+                    }
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            foreach(int key in vendors.Keys)
+            {
+                Vendor v = getVendor(key);
+                decimal tot = totals[vendors[key]];
+                pairs.Add(new KeyValuePair<Vendor, decimal>(v, tot));
+            }
+
+            return pairs;
+        }
+
         public static Transaction getTransaction(int id)
         {
             Transaction t = new Transaction
@@ -545,6 +628,28 @@ namespace Nexus
             }
 
             return t;
+        }
+
+        public static int getLastTransactionID()
+        {
+            string query = "SELECT max(TransactionID) as newest FROM Transactions";
+            int id = 0;
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    id = Int32.Parse(reader["newest"] + "");
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return id;
         }
 
         public static List<Earnings> getEarningsByRange(DateTime start, DateTime end, int origin = 0)

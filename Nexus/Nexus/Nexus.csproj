@@ -122,6 +122,9 @@
       <DependentUpon>CustomerInsertPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="productInfo.cs" />
+    <Compile Include="ProfitSourcePage.xaml.cs">
+      <DependentUpon>ProfitSourcePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="shopifyCustomer.cs" />
     <Compile Include="VendorInsertPage.xaml.cs">
       <DependentUpon>VendorInsertPage.xaml</DependentUpon>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerInsertPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProfitSourcePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
