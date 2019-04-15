@@ -232,7 +232,6 @@ namespace Nexus
             {
                 MessageBox.Show("Compare format incorrect, please reexamine selection.");
             }
-
         }
     }
 }

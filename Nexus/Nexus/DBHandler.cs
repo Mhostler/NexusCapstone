@@ -637,7 +637,7 @@ namespace Nexus
                 {
                     day = DateTime.Parse(reader["fDay"] + "");
                 }
-
+              
                 reader.Close();
                 CloseConnection();
             }

@@ -15,11 +15,11 @@
         <RadioButton Content="Local (Within US)" HorizontalAlignment="Left" Margin="67,73,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Height="34" Width="126" IsEnabled="False"/>
         <RadioButton Content="International (Outside US)" HorizontalAlignment="Left" Height="35" Margin="198,72,0,0" VerticalAlignment="Top" Width="171" IsEnabled="False"/>
         <TextBox x:Name="IdBox" HorizontalAlignment="Left" Height="30" Margin="161,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" TextChanged="TextBox_TextChanged" Text="Insert ID"/>
-        <Button Content="LookUp&#xD;&#xA;" HorizontalAlignment="Left" Height="43" Margin="67,165,0,0" VerticalAlignment="Top" Width="109" Click="Button_Click"/>
-        <Button Content="All Vendors List" HorizontalAlignment="Left" Height="43" Margin="298,165,0,0" VerticalAlignment="Top" Width="203" Click="Button_Click_1" IsEnabled="False"/>
-        <DataGrid HorizontalAlignment="Left" Height="189" Margin="54,251,0,0" VerticalAlignment="Top" Width="713" IsEnabled="False"/>
+        <Button Name = "Lookup"  Content="LookUp&#xD;&#xA;" HorizontalAlignment="Left" Height="43" Margin="67,165,0,0" VerticalAlignment="Top" Width="109" Click="Button_Click"/>
+        <Button Content="All Vendors List" HorizontalAlignment="Left" Height="43" Margin="298,165,0,0" VerticalAlignment="Top" Width="203" Click="Button_Click_1"/>
+        <DataGrid Name = "List" HorizontalAlignment="Left" Height="189" Margin="54,251,0,0" VerticalAlignment="Top" Width="713"/>
         <TextBlock HorizontalAlignment="Left" Height="26" Margin="551,30,0,0" TextWrapping="Wrap" Text="Add Vendor" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Height="34" Margin="551,73,0,0" VerticalAlignment="Top" Width="113" Click="Button_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="27" Margin="551,61,0,0" VerticalAlignment="Top" Width="105" Click="Button_Click_2"/>
 
     </Grid>
 </Page>
