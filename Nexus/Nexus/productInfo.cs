@@ -9,7 +9,8 @@ namespace Nexus
 
     public class Variant
     {
-        public Variant() {
+        public Variant()
+        {
 
         }
 
