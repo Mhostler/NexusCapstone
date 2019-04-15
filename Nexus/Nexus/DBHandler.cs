@@ -283,8 +283,9 @@ namespace Nexus
         private static Customer getCustomer(string q)
         {
             Customer c = new Customer();
-            MySqlCommand cmd = new MySqlCommand(q, connection);
+             MySqlCommand cmd = new MySqlCommand(q, connection);
             MySqlDataReader reader = cmd.ExecuteReader();
+            
             if (reader.Read())
             {
                 c.Id = Int32.Parse(reader["CustID"] + "");

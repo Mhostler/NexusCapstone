@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Nexus
 {
@@ -24,9 +26,12 @@ namespace Nexus
          * Customer Information:
          * Name, Email, Phone, Street Addr, city, state, zip
          */
+       
+
         public CustomerPage()
         {
             InitializeComponent();
+           
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -39,17 +44,24 @@ namespace Nexus
         {
             Customer c = new Customer();
             c.Id = Int32.Parse(IdBox.Text);
+            int Ids = c.Id;
             c.Phone = PhoneBox.Text;
+            String Phone = c.Phone;
             c.Email = EmailBox.Text;
-            //List.GetValue(c.Id);
-            DataGrid grid = new DataGrid();
-            grid.FrozenColumnCount = 5;
+            String Email = c.Email;
+            var Phones = DBHandler.getCustomerByPhone(c.Phone);
+            List.TryFindResource(Phones);
+            var Idz = DBHandler.getCustomerById(c.Id);
+            List.TryFindResource(Idz);
+            
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Customer c = new Customer();
+            List.ItemsSource = DBHandler.getAllCustomer();
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
