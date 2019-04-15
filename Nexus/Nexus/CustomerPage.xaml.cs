@@ -1,11 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Nexus
 {
@@ -30,9 +26,12 @@ namespace Nexus
          * Customer Information:
          * Name, Email, Phone, Street Addr, city, state, zip
          */
+       
+
         public CustomerPage()
         {
             InitializeComponent();
+           
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -45,28 +44,24 @@ namespace Nexus
         {
             Customer c = new Customer();
             c.Id = Int32.Parse(IdBox.Text);
+            int Ids = c.Id;
             c.Phone = PhoneBox.Text;
+            String Phone = c.Phone;
             c.Email = EmailBox.Text;
-            DataGrid data = new DataGrid();
-            DataTable table = new DataTable();
-           var db = DBHandler.getCustomer(c.Id);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from CUstomer where Id = ?");
-            MySqlDataReader reader = cmd.ExecuteReader();
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-            dataAdapter.SelectCommand= cmd;
-            dataAdapter.Fill(table);
-
-                     
+            String Email = c.Email;
+            var Phones = DBHandler.getCustomerByPhone(c.Phone);
+            List.TryFindResource(Phones);
+            var Idz = DBHandler.getCustomerById(c.Id);
+            List.TryFindResource(Idz);
+            
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Customer c = new Customer();
-            var ConnectionString = ConfigurationManager.ConnectionStrings["dbHandler"].ConnectionString;
-            //DataSet ds = new DataSet();
-            
-            
+            List.ItemsSource = DBHandler.getAllCustomer();
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -78,8 +73,6 @@ namespace Nexus
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid grid = new DataGrid();
-            DataSet ds = new DataSet();
-
 
         }
 

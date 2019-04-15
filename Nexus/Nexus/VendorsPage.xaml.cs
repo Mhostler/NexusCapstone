@@ -43,6 +43,7 @@ namespace Nexus
             v.Id =Int32.Parse(IdBox.Text);
 
 
+
         }
 
         
@@ -65,6 +66,7 @@ namespace Nexus
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Vendor V = new Vendor();
+            List.ItemsSource = DBHandler.getAllVendor();
         }
     }
 }
