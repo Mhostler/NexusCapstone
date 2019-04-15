@@ -35,6 +35,7 @@ namespace Nexus
         {
             Merchandise[][] merch = api.getInventory();
             Customer[] custs = api.getCustomers();
+            Transaction[] trans = api.getTrans();
         }
     }
 }

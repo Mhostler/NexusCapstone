@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="productInfo.cs" />
     <Compile Include="shopifyCustomer.cs" />
+    <Compile Include="shopifyTransaction.cs" />
     <Compile Include="VendorInsertPage.xaml.cs">
       <DependentUpon>VendorInsertPage.xaml</DependentUpon>
     </Compile>

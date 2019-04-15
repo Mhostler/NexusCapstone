@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
-    class Transaction
+     public class Transaction
     {
         public int TransactionID { get; set; }
         public Customer Cust { get; set; }
@@ -35,6 +35,7 @@ namespace Nexus
             String query = "INSERT INTO Transaction (CustID) VALUES (" + Cust.Id + ")";
             DBHandler.ExecuteNoReturn(query);
 
+            TransactionID = DBHandler.SelectMostRecentTransaction(Cust.Id);
             String[] itemQueries = new string[TList.Count];
             TransactionItem[] items = TList.ToArray();
 
