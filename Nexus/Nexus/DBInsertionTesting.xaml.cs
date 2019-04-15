@@ -56,20 +56,19 @@ namespace Nexus
 
         private void CreateRandomEarningsButton_Click(object sender, RoutedEventArgs e)
         {
-            int dayMax = 365;
-            string[] query = new string[dayMax];
-            DateTime day = new DateTime(2019, 1, 1);
+            DateTime start = new DateTime(2016, 1, 1);
+            int end_year = 2019;
+            List<string> queries = new List<string>();
             Random r = new Random();
-            for(int i = 0; i < dayMax; i++)
+            for( ; start.Year < end_year; start = start.AddDays(1))
             {
                 decimal cash = r.Next(1000) + (decimal)r.Next(100) * 0.01M;
                 decimal credit = r.Next(1000) + (decimal)r.Next(100) * 0.01M;
-                query[i] = "INSERT INTO TestEarnings (Day, Cash, Credit) VALUES ('" + day.ToString("yyyy-MM-dd") + "', " + cash.ToString() +
-                    ", " + credit.ToString() + ")";
-                day = day.AddDays(1);
+                queries.Add("INSERT INTO TestEarnings (Day, Cash, Credit) VALUES ('" + start.ToString("yyyy-MM-dd") + "', " + cash.ToString() +
+                    ", " + credit.ToString() + ")");
             }
 
-            DBHandler.ExecuteMultipleNoReturn(query);
+            DBHandler.ExecuteMultipleNoReturn(queries.ToArray());
         }
     }
 }
