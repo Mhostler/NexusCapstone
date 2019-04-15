@@ -20,6 +20,22 @@ namespace Nexus
     /// </summary>
     public partial class Page1 : Page
     {
+        Dictionary<int, string> months = new Dictionary<int, string>()
+        {
+            { 1, "January" },
+            { 2, "February" },
+            { 3, "March" },
+            { 4, "April" },
+            { 5, "May" },
+            { 6, "June" },
+            { 7, "July" },
+            { 8, "August" },
+            { 9, "September" },
+            { 10, "October" },
+            { 11, "November" },
+            { 12, "December" }
+        };
+
         public Page1()
         {
             InitializeComponent();
@@ -28,12 +44,33 @@ namespace Nexus
 
         private void showColumnChart()
         {
-            List<KeyValuePair<String, double>> valueList = new List<KeyValuePair<string, double>>();
-            valueList.Add(new KeyValuePair<string, double>("January", 1122.56));
-            valueList.Add(new KeyValuePair<string, double>("February", 1073.25));
-            valueList.Add(new KeyValuePair<string, double>("March", 950.75));
+            DateTime last = DBHandler.getLastEarnings(1);
+            DateTime start = new DateTime(last.Year, last.Month - 2, 1);
+            List<Earnings> e = DBHandler.getEarningsByRange(start, last, 1);
 
-            ColumnChart.DataContext = valueList;
+            List<KeyValuePair<string, decimal>> values = new List<KeyValuePair<string, decimal>>();
+            decimal[] earningMonths = new decimal[12];
+            for (int i = 0; i < e.Count; i++)
+            {
+                earningMonths[e[i].Day.Month - 1] += e[i].Total;
+            }
+
+            for (int i = 0; i < earningMonths.Length; i++)
+            {
+                if(earningMonths[i] > 0)
+                {
+                    values.Add(new KeyValuePair<string, decimal>(months[i + 1], earningMonths[i]));
+                }
+            }
+
+            ColumnChart.DataContext = values;
+
+            //List<KeyValuePair<String, double>> valueList = new List<KeyValuePair<string, double>>();
+            //valueList.Add(new KeyValuePair<string, double>("January", 1122.56));
+            //valueList.Add(new KeyValuePair<string, double>("February", 1073.25));
+            //valueList.Add(new KeyValuePair<string, double>("March", 950.75));
+
+            //ColumnChart.DataContext = valueList;
         }
 
         private void SalesButton_Click(object sender, RoutedEventArgs e)

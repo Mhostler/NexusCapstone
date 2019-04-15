@@ -12,8 +12,9 @@
 
     <Grid>
         <Button x:Name="Home" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Home_Click"/>
-        <DVC:Chart Margin="355,62,10,93">
-            <DVC:LineSeries x:Name="ProfitLineChart" DependentValueBinding="{Binding Path=Value}" IndependentValueBinding="{Binding Path=Key}" ItemsSource="{Binding}" IsSelectionEnabled="True" />
+        <DVC:Chart Margin="237,10,10,10">
+            <DVC:LineSeries x:Name="ProfitLineChart" DependentValueBinding="{Binding Path=Value}" IndependentValueBinding="{Binding Path=Key}" ItemsSource="{Binding [0]}" IsSelectionEnabled="True" />
+            <DVC:LineSeries x:Name="ProfitLineChart2" DependentValueBinding="{Binding Path=Value}" IndependentValueBinding="{Binding Path=Key}" ItemsSource="{Binding [1]}" IsSelectionEnabled="True" />
         </DVC:Chart>
         <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="92,103,0,0" VerticalAlignment="Top" DisplayDateStart="2019-01-01" DisplayDate="2016-11-04" DisplayDateEnd="2019-12-31"/>
         <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="92,132,0,0" VerticalAlignment="Top" DisplayDate="2019-12-31" DisplayDateEnd="2019-12-31" DisplayDateStart="2019-01-01"/>
@@ -26,5 +27,38 @@
             <ComboBoxItem>Year</ComboBoxItem>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="72,82,0,0" TextWrapping="Wrap" Text="By:" VerticalAlignment="Top" RenderTransformOrigin="0.65,-1.217"/>
+        <ComboBox x:Name="FirstMonthComboBox" HorizontalAlignment="Left" Margin="32,255,0,0" VerticalAlignment="Top" Width="90" SelectedIndex="0">
+            <ComboBoxItem ContentStringFormat="Whole Year" Content="All Year"/>
+            <ComboBoxItem Content="January"/>
+            <ComboBoxItem Content="February"/>
+            <ComboBoxItem Content="March"/>
+            <ComboBoxItem Content="April"/>
+            <ComboBoxItem Content="May"/>
+            <ComboBoxItem Content="June"/>
+            <ComboBoxItem Content="July"/>
+            <ComboBoxItem Content="August"/>
+            <ComboBoxItem Content="September"/>
+            <ComboBoxItem Content="October"/>
+            <ComboBoxItem Content="November"/>
+            <ComboBoxItem Content="December"/>
+        </ComboBox>
+        <ComboBox x:Name="SecondMonthComboBox" HorizontalAlignment="Left" Margin="32,282,0,0" VerticalAlignment="Top" Width="90" SelectedIndex="0">
+            <ComboBoxItem ContentStringFormat="Whole Year" Content="All Year"/>
+            <ComboBoxItem Content="January"/>
+            <ComboBoxItem Content="February"/>
+            <ComboBoxItem Content="March"/>
+            <ComboBoxItem Content="April"/>
+            <ComboBoxItem Content="May"/>
+            <ComboBoxItem Content="June"/>
+            <ComboBoxItem Content="July"/>
+            <ComboBoxItem Content="August"/>
+            <ComboBoxItem Content="September"/>
+            <ComboBoxItem Content="October"/>
+            <ComboBoxItem Content="November"/>
+            <ComboBoxItem Content="December"/>
+        </ComboBox>
+        <ComboBox x:Name="FirstYearComboBox" HorizontalAlignment="Left" Margin="127,255,0,0" VerticalAlignment="Top" Width="67"/>
+        <ComboBox x:Name="SecondYearComboBox" HorizontalAlignment="Left" Margin="127,282,0,0" VerticalAlignment="Top" Width="67"/>
+        <Button x:Name="CompareButton" Content="Compare" HorizontalAlignment="Left" Margin="119,309,0,0" VerticalAlignment="Top" Width="75" Click="CompareButton_Click"/>
     </Grid>
 </Page>
