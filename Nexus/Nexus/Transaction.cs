@@ -6,16 +6,34 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
-    class Transaction
+     public class Transaction
     {
         public int TransactionID { get; set; }
         public Customer Cust { get; set; }
-        public List<TransactionItem> TList { get; set; }
-        public decimal Total { get; }
+        public DateTime Day { get; set; }
+        private List<TransactionItem> tList;
+        public List<TransactionItem> TList
+        {
+            get
+            {
+                return this.tList;
+            }
+            set
+            {
+                this.tList = value;
+                Total = 0;
+                foreach(TransactionItem t in this.tList)
+                {
+                    Total += t.Price * t.Quantity;
+                }
+            }
+        }
+        public decimal Total { get; protected set; }
 
         public Transaction()
         {
             TList = new List<TransactionItem>();
+            Day = DateTime.Now;
             Cust = new Customer();
             TransactionID = 0;
             Total = 0.0M;
@@ -26,15 +44,18 @@ namespace Nexus
             TransactionItem t = new TransactionItem();
             t.SetMerchandise(m);
             t.Quantity = quantity;
+            Total += m.Price * quantity;
             TList.Add(t);
         }
 
         public void InsertTransaction()
         {
             //TODO set ID = to newly inserted transaction
-            String query = "INSERT INTO Transaction (CustID) VALUES (" + Cust.Id + ")";
+            String query = "INSERT INTO Transactions (CustID, Day) VALUES (" + Cust.Id + ", '" + Day.ToString("yyyy-MM-dd H:mm:ss") + "')";
             DBHandler.ExecuteNoReturn(query);
+            TransactionID = DBHandler.getLastTransactionID();
 
+            TransactionID = DBHandler.SelectMostRecentTransaction(Cust.Id);
             String[] itemQueries = new string[TList.Count];
             TransactionItem[] items = TList.ToArray();
 

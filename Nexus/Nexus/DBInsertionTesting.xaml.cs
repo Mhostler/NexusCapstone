@@ -70,5 +70,57 @@ namespace Nexus
 
             DBHandler.ExecuteMultipleNoReturn(queries.ToArray());
         }
+
+        private void AssignPrices_Click(object sender, RoutedEventArgs e)
+        {
+            List<Transaction> TList = new List<Transaction>();
+            List<Merchandise> merch = DBHandler.getAllMerch();
+            DateTime start = new DateTime(2016, 1, 1);
+            Random r = new Random();
+
+            for(; start < DateTime.Today; start = start.AddDays(1))
+            {
+                int numTran = r.Next(1, 10);
+                for (int i = 0; i < numTran; i++)
+                {
+                    Transaction t = new Transaction
+                    {
+                        Cust = new Customer
+                        {
+                            Id = 4
+                        },
+                        Day = start
+                    };
+
+                    int items = r.Next(1, 10);
+                    for (int j = 0; j < items; j++)
+                    {
+                        int id = r.Next(0, merch.Count-1);
+                        int quantity = r.Next(1, 10);
+                        Merchandise m = merch[id];
+                        t.AddItem(m, quantity);
+                    }
+
+                    TList.Add(t);
+                }
+
+                if(TList.Count >= 1000)
+                {
+                    for (int i = 0; i < TList.Count; i++)
+                    {
+                        TList[i].InsertTransaction();
+                    }
+                    TList.Clear();
+                }
+
+            }
+
+            for (int i = 0; i < TList.Count; i++)
+            {
+                TList[i].InsertTransaction();
+            }
+            TList.Clear();
+
+        }
     }
 }
