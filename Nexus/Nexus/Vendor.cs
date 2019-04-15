@@ -21,6 +21,15 @@ namespace Nexus
 
         public Vendor()
         {
+            Id = 0;
+            Name = "Empty";
+            Email = "";
+            Phone = "";
+            Addr = "";
+            City = "";
+            State = "";
+            Zip = "";
+            International = "";
             catalogue = new List<VendorItem>();
         }
 
