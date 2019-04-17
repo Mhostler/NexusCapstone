@@ -122,5 +122,11 @@ namespace Nexus
             TList.Clear();
 
         }
+
+        private void TestSelect_Click(object sender, RoutedEventArgs e)
+        {
+            List<Merchandise> ml = DBHandler.getMerchByVendor(9);
+            MessageBox.Show(ml[0].Name);
+        }
     }
 }
