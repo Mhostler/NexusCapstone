@@ -36,6 +36,9 @@ namespace Nexus
             Merchandise[][] merch = api.getInventory();
             Customer[] custs = api.getCustomers();
             Transaction[] trans = api.getTrans();
+            int tid = DBHandler.getLastTransactionID();
+            Transaction tran = DBHandler.getTransaction(tid);
+            Transaction[] trans2 = api.getTrans(tran.Day);
         }
     }
 }

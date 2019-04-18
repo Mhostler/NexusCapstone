@@ -617,8 +617,11 @@ namespace Nexus
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                t.TransactionID = Int32.Parse(reader["TransactionID"] + "");
-                t.Cust.Id = Int32.Parse(reader["CustID"] + "");
+                if (reader.Read())
+                {
+                    t.TransactionID = Int32.Parse(reader["TransactionID"] + "");
+                    t.Cust.Id = Int32.Parse(reader["CustID"] + "");
+                }
 
                 reader.Close();
                 CloseConnection();
