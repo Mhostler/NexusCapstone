@@ -44,7 +44,7 @@ namespace Nexus
 
         private void showColumnChart()
         {
-            DateTime last = DBHandler.getLastEarnings(1);
+            DateTime last = DBHandler.getLastEarningsDate(1);
             DateTime start = new DateTime(last.Year, last.Month - 2, 1);
             List<Earnings> e = DBHandler.getEarningsByRange(start, last, 1);
 
@@ -75,7 +75,7 @@ namespace Nexus
 
         private void SalesButton_Click(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri("SalesPage.xaml", UriKind.Relative);
+            Uri uri = new Uri("ChartingOptions.xaml", UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
 
@@ -108,6 +108,7 @@ namespace Nexus
             //String page = "dbTestPage.xaml";
             String page = "DBInsertionTesting.xaml";
             //string page = "ProfitSourcePage.xaml";
+            //string page = "ChartingOptions.xaml";
             Uri uri = new Uri(page, UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
