@@ -29,7 +29,15 @@ namespace Nexus
 
         private void InitializeComparisonComboBoxes()
         {
-            DateTime first = DBHandler.getFirstEarnings();
+            DateTime first = DBHandler.getFirstEarningsDate();
+            DateTime last = DBHandler.getLastEarningsDate();
+            StartDatePicker.DisplayDateStart = first;
+            StartDatePicker.DisplayDateEnd = last;
+            StartDatePicker.DisplayDate = first;
+            EndDatePicker.DisplayDateStart = first;
+            EndDatePicker.DisplayDateEnd = last;
+            EndDatePicker.DisplayDate = first.AddYears(1);
+
             for (; first.Year <= DateTime.Today.Year; first = first.AddYears(1))
             {
                 FirstYearComboBox.Items.Add(first.Year);
@@ -41,7 +49,7 @@ namespace Nexus
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
+            Uri uri = new Uri("ChartingOptions.xaml", UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
 

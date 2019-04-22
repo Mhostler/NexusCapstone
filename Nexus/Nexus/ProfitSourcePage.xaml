@@ -15,5 +15,11 @@
             <DVC:PieSeries x:Name="ChartSeries1" Title="Earnings Sources" IndependentValueBinding="{Binding Path=Key}" 
                                DependentValueBinding="{Binding Path=Value}" ItemsSource="{Binding}" IsSelectionEnabled="True"></DVC:PieSeries>
         </DVC:Chart>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_Click"/>
+        <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="74,115,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="74,144,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="StartDateTextBlock" HorizontalAlignment="Left" Margin="13,119,0,0" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" RenderTransformOrigin="-0.335,-3.661" Width="56"/>
+        <TextBlock x:Name="EndDateTextBlock" HorizontalAlignment="Left" Margin="13,148,0,0" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" RenderTransformOrigin="-0.335,-3.661" Width="55"/>
+        <Button x:Name="GraphButton" Content="Graph" HorizontalAlignment="Left" Margin="13,173,0,0" VerticalAlignment="Top" Width="75" Click="GraphButton_Click"/>
     </Grid>
 </Page>
