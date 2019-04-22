@@ -54,15 +54,14 @@ namespace Nexus
             String query = "INSERT INTO Transactions (CustID, Day) VALUES (" + Cust.Id + ", '" + Day.ToString("yyyy-MM-dd H:mm:ss") + "')";
             DBHandler.ExecuteNoReturn(query);
             TransactionID = DBHandler.getLastTransactionID();
-
-            TransactionID = DBHandler.SelectMostRecentTransaction(Cust.Id);
+            
             String[] itemQueries = new string[TList.Count];
             TransactionItem[] items = TList.ToArray();
 
             for(int i = 0; i < TList.Count; i++)
             {
-                itemQueries[i] = "INSERT INTO TItem (TransactionID, ItemID, Quantity) VALUES (" +
-                    TransactionID.ToString() + ", " + items[i].ItemID.ToString() + ", " +  items[i].Quantity + ")";
+                itemQueries[i] = "INSERT INTO TItem (TransactionID, ItemID, Quantity) VALUES ( (SELECT max(TransactionID) " +
+                    "FROM Transactions), " + items[i].ItemID.ToString() + ", " +  items[i].Quantity + ")";
             }
 
             DBHandler.ExecuteMultipleNoReturn(itemQueries);
