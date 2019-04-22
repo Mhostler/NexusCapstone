@@ -47,6 +47,7 @@ namespace Nexus
             JArray json = new JArray(responseFromServer);
             var results = JsonConvert.DeserializeObject<RootObject>(responseFromServer);
             Merchandise[][] merch = results.GetMerchandise();
+            Console.WriteLine("done with product request");
             /* for (int i = 0; i < merch.Length; i++)
             {
                 for (int j = 0; j < merch[i].Length; j++)
@@ -96,7 +97,7 @@ namespace Nexus
             JArray json = new JArray(responseFromServer);
             var results = JsonConvert.DeserializeObject<RootObject1>(responseFromServer);
             Customer[] custs = results.GetCustomers();
-            Console.WriteLine("done");
+            Console.WriteLine("done with customer request");
             /*for (int i = 0; i < custs.Length; i++)
             {
                 for (int j = 0; j < custs[i].Length; j++)
@@ -146,7 +147,7 @@ namespace Nexus
             JArray json = new JArray(responseFromServer);
             var results = JsonConvert.DeserializeObject<RootObject2>(responseFromServer);
             Transaction[] trans = results.GetTransactions();
-            Console.WriteLine("done");
+            Console.WriteLine("done with all transaction request");
             /*for (int i = 0; i < custs.Length; i++)
             {
                 for (int j = 0; j < custs[i].Length; j++)
@@ -164,7 +165,8 @@ namespace Nexus
         public Transaction[] getTrans(DateTime dateTime)
         {
             // Create a request for the URL. 
-            string website = "https://nexus-gifts.myshopify.com/admin/orders.json";
+            string date = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+            string website = "https://nexus-gifts.myshopify.com/admin/orders.json?updated_at_min=" + date;
             WebRequest request = WebRequest.Create(website);
             // Set the credentials.
             request.Credentials = new NetworkCredential("699c6bc43f0faf199beb517d7016442c", "5ef303099c80218c94c08dee9c786667");
@@ -196,8 +198,8 @@ namespace Nexus
             // convert string to objects
             JArray json = new JArray(responseFromServer);
             var results = JsonConvert.DeserializeObject<RootObject2>(responseFromServer);
-            Transaction[] trans = results.GetTransactions();
-            Console.WriteLine("done");
+            Transaction[] trans = results.GetTransactions(dateTime);
+            Console.WriteLine("done with date transaction request");
             /*for (int i = 0; i < custs.Length; i++)
             {
                 for (int j = 0; j < custs[i].Length; j++)
