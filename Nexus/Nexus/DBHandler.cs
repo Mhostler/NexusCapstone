@@ -373,6 +373,40 @@ namespace Nexus
             return m;
         }
 
+        public static List<Merchandise> getMerchByVendor(int VendorID)
+        {
+            string query = "SELECT Merch.ItemID, Merch.Name, Merch.Size, Merch.Inventory, Merch.Price " + 
+                "FROM VendorMerch RIGHT JOIN Merch " + 
+                "ON VendorMerch.ItemID = Merch.ItemID " +
+                "WHERE VendorMerch.VendorID = " + VendorID.ToString();
+
+            List<Merchandise> ml = new List<Merchandise>();
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Merchandise m = new Merchandise
+                    {
+                        ItemID = Int32.Parse(reader["ItemID"] + ""),
+                        Name = reader["Name"] + "",
+                        Size = reader["Size"] + "",
+                        Inventory = Int32.Parse(reader["Inventory"] + ""),
+                        Price = Decimal.Parse(reader["Price"] + "")
+                    };
+                    ml.Add(m);
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return ml;
+        }
+
         public static List<Merchandise> getAllMerch()
         {
             List<Merchandise> ml = new List<Merchandise>();

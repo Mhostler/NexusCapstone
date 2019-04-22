@@ -52,7 +52,12 @@ namespace Nexus
             List<Customer> Idz = new List<Customer>();
             Idz.Add(DBHandler.getCustomerById(Ids));
             List.ItemsSource = Idz;
-            
+            List<Customer> Phonez = new List<Customer>();
+            Phonez.Add(DBHandler.getCustomerByPhone(Phone));
+            List.ItemsSource = Phonez;
+            List<Customer> eMails = new List<Customer>();
+            eMails.Add(DBHandler.getCustomerByEmail(Email));
+            List.ItemsSource = eMails;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

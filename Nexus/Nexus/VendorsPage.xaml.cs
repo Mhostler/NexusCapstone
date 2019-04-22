@@ -58,7 +58,11 @@ namespace Nexus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            Vendor V = new Vendor();
+            V.Id = Int32.Parse(IdBox.Text);
+            List<Vendor> Idz = new List<Vendor>();
+            Idz.Add(DBHandler.getVendor(V.Id));
+            List.ItemsSource = Idz;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
