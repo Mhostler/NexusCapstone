@@ -11,7 +11,7 @@
       Title="SalesPage">
 
     <Grid>
-        <Button x:Name="Home" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Home_Click"/>
+        <Button x:Name="Home" Content="Back" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Home_Click"/>
         <DVC:Chart Margin="237,10,10,10">
             <DVC:LineSeries x:Name="ProfitLineChart" DependentValueBinding="{Binding Path=Value}" IndependentValueBinding="{Binding Path=Key}" ItemsSource="{Binding [0]}" IsSelectionEnabled="True" />
             <DVC:LineSeries x:Name="ProfitLineChart2" DependentValueBinding="{Binding Path=Value}" IndependentValueBinding="{Binding Path=Key}" ItemsSource="{Binding [1]}" IsSelectionEnabled="True" />

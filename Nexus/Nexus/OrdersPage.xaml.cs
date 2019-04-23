@@ -35,5 +35,43 @@ namespace Nexus
             Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Order ord = new Order();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Order or = new Order();
+            or.OrderID = Int32.Parse(Ord.Text);
+            int ords = or.OrderID;
+
+           
+        }
+
+        private void AllOrder_Click(object sender, RoutedEventArgs e)
+        {
+            Order or = new Order();
+            
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            Uri uri = new Uri("OrderInsert.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
+
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
