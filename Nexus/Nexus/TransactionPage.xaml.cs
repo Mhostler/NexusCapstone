@@ -34,9 +34,7 @@ namespace Nexus
 
         private void getTransButton_Click(object sender, RoutedEventArgs e)
         {
-            int tid = DBHandler.getLastTransactionID();
-            Transaction tran = DBHandler.getTransaction(tid);
-            Transaction[] trans = api.getTrans(tran.Day);
+            Transaction[] trans = api.getTrans(DBHandler.getLastTransactionDate());
         }
     }
 }
