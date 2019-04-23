@@ -19,6 +19,8 @@ namespace Nexus
         public Order()
         {
             items = new List<OrderItem>();
+            Placed = new DateTime();
+            Received = new DateTime();
             total = 0;
         }
 
@@ -33,10 +35,6 @@ namespace Nexus
 
         public void InsertOrder()
         {
-            //TODO select statement to get proper ID
-            DateTime today = DateTime.Now;
-            //String date = today.ToString("yyyy-MM-dd");
-
             String orderQuery = "INSERT INTO Orders (VendorID, Placed, Received) VALUES (" +
                 OrderVendor.Id.ToString() + ", '" + Placed.ToString("yyyy-MM-dd") + "', '" + Received.ToString("yyyy-MM-dd") + "')";
             String[] itemQueries = new string[items.Count];
@@ -65,7 +63,7 @@ namespace Nexus
             string[] itemQueries = new string[items.Count];
             for(int i = 0; i < items.Count; i++)
             {
-                itemQueries[i] = "UPDATE OrderItems Quantity=" + items[i].Quantity.ToString() +
+                itemQueries[i] = "UPDATE OrderItems SET Quantity=" + items[i].Quantity.ToString() +
                     " WHERE oID=" + items[i].Oid.ToString();
             }
 

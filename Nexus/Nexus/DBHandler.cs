@@ -242,13 +242,15 @@ namespace Nexus
                     Order o = new Order();
                     o.OrderID = Int32.Parse(reader["OrderID"] + "");
                     o.Placed = DateTime.Parse(reader["Placed"] + "");
-                    string dateString = reader["Received"] + "";
-                    o.Received = DateTime.Parse(reader["Placed"] + "");
+                    o.Received = DateTime.Parse(reader["Received"] + "");
+
                     oList.Add(o);
                 }
 
                 for(int i = 0; i < oList.Count; i++)
                 {
+                    reader.Close();
+
                     query = "select " +
                         "OrderItems.oID as oID, " +
                         "OrderItems.Quantity as quant, " +
@@ -266,7 +268,7 @@ namespace Nexus
                         "INNER JOIN Merch on VendorMerch.ItemID = Merch.ItemID) " +
                         "WHERE OrderItems.OrderID=" + oList[i].OrderID.ToString();
                     cmd.CommandText = query;
-                    reader.Close();
+
                     reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -290,8 +292,6 @@ namespace Nexus
 
                 reader.Close();
                 CloseConnection();
-
-                
             }
 
             return oList;
