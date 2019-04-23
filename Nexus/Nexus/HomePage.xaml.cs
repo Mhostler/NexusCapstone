@@ -103,6 +103,12 @@ namespace Nexus
             this.NavigationService.Navigate(uri);
         }
 
+        private void TransactionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri("TransactionPage.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //String page = "dbTestPage.xaml";

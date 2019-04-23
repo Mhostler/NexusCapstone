@@ -1,0 +1,16 @@
+﻿<Page x:Class="Nexus.TransactionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nexus"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TransactionPage">
+
+    <Grid>
+        <Button x:Name="HomeButton" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="HomeButton_Click"/>
+        <Button x:Name="getTransButton" Content="Get New Transactions" HorizontalAlignment="Left" Margin="312.5,225,0,0" VerticalAlignment="Top" Width="175" Click="getTransButton_Click"/>
+        
+    </Grid>
+</Page>

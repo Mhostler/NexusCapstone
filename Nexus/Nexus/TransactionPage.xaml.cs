@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,27 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Nexus
 {
     /// <summary>
-    /// Interaction logic for APITestpage.xaml
+    /// Interaction logic for TransactionPage.xaml
     /// </summary>
-    public partial class APITestpage : Page
+    public partial class TransactionPage : Page
     {
         API api = new API();
-        public APITestpage()
+        public TransactionPage()
         {
             InitializeComponent();
         }
 
-        // button
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            Merchandise[][] merch = api.getInventory();
-            Customer[] custs = api.getCustomers();
+            Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(uri);
+        }
+
+        private void getTransButton_Click(object sender, RoutedEventArgs e)
+        {
             int tid = DBHandler.getLastTransactionID();
             Transaction tran = DBHandler.getTransaction(tid);
             Transaction[] trans = api.getTrans(tran.Day);

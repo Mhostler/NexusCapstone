@@ -54,7 +54,10 @@ namespace Nexus
             TransactionItem item = new TransactionItem();
             int number;
             decimal dnum;
-            int.TryParse(sku, out number);
+            if (!int.TryParse(sku, out number))
+            {
+                number = 99;
+            }
             Decimal.TryParse(price, out dnum);
             item.ItemID = number;
             item.Name = name;
@@ -337,16 +340,23 @@ namespace Nexus
         public Payment_Details payment_details { get; set; }
         public Customers customer { get; set; }
 
-        public Transaction getTran()
+        public Transaction getTran(DateTime dateTime)
         {
             Transaction tran = new Transaction();
-            Transaction last = new Transaction();
-            last.TransactionID = DBHandler.SelectLastOrder();
-            tran.TransactionID = order_number;
-            if (tran.TransactionID <= last.TransactionID) // if transaction is in database, skip
+            DateTime oDate = DateTime.Parse(created_at, null, System.Globalization.DateTimeStyles.RoundtripKind);
+            Console.WriteLine("Last Day: " + dateTime + " Last Ticks: " + dateTime.Ticks);
+            Console.WriteLine("Transaction Day: " + oDate + " Transaction Ticks: " + oDate.Ticks);
+            if (dateTime.Ticks < oDate.Ticks)
             {
                 tran.Cust = customer.GetCust();
+                Console.WriteLine(tran.Cust.Id);
+                if (tran.Cust.Id == 0)
+                {
+                    tran.Cust.Id = 4;
+                }
                 tran.TList = getItems();
+                tran.Day = oDate;
+                Console.WriteLine(tran.Day.ToString());
                 tran.InsertTransaction();
             }
             return tran;
@@ -355,9 +365,9 @@ namespace Nexus
         public List<TransactionItem> getItems()
         {
             List<TransactionItem> items = new List<TransactionItem>();
-            for (int i = 0; i < line_items.Capacity; i++)
+            for (int i = 0; i < line_items.Count; i++)
             {
-                items.Add(line_items[0].getItem());
+                items.Add(line_items[i].getItem());
             }
             return items;
         }
@@ -365,37 +375,21 @@ namespace Nexus
 
     public class RootObject2
     {
-        public List<Orders> transactions;
+        public List<Orders> orders;
 
-        public Transaction[] GetTransactions()
+        public Transaction[] GetTransactions(DateTime dateTime)
         {
-            if (transactions != null)
+            if (orders != null)
             {
-                Transaction[] trans = new Transaction[transactions.Count];
-                for (int i = 0; i < transactions.Count; i++)
+                Transaction[] trans = new Transaction[orders.Count];
+                for (int i = 0; i < orders.Count; i++)
                 {
-                    trans[i] = transactions[i].getTran();
+                    trans[i] = orders[i].getTran(dateTime);
                 }
                 return trans;
             } else
             {
-                return null;
-            }
-        }
-
-        public Transaction[] GetTransactions(DateTime dateTime)
-        {
-            if (transactions != null)
-            {
-                Transaction[] trans = new Transaction[transactions.Count];
-                for (int i = 0; i < transactions.Count; i++)
-                {
-                    trans[i] = transactions[i].getTran();
-                }
-                return trans;
-            }
-            else
-            {
+                Console.WriteLine("no transactions found!");
                 return null;
             }
         }

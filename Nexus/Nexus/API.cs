@@ -112,7 +112,7 @@ namespace Nexus
             return custs;
         }
 
-        public Transaction[] getTrans()
+        /* public Transaction[] getTrans()
         {
             // Create a request for the URL. 
             WebRequest request = WebRequest.Create("https://nexus-gifts.myshopify.com/admin/orders.json");
@@ -154,19 +154,19 @@ namespace Nexus
                 {
                     Console.WriteLine(custs[i][j].ItemID);
                 }
-            } */
+            } 
             // Cleanup the streams and the response.
             reader.Close();
             dataStream.Close();
             response.Close();
             return trans;
-        }
+        } */
 
         public Transaction[] getTrans(DateTime dateTime)
         {
             // Create a request for the URL. 
             string date = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
-            string website = "https://nexus-gifts.myshopify.com/admin/orders.json?updated_at_min=" + date;
+            string website = "https://nexus-gifts.myshopify.com/admin/orders.json?created_at_min=" + date;
             WebRequest request = WebRequest.Create(website);
             // Set the credentials.
             request.Credentials = new NetworkCredential("699c6bc43f0faf199beb517d7016442c", "5ef303099c80218c94c08dee9c786667");
