@@ -51,6 +51,8 @@ namespace Nexus
             Order or = new Order();
             or.OrderID = Int32.Parse(Ord.Text);
             int ords = or.OrderID;
+            
+
 
            
         }

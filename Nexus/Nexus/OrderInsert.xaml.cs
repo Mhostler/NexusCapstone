@@ -57,10 +57,21 @@ namespace Nexus
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Order or = new Order();
-            VendorItem vm = new VendorItem();
+            int mer = Merch.SelectedIndex;
+            VendorItem vi = v[Vend.SelectedIndex].catalogue[mer];
             int items = Int32.Parse(Norder.Text);
+            or.Placed = DateTime.Now;
+            or.Received = DateTime.Now;
+            or.OrderVendor = v[Vend.SelectedIndex];
+            or.addItem(vi, items);
 
-            or.InsertOrder();
+                
+            
+          or.InsertOrder();
+
+            
+            
+            
 
             
         }
