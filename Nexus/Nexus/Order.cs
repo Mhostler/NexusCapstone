@@ -45,9 +45,9 @@ namespace Nexus
 
             for (int i = 0; i < items.Count; i++)
             {
-                itemQueries[i] = "INSERT INTO OrderItems (Quantity, Price, vmID, (select max(OrderID) from Orders)) VALUES (" +
-                    oItem[i].Quantity.ToString() + ", " + oItem[i].Price + ", " +
-                    oItem[i].Vmid + ", " + OrderID.ToString() + ")";
+                itemQueries[i] = "INSERT INTO OrderItems (Quantity, vmID, OrderID ) VALUES (" +
+                    oItem[i].Quantity.ToString() + ", " +
+                    oItem[i].Vmid + ", (select max(OrderID) from Orders))";
             }
 
             DBHandler.ExecuteMultipleNoReturn(itemQueries);

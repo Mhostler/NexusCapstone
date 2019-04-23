@@ -10,6 +10,15 @@
 
     <Grid>
         <Button x:Name="HomeButton" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="HomeButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" Margin="114,30,0,0" TextWrapping="Wrap" Text="Order Lookup" VerticalAlignment="Top" Width="180"/>
+        <TextBlock HorizontalAlignment="Left" Height="28" Margin="58,78,0,0" TextWrapping="Wrap" Text="Order  Number:" VerticalAlignment="Top" Width="114"/>
+        <TextBox Name ="Ord" HorizontalAlignment="Left" Height="28" Margin="172,65,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="162" TextChanged="TextBox_TextChanged"/>
+        <Button Name ="Lookup" Content="Lookup" HorizontalAlignment="Left" Height="48" Margin="58,148,0,0" VerticalAlignment="Top" Width="134" Click="Button_Click"/>
+        <Button Name = "CurrentOrders" Content="Current Order" HorizontalAlignment="Left" Height="48" Margin="334,148,0,0" VerticalAlignment="Top" Width="162" Click="Button_Click_1"/>
+        <Button Name ="AllOrder" Content="All Order" HorizontalAlignment="Left" Height="48" Margin="616,148,0,0" VerticalAlignment="Top" Width="142" Click="AllOrder_Click"/>
+        <DataGrid Name = "List" HorizontalAlignment="Left" Height="180" Margin="58,238,0,0" VerticalAlignment="Top" Width="700" SelectionChanged="DataGrid_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="622,34,0,0" TextWrapping="Wrap" Text="Insert Order" VerticalAlignment="Top" Width="136"/>
+        <Button Name = "Insert" Content="Insert" HorizontalAlignment="Left" Height="46" Margin="592,60,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_2"/>
 
     </Grid>
 </Page>
