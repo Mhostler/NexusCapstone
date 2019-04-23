@@ -37,7 +37,7 @@ namespace Nexus
             //String date = today.ToString("yyyy-MM-dd");
 
             String orderQuery = "INSERT INTO Orders (VendorID, Placed, Received) VALUES (" +
-                OrderVendor.Id.ToString() + ", " + Placed + "', '" + Received + "')";
+                OrderVendor.Id.ToString() + ", '" + Placed + "', '" + Received + "')";
             String[] itemQueries = new string[items.Count];
             OrderItem[] oItem = items.ToArray();
 
