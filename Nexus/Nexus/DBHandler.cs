@@ -227,6 +227,76 @@ namespace Nexus
             return -1;
         }
 
+        public static List<Order> getAllOrders()
+        {
+            List<Order> oList = new List<Order>();
+            string query = "SELECT * FROM Orders";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Order o = new Order();
+                    o.OrderID = Int32.Parse(reader["OrderID"] + "");
+                    o.Placed = DateTime.Parse(reader["Placed"] + "");
+                    string dateString = reader["Received"] + "";
+                    o.Received = DateTime.Parse(reader["Placed"] + "");
+                    oList.Add(o);
+                }
+
+                for(int i = 0; i < oList.Count; i++)
+                {
+                    query = "select " +
+                        "OrderItems.oID as oID, " +
+                        "OrderItems.Quantity as quant, " +
+                        "OrderItems.vmID as vmID, " +
+                        "VendorMerch.VendorID as VendorID, " +
+                        "VendorMerch.ItemID as ItemID, " +
+                        "VendorMerch.UnitSize as UnitSize, " +
+                        "VendorMerch.UnitPrice as UnitPrice, " +
+                        "Merch.Name as Name, " +
+                        "Merch.Size as Size, " +
+                        "Merch.Inventory as Inv, " +
+                        "Merch.Price as Price " +
+                        "FROM ((" +
+                        "OrderItems INNER JOIN VendorMerch on OrderItems.vmID=VendorMerch.vmID) " +
+                        "INNER JOIN Merch on VendorMerch.ItemID = Merch.ItemID) " +
+                        "WHERE OrderItems.OrderID=" + oList[i].OrderID.ToString();
+                    cmd.CommandText = query;
+                    reader.Close();
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Merchandise m = new Merchandise
+                        {
+                            Name = reader["Name"] + "",
+                            Size = reader["Size"] + "",
+                            Inventory = Int32.Parse(reader["Inv"] + ""),
+                            Price = decimal.Parse(reader["Price"] + "")
+                        };
+                        VendorItem vi = new VendorItem(m,
+                            Int32.Parse(reader["vmID"] + ""),
+                            Int32.Parse(reader["UnitSize"] + ""),
+                            decimal.Parse(reader["UnitPrice"] + ""),
+                            Int32.Parse(reader["VendorID"] + ""));
+
+                        oList[i].addItem(vi, Int32.Parse(reader["quant"] + ""));
+                    }
+                }
+
+                reader.Close();
+                CloseConnection();
+
+                
+            }
+
+            return oList;
+        }
+
         public static Vendor getVendor(int id)
         {
             Vendor v = new Vendor();
