@@ -122,6 +122,32 @@ namespace Nexus
             return -1;
         }
 
+        public static decimal getOrderTotalByRange(DateTime start, DateTime end)
+        {
+            string query = "SELECT OrderItems.Quantity as Quant, VendorMerch.UnitPrice as Price " +
+                "from ((Orders inner join OrderItems on Orders.OrderID=OrderItems.OrderID) " +
+                "inner join VendorMerch on OrderItems.vmID=VendorMerch.vmID) " +
+                "Where Orders.Placed>'" + start.ToString("yyyy-MM-dd") + "' and Orders.Placed<'" +
+                end.ToString("yyyy-MM-dd") + "'";
+            decimal total = 0;
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    total += decimal.Parse(reader["Quant"] + "") * decimal.Parse(reader["Price"] + "");
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return total;
+        }
+
         public static int SelectMostRecentTransaction(int CustID)
         {
             List<int> list = new List<int>();
@@ -651,8 +677,11 @@ namespace Nexus
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                t.TransactionID = Int32.Parse(reader["TransactionID"] + "");
-                t.Cust.Id = Int32.Parse(reader["CustID"] + "");
+                if (reader.Read())
+                {
+                    t.TransactionID = Int32.Parse(reader["TransactionID"] + "");
+                    t.Cust.Id = Int32.Parse(reader["CustID"] + "");
+                }
 
                 reader.Close();
                 CloseConnection();
@@ -662,6 +691,54 @@ namespace Nexus
             }
 
             return t;
+        }
+
+        public static List<KeyValuePair<string, decimal>> getTransactionTotalByRange(DateTime start, DateTime end)
+        {
+            List<decimal> totals = new List<decimal>();
+            List<string> names = new List<string>();
+            List<KeyValuePair<string, decimal>> kvp = new List<KeyValuePair<string, decimal>>();
+            Dictionary<string, int> position = new Dictionary<string, int>();
+            string query = "SELECT Vendor.Name as Name, Vendor.VendorID as vID, TItem.Quantity as Quantity, Merch.Price as Price FROM ((((" +
+                "TItem RIGHT JOIN Merch on TItem.ItemID = Merch.ItemID)" +
+                " INNER JOIN VendorMerch on VendorMerch.ItemID = Merch.ItemID)" +
+                " INNER JOIN Vendor on Vendor.VendorID = VendorMerch.VendorID)" +
+                " INNER JOIN Transactions on Transactions.TransactionID = TItem.TransactionID)" +
+                " WHERE Transactions.Day>='" + start.ToString("yyyy-MM-dd") + "'" +
+                " AND Transactions.Day<='" + end.ToString("yyyy-MM-dd") + "'";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                string name = "";
+                while (reader.Read())
+                {
+                    name = reader["Name"] + "";
+                    if (position.ContainsKey(name))
+                    {
+                        totals[position[name]] += decimal.Parse(reader["Quantity"] + "") + decimal.Parse(reader["Price"] + "");
+                    }
+                    else
+                    {
+                        names.Add(name);
+                        totals.Add(decimal.Parse(reader["Quantity"] + "") + decimal.Parse(reader["Price"] + ""));
+                        position.Add(name, totals.Count - 1);
+                    }
+                }
+                
+                for(int i = 0; i < names.Count; i++)
+                {
+                    KeyValuePair<string, decimal> kv = new KeyValuePair<string, decimal>(names[i], totals[position[names[i]]]);
+                    kvp.Add(kv);
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return kvp;
         }
 
         public static int getLastTransactionID()
@@ -684,6 +761,50 @@ namespace Nexus
             }
 
             return id;
+        }
+
+        public static DateTime getLastTransactionDate()
+        {
+            string query = "SELECT max(Day) as newest FROM Transactions";
+            DateTime start = DateTime.Today;
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    start = DateTime.Parse(reader["newest"] + "");
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return start;
+        }
+
+        public static DateTime getFirstTransactionDate()
+        {
+            string query = "SELECT min(Day) as earliest FROM Transactions;";
+            DateTime start = DateTime.Today;
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    start = DateTime.Parse(reader["earliest"] + "");
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return start;
         }
 
         public static List<Earnings> getEarningsByRange(DateTime start, DateTime end, int origin = 0)
@@ -724,7 +845,7 @@ namespace Nexus
             return el;
         }
 
-        public static DateTime getFirstEarnings(int origin = 0)
+        public static DateTime getFirstEarningsDate(int origin = 0)
         {
             string query;
             if(origin == 0)
@@ -754,7 +875,7 @@ namespace Nexus
             return day;
         }
 
-        public static DateTime getLastEarnings(int origin = 0)
+        public static DateTime getLastEarningsDate(int origin = 0)
         {
             string query;
             if (origin == 0)

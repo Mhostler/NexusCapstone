@@ -382,5 +382,22 @@ namespace Nexus
                 return null;
             }
         }
+
+        public Transaction[] GetTransactions(DateTime dateTime)
+        {
+            if (transactions != null)
+            {
+                Transaction[] trans = new Transaction[transactions.Count];
+                for (int i = 0; i < transactions.Count; i++)
+                {
+                    trans[i] = transactions[i].getTran();
+                }
+                return trans;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

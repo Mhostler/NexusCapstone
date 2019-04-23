@@ -10,9 +10,11 @@ namespace Nexus
     {
         public int OrderID { get; set; }
         public Vendor OrderVendor { get; set; }
+        public DateTime Placed { get; set; }
+        public DateTime Received { get; set; }
         public List<OrderItem> items;
         private decimal total;
-        public decimal Total { get; }
+        public decimal Total { get { return total; } }
 
         public Order()
         {
@@ -32,23 +34,38 @@ namespace Nexus
         {
             //TODO select statement to get proper ID
             DateTime today = DateTime.Now;
-            String date = today.ToString("yyyy-MM-dd");
+            //String date = today.ToString("yyyy-MM-dd");
 
-            String orderQuery = "INSERT INTO Orders (VendorID, Placed) VALUES ('" +
-                OrderVendor.Id.ToString() + "', " + date + "')";
+            String orderQuery = "INSERT INTO Orders (VendorID, Placed, Received) VALUES (" +
+                OrderVendor.Id.ToString() + ", " + Placed + "', '" + Received + "')";
             String[] itemQueries = new string[items.Count];
             OrderItem[] oItem = items.ToArray();
 
             DBHandler.ExecuteNoReturn(orderQuery);
-            OrderID = DBHandler.SelectLastOrder();
-
-            OrderID = DBHandler.SelectMostRecentOrder(OrderVendor.Id, today);
 
             for (int i = 0; i < items.Count; i++)
             {
-                itemQueries[i] = "INSERT INTO OrderItems (Quantity, Price, vmID, OrderID) VALUES (" +
+                itemQueries[i] = "INSERT INTO OrderItems (Quantity, Price, vmID, (select max(OrderID) from Orders)) VALUES (" +
                     oItem[i].Quantity.ToString() + ", " + oItem[i].Price + ", " +
                     oItem[i].Vmid + ", " + OrderID.ToString() + ")";
+            }
+
+            DBHandler.ExecuteMultipleNoReturn(itemQueries);
+        }
+
+        public void UpdateOrder()
+        {
+            string OrderQuery = "UPDATE Orders SET VendorID=" + OrderVendor.Id.ToString() + ", " +
+                "Placed='" + Placed.ToString("yyyy-MM-dd") + "', Received='" + Received.ToString("yyyy-MM-dd") +
+                "WHERE OrderID=" + OrderID.ToString();
+
+            DBHandler.ExecuteNoReturn(OrderQuery);
+
+            string[] itemQueries = new string[items.Count];
+            for(int i = 0; i < items.Count; i++)
+            {
+                itemQueries[i] = "UPDATE OrderItems Quantity=" + items[i].Quantity.ToString() +
+                    " WHERE oID=" + items[i].Oid.ToString();
             }
 
             DBHandler.ExecuteMultipleNoReturn(itemQueries);

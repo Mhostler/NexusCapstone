@@ -73,54 +73,40 @@ namespace Nexus
 
         private void AssignPrices_Click(object sender, RoutedEventArgs e)
         {
-            List<Transaction> TList = new List<Transaction>();
-            List<Merchandise> merch = DBHandler.getAllMerch();
             DateTime start = new DateTime(2016, 1, 1);
+            List<string> queries = new List<string>();
+            List<Vendor> vendors = DBHandler.getAllVendor();
             Random r = new Random();
 
-            for(; start < DateTime.Today; start = start.AddDays(1))
+            while (start < DateTime.Today)
             {
-                int numTran = r.Next(1, 10);
-                for (int i = 0; i < numTran; i++)
+                Vendor v = vendors[r.Next(0, vendors.Count - 1)];
+                string query = "insert into Orders (VendorID, Placed, Received) " +
+                    "values (" + v.Id.ToString() + ", '" +
+                    start.ToString("yyyy-MM-dd") + "', '" + start.AddDays(4).ToString() + "')";
+
+                queries.Add(query);
+
+                int items = r.Next(4);
+                for(int i = 0; i < items; i++)
                 {
-                    Transaction t = new Transaction
-                    {
-                        Cust = new Customer
-                        {
-                            Id = 4
-                        },
-                        Day = start
-                    };
-
-                    int items = r.Next(1, 10);
-                    for (int j = 0; j < items; j++)
-                    {
-                        int id = r.Next(0, merch.Count-1);
-                        int quantity = r.Next(1, 10);
-                        Merchandise m = merch[id];
-                        t.AddItem(m, quantity);
-                    }
-
-                    TList.Add(t);
+                    int vmid = v.catalogue[r.Next(0, v.catalogue.Count)].Vmid;
+                    query = "insert into OrderItems (Quantity, vmID, OrderID) values (" +
+                        r.Next(1, 10).ToString() + ", " + vmid.ToString() +
+                        ", " + "(select max(OrderID) from Orders))";
+                    queries.Add(query);
                 }
 
-                if(TList.Count >= 1000)
+                if(queries.Count > 100)
                 {
-                    for (int i = 0; i < TList.Count; i++)
-                    {
-                        TList[i].InsertTransaction();
-                    }
-                    TList.Clear();
+                    DBHandler.ExecuteMultipleNoReturn(queries.ToArray());
+                    queries.Clear();
                 }
 
+                start = start.AddDays(1);
             }
 
-            for (int i = 0; i < TList.Count; i++)
-            {
-                TList[i].InsertTransaction();
-            }
-            TList.Clear();
-
+            DBHandler.ExecuteMultipleNoReturn(queries.ToArray());
         }
 
         private void TestSelect_Click(object sender, RoutedEventArgs e)

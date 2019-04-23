@@ -97,6 +97,12 @@
     <Compile Include="APITestpage.xaml.cs">
       <DependentUpon>APITestpage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChartingOptions.xaml.cs">
+      <DependentUpon>ChartingOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CostandProfit.xaml.cs">
+      <DependentUpon>CostandProfit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Earnings.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerPage.xaml.cs">
@@ -149,6 +155,14 @@
     <Page Include="APITestpage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ChartingOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CostandProfit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerPage.xaml">
       <SubType>Designer</SubType>
