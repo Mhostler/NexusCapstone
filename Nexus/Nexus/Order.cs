@@ -56,7 +56,7 @@ namespace Nexus
         {
             string OrderQuery = "UPDATE Orders SET VendorID=" + OrderVendor.Id.ToString() + ", " +
                 "Placed='" + Placed.ToString("yyyy-MM-dd") + "', Received='" + Received.ToString("yyyy-MM-dd") +
-                "WHERE OrderID=" + OrderID.ToString();
+                "' WHERE OrderID=" + OrderID.ToString();
 
             DBHandler.ExecuteNoReturn(OrderQuery);
 

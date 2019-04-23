@@ -83,6 +83,16 @@ namespace Nexus
 
         private void TestSelect_Click(object sender, RoutedEventArgs e)
         {
+            List<Order> oList = DBHandler.getOrderByRange(new DateTime(2019, 4, 19), new DateTime(2019, 4, 23));
+            if (oList.Count == 2)
+            {
+                string msg = oList[0].items[0].Name + ": " + oList[1].items[0].Name;
+                MessageBox.Show(msg);
+            }
+            else
+            {
+                MessageBox.Show(oList.Count.ToString());
+            }
         }
     }
 }
