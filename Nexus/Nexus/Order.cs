@@ -37,7 +37,7 @@ namespace Nexus
             //String date = today.ToString("yyyy-MM-dd");
 
             String orderQuery = "INSERT INTO Orders (VendorID, Placed, Received) VALUES (" +
-                OrderVendor.Id.ToString() + ", " + Placed + "', '" + Received + "')";
+                OrderVendor.Id.ToString() + ", '" + Placed + "', '" + Received + "')";
             String[] itemQueries = new string[items.Count];
             OrderItem[] oItem = items.ToArray();
 
@@ -45,9 +45,9 @@ namespace Nexus
 
             for (int i = 0; i < items.Count; i++)
             {
-                itemQueries[i] = "INSERT INTO OrderItems (Quantity, Price, vmID, (select max(OrderID) from Orders)) VALUES (" +
-                    oItem[i].Quantity.ToString() + ", " + oItem[i].Price + ", " +
-                    oItem[i].Vmid + ", " + OrderID.ToString() + ")";
+                itemQueries[i] = "INSERT INTO OrderItems (Quantity, vmID, OrderID ) VALUES (" +
+                    oItem[i].Quantity.ToString() + ", " +
+                    oItem[i].Vmid + ", (select max(OrderID) from Orders))";
             }
 
             DBHandler.ExecuteMultipleNoReturn(itemQueries);

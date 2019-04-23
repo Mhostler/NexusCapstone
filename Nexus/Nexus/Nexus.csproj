@@ -127,6 +127,12 @@
     <Compile Include="CustomerInsertPage.xaml.cs">
       <DependentUpon>CustomerInsertPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MerchandiseInsert.xaml.cs">
+      <DependentUpon>MerchandiseInsert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderInsert.xaml.cs">
+      <DependentUpon>OrderInsert.xaml</DependentUpon>
+    </Compile>
     <Compile Include="productInfo.cs" />
     <Compile Include="ProfitSourcePage.xaml.cs">
       <DependentUpon>ProfitSourcePage.xaml</DependentUpon>
@@ -195,6 +201,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerInsertPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MerchandiseInsert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderInsert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
