@@ -15,6 +15,7 @@
         <Button x:Name="CustomerButton" Content="Customer Contact" HorizontalAlignment="Left" Margin="112,188,0,0" VerticalAlignment="Top" Width="104" Click="CustomerButton_Click"/>
         <Button x:Name="VendorButton" Content="Vendors" HorizontalAlignment="Left" Margin="112,213,0,0" VerticalAlignment="Top" Width="104" Click="VendorButton_Click"/>
         <Button x:Name="OrdersButton" Content="Orders" HorizontalAlignment="Left" Margin="112,238,0,0" VerticalAlignment="Top" Width="104" Click="OrdersButton_Click"/>
+        <Button x:Name="TransactionButton" Content="Transactions" HorizontalAlignment="Left" Margin="112,263,0,0" VerticalAlignment="Top" Width="104" Click="TransactionButton_Click"/>
         <chartingToolkit:Chart 
             Name="ColumnChart" 
             Title="Sales" 
@@ -25,7 +26,7 @@
                 IndependentValuePath="Key"
                 ItemsSource="{Binding}" />
         </chartingToolkit:Chart>
-        <Button Content="DataBaseTest" HorizontalAlignment="Left" Margin="112,263,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click"/>
-        <Button Content="APITest" HorizontalAlignment="Left" Margin="112,288,0,0" VerticalAlignment="Top" Width="104" Click="APIButton_Click"/>
+        <Button Content="DataBaseTest" HorizontalAlignment="Left" Margin="112,288,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click"/>
+        <Button Content="APITest" HorizontalAlignment="Left" Margin="112,313,0,0" VerticalAlignment="Top" Width="104" Click="APIButton_Click"/>
     </Grid>
 </Page>
