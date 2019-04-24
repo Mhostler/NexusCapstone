@@ -49,19 +49,11 @@ namespace Nexus
                 Customer c = new Customer();
                 c.Id = Int32.Parse(IdBox.Text);
                 int Ids = c.Id;
-                c.Phone = PhoneBox.Text;
-                String Phone = c.Phone;
-                c.Email = EmailBox.Text;
-                String Email = c.Email;
+               
                 List<Customer> Idz = new List<Customer>();
                 Idz.Add(DBHandler.getCustomerById(Ids));
                 List.ItemsSource = Idz;
-                List<Customer> Phonez = new List<Customer>();
-                Phonez.Add(DBHandler.getCustomerByPhone(Phone));
-                List.ItemsSource = Phonez;
-                List<Customer> eMails = new List<Customer>();
-                eMails.Add(DBHandler.getCustomerByEmail(Email));
-                List.ItemsSource = eMails;
+                
             }
             else {
                 MessageBox.Show("Default values should be changed.");
@@ -95,6 +87,47 @@ namespace Nexus
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
            
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (IdBox.Text != "Enter ID"
+                || PhoneBox.Text != "Enter Phone #"
+                || EmailBox.Text != "Enter Email")
+            {
+                Customer c = new Customer();
+                c.Phone = PhoneBox.Text;
+                String Phone = c.Phone;
+                List<Customer> Idz = new List<Customer>();
+                Idz.Add(DBHandler.getCustomerByPhone(Phone));
+                List.ItemsSource = Idz;
+
+            }
+            else
+            {
+                MessageBox.Show("Default values should be changed.");
+            }
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            if (IdBox.Text != "Enter ID"
+                || PhoneBox.Text != "Enter Phone #"
+                || EmailBox.Text != "Enter Email")
+            {
+                Customer c = new Customer();
+                c.Email = EmailBox.Text;
+                String Email = c.Email;
+                List<Customer> Idz = new List<Customer>();
+                Idz.Add(DBHandler.getCustomerByEmail(Email));
+                List.ItemsSource = Idz;
+
+            }
+            else
+            {
+                MessageBox.Show("Default values should be changed.");
+            }
         }
     }
 }
