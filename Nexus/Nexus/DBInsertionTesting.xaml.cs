@@ -111,8 +111,8 @@ namespace Nexus
 
         private void TestSelect_Click(object sender, RoutedEventArgs e)
         {
-            List<Merchandise> ml = DBHandler.getMerchByVendor(9);
-            MessageBox.Show(ml[0].Name);
+            List<Order> lo = DBHandler.getAllOrders();
+            MessageBox.Show(lo[lo.Count-1].Received.ToString("yyyy-MM-dd"));
         }
     }
 }
