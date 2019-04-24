@@ -26,21 +26,35 @@ namespace Nexus
         }
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor
+            if (NameBox.Text == "Insert Name" ||
+                EmailBox.Text == "Email" ||
+                PhoneBox.Text == "Phone" ||
+                AddrBox.Text == "Address" ||
+                CityBox.Text == "City" ||
+                StateBox.Text == "Sate" ||
+                ZipBox.Text == "Zip" ||
+                InternationalBox.Text == "International Information"    )
             {
-                Name = NameBox.Text,
-                Email = EmailBox.Text,
-                Phone = PhoneBox.Text,
-                Addr = AddrBox.Text,
-                City = CityBox.Text,
-                State = StateBox.Text,
-                Zip = ZipBox.Text,
-                International = InternationalBox.Text
-            };
-            v.InsertVendor();
+                MessageBox.Show("Default values not allowed, please review entries");
+            }
+            else
+            {
+                Vendor v = new Vendor
+                {
+                    Name = NameBox.Text,
+                    Email = EmailBox.Text,
+                    Phone = PhoneBox.Text,
+                    Addr = AddrBox.Text,
+                    City = CityBox.Text,
+                    State = StateBox.Text,
+                    Zip = ZipBox.Text,
+                    International = InternationalBox.Text
+                };
+                v.InsertVendor();
 
-            PrintDialog p = new PrintDialog();
-            p.Equals("Successful");
+                PrintDialog p = new PrintDialog();
+                p.Equals("Successful");
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
