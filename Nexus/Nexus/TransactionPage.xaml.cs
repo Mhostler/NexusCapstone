@@ -29,19 +29,29 @@ namespace Nexus
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             Uri uri = new Uri("HomePage.xaml", UriKind.Relative);
-            this.NavigationService.Navigate(uri);
+            this.NavigationService.Navigate(uri); // return home
         }
 
         private void getTransButton_Click(object sender, RoutedEventArgs e)
         {
+            // get new transactions
             Transaction[] trans = api.getTrans(DBHandler.getLastTransactionDate());
 
-            if(trans.Length > 0)
+            if(trans.Length > 0) // if there are new transactions
             {
-                for(int i = 0; i < trans.Length; i++)
+                TransactionScrollViewer.Content = "New Transaction Dates:";
+                if (trans != null)
                 {
-                    TransactionScrollViewer.Content += "\n  " + trans[i].Day.ToString("yyyy-MM-dd");
+                    for (int i = 0; i < trans.Length; i++)
+                    {
+                        // display transaction
+                        TransactionScrollViewer.Content += "\n  " + trans[i].Day.ToString("yyyy-MM-dd");
+                    }
                 }
+            }
+            else // if there aren't new transactions
+            {
+                TransactionScrollViewer.Content = "No New Transactions";
             }
         }
     }
