@@ -358,8 +358,12 @@ namespace Nexus
                 tran.Day = oDate;
                 Console.WriteLine(tran.Day.ToString());
                 tran.InsertTransaction();
+                return tran;
             }
-            return tran;
+            else
+            {
+                return null;
+            }
         }
 
         public List<TransactionItem> getItems()
@@ -379,14 +383,21 @@ namespace Nexus
 
         public Transaction[] GetTransactions(DateTime dateTime)
         {
+            int num = 0;
             if (orders != null)
             {
                 Transaction[] trans = new Transaction[orders.Count];
+                Transaction[] results = new Transaction[orders.Count];
                 for (int i = 0; i < orders.Count; i++)
                 {
                     trans[i] = orders[i].getTran(dateTime);
+                    if (trans[i] != null)
+                    {
+                        results[num] = trans[i];
+                        num++;
+                    }
                 }
-                return trans;
+                return results;
             } else
             {
                 Console.WriteLine("no transactions found!");
