@@ -139,6 +139,9 @@
     </Compile>
     <Compile Include="shopifyCustomer.cs" />
     <Compile Include="shopifyTransaction.cs" />
+    <Compile Include="TransactionPage.xaml.cs">
+      <DependentUpon>TransactionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VendorInsertPage.xaml.cs">
       <DependentUpon>VendorInsertPage.xaml</DependentUpon>
     </Compile>
@@ -213,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProfitSourcePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransactionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

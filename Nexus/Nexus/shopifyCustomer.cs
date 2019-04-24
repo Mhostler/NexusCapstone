@@ -104,6 +104,7 @@ namespace Nexus
             Console.WriteLine("State:" + address[0].province);
             Console.WriteLine("Zip:" + address[0].zip);
             Console.WriteLine("Phone:" + address[0].phone);*/
+            
             if ( cust.Id > 0)
             {
                 cust.Name = name;
@@ -122,6 +123,10 @@ namespace Nexus
                 cust.State = default_address.province;
                 cust.Zip = default_address.zip;
                 cust.InsertCustomer();
+                if (cust.Id <= 0)
+                {
+                    cust = DBHandler.getCustomerByEmail(email);
+                }
             }
             return cust;
         }
