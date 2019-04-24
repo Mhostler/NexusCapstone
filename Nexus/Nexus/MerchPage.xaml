@@ -10,16 +10,16 @@
 
     <Grid>
         <Button x:Name="HomeButton" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="HomeButton_Click"/>
-        <TextBlock HorizontalAlignment="Left" Height="42" Margin="85,51,0,0" TextWrapping="Wrap" Text="Merchandise Lookup" VerticalAlignment="Top" Width="165"/>
-        <TextBlock HorizontalAlignment="Left" Height="35" Margin="85,93,0,0" TextWrapping="Wrap" Text="Vendor ID: " VerticalAlignment="Top" Width="121"/>
-        <TextBlock HorizontalAlignment="Left" Height="33" Margin="391,93,0,0" TextWrapping="Wrap" Text="Merchandise ID:" VerticalAlignment="Top" Width="112"/>
-        <TextBox Name ="Idboxv" HorizontalAlignment="Left" Height="30" Margin="177,92,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="152" TextChanged="TextBox_TextChanged"/>
-        <TextBox Name ="Idboxm" HorizontalAlignment="Left" Height="30" Margin="508,92,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="168" TextChanged="Idboxm_TextChanged"/>
-        <Button Name ="Lookup" Content="LookUP" HorizontalAlignment="Left" Height="48" Margin="85,133,0,0" VerticalAlignment="Top" Width="184" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="42" Margin="66,93,0,0" TextWrapping="Wrap" Text="Merchandise Lookup" VerticalAlignment="Top" Width="165"/>
+        <TextBlock HorizontalAlignment="Left" Height="35" Margin="66,127,0,0" TextWrapping="Wrap" Text="Vendor ID: " VerticalAlignment="Top" Width="121"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="391,127,0,0" TextWrapping="Wrap" Text="Merchandise ID:" VerticalAlignment="Top" Width="112"/>
+        <TextBox Name ="Idboxv" HorizontalAlignment="Left" Height="30" Margin="146,127,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="152" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name ="Idboxm" HorizontalAlignment="Left" Height="30" Margin="508,121,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="168" TextChanged="Idboxm_TextChanged"/>
+        <Button Name ="Lookup" Content="LookUP" HorizontalAlignment="Left" Height="48" Margin="66,167,0,0" VerticalAlignment="Top" Width="184" Click="Button_Click"/>
         <DataGrid Name = "List" HorizontalAlignment="Left" Height="158" Margin="36,265,0,0" VerticalAlignment="Top" Width="718"/>
-        <Button Name ="MerchLookup" Content="LookUp" HorizontalAlignment="Left" Height="48" Margin="508,133,0,0" VerticalAlignment="Top" Width="168" Click="Button_Click_1"/>
-        <TextBlock HorizontalAlignment="Left" Height="35" Margin="444,10,0,0" TextWrapping="Wrap" Text="Insert New Merchandise" VerticalAlignment="Top" Width="141"/>
-        <Button Name = "newmerch" Content="Insert" HorizontalAlignment="Left" Height="35" Margin="444,0,0,387" VerticalAlignment="Bottom" Width="124" Click="Button_Click_2"/>
+        <Button Name ="MerchLookup" Content="LookUp" HorizontalAlignment="Left" Height="48" Margin="508,167,0,0" VerticalAlignment="Top" Width="168" Click="Button_Click_1"/>
+        <TextBlock HorizontalAlignment="Left" Height="35" Margin="444,49,0,0" TextWrapping="Wrap" Text="Insert New Merchandise" VerticalAlignment="Top" Width="141"/>
+        <Button Name = "newmerch" Content="Insert" HorizontalAlignment="Left" Height="35" Margin="590,0,0,366" VerticalAlignment="Bottom" Width="124" Click="Button_Click_2"/>
 
     </Grid>
 </Page>
