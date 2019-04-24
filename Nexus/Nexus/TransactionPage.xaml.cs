@@ -35,6 +35,14 @@ namespace Nexus
         private void getTransButton_Click(object sender, RoutedEventArgs e)
         {
             Transaction[] trans = api.getTrans(DBHandler.getLastTransactionDate());
+
+            if(trans.Length > 0)
+            {
+                for(int i = 0; i < trans.Length; i++)
+                {
+                    TransactionScrollViewer.Content += "\n  " + trans[i].Day.ToString("yyyy-MM-dd");
+                }
+            }
         }
     }
 }

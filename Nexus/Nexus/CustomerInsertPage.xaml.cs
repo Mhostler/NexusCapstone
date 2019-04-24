@@ -27,18 +27,31 @@ namespace Nexus
 
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
-            Customer c = new Customer
+            if (NameBox.Text == "Insert Name" ||
+                EmailBox.Text == "Email" ||
+                PhoneBox.Text == "Phone" ||
+                AddrBox.Text == "Address" ||
+                CityBox.Text == "City" ||
+                StateBox.Text == "Sate" ||
+                ZipBox.Text == "Zip")
             {
-                Name = NameBox.Text,
-                Email = EmailBox.Text,
-                Phone = PhoneBox.Text,
-                Address = AddrBox.Text,
-                City = CityBox.Text,
-                State = StateBox.Text,
-                Zip = ZipBox.Text
-            };
+                MessageBox.Show("Default Values not allowed, delete or type a new value");
+            }
+            else
+            {
+                Customer c = new Customer
+                {
+                    Name = NameBox.Text,
+                    Email = EmailBox.Text,
+                    Phone = PhoneBox.Text,
+                    Address = AddrBox.Text,
+                    City = CityBox.Text,
+                    State = StateBox.Text,
+                    Zip = ZipBox.Text
+                };
 
-            c.InsertCustomer();
+                c.InsertCustomer();
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

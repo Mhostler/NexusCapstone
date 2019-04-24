@@ -73,46 +73,26 @@ namespace Nexus
 
         private void AssignPrices_Click(object sender, RoutedEventArgs e)
         {
-            DateTime start = new DateTime(2016, 1, 1);
-            List<string> queries = new List<string>();
-            List<Vendor> vendors = DBHandler.getAllVendor();
-            Random r = new Random();
+            List<Order> oList = DBHandler.getAllOrders();
+            Order o = oList[oList.Count - 1];
 
-            while (start < DateTime.Today)
-            {
-                Vendor v = vendors[r.Next(0, vendors.Count - 1)];
-                string query = "insert into Orders (VendorID, Placed, Received) " +
-                    "values (" + v.Id.ToString() + ", '" +
-                    start.ToString("yyyy-MM-dd") + "', '" + start.AddDays(4).ToString() + "')";
-
-                queries.Add(query);
-
-                int items = r.Next(4);
-                for(int i = 0; i < items; i++)
-                {
-                    int vmid = v.catalogue[r.Next(0, v.catalogue.Count)].Vmid;
-                    query = "insert into OrderItems (Quantity, vmID, OrderID) values (" +
-                        r.Next(1, 10).ToString() + ", " + vmid.ToString() +
-                        ", " + "(select max(OrderID) from Orders))";
-                    queries.Add(query);
-                }
-
-                if(queries.Count > 100)
-                {
-                    DBHandler.ExecuteMultipleNoReturn(queries.ToArray());
-                    queries.Clear();
-                }
-
-                start = start.AddDays(1);
-            }
-
-            DBHandler.ExecuteMultipleNoReturn(queries.ToArray());
+            string output = o.OrderID.ToString() + " " + o.Placed.ToString("yyyy-MM-dd") + " " +
+                o.Received.ToString("yyyy-MM-dd") + " " + o.items[0].Name;
+            MessageBox.Show(output);
         }
 
         private void TestSelect_Click(object sender, RoutedEventArgs e)
         {
-            List<Order> lo = DBHandler.getAllOrders();
-            MessageBox.Show(lo[lo.Count-1].Received.ToString("yyyy-MM-dd"));
+            List<Order> oList = DBHandler.getOrderByRange(new DateTime(2019, 4, 19), new DateTime(2019, 4, 23));
+            if (oList.Count == 2)
+            {
+                string msg = oList[0].items[0].Name + ": " + oList[1].items[0].Name;
+                MessageBox.Show(msg);
+            }
+            else
+            {
+                MessageBox.Show(oList.Count.ToString());
+            }
         }
     }
 }

@@ -242,13 +242,15 @@ namespace Nexus
                     Order o = new Order();
                     o.OrderID = Int32.Parse(reader["OrderID"] + "");
                     o.Placed = DateTime.Parse(reader["Placed"] + "");
-                    string dateString = reader["Received"] + "";
-                    o.Received = DateTime.Parse(reader["Placed"] + "");
+                    o.Received = DateTime.Parse(reader["Received"] + "");
+
                     oList.Add(o);
                 }
 
                 for(int i = 0; i < oList.Count; i++)
                 {
+                    reader.Close();
+
                     query = "select " +
                         "OrderItems.oID as oID, " +
                         "OrderItems.Quantity as quant, " +
@@ -266,7 +268,7 @@ namespace Nexus
                         "INNER JOIN Merch on VendorMerch.ItemID = Merch.ItemID) " +
                         "WHERE OrderItems.OrderID=" + oList[i].OrderID.ToString();
                     cmd.CommandText = query;
-                    reader.Close();
+
                     reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -290,8 +292,80 @@ namespace Nexus
 
                 reader.Close();
                 CloseConnection();
+            }
 
-                
+            return oList;
+        }
+
+        public static List<Order> getOrderByRange(DateTime start, DateTime end)
+        {
+            List<Order> oList = new List<Order>();
+
+            string query = "SELECT * FROM Orders WHERE Placed>='" + start.ToString("yyyy-MM-dd") +
+                "' AND Placed<='" + end.ToString("yyyy-MM-dd") + "'";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Order o = new Order
+                    {
+                        OrderID = Int32.Parse(reader["OrderID"] + ""),
+                        Placed = DateTime.Parse(reader["Placed"] + ""),
+                        Received = DateTime.Parse(reader["Received"] + "")
+                    };
+
+                    oList.Add(o);
+                }
+
+                for (int i = 0; i < oList.Count; i++)
+                {
+                    reader.Close();
+
+                    query = "select " +
+                        "OrderItems.oID as oID, " +
+                        "OrderItems.Quantity as quant, " +
+                        "OrderItems.vmID as vmID, " +
+                        "VendorMerch.VendorID as VendorID, " +
+                        "VendorMerch.ItemID as ItemID, " +
+                        "VendorMerch.UnitSize as UnitSize, " +
+                        "VendorMerch.UnitPrice as UnitPrice, " +
+                        "Merch.Name as Name, " +
+                        "Merch.Size as Size, " +
+                        "Merch.Inventory as Inv, " +
+                        "Merch.Price as Price " +
+                        "FROM ((" +
+                        "OrderItems INNER JOIN VendorMerch on OrderItems.vmID=VendorMerch.vmID) " +
+                        "INNER JOIN Merch on VendorMerch.ItemID = Merch.ItemID) " +
+                        "WHERE OrderItems.OrderID=" + oList[i].OrderID.ToString();
+                    cmd.CommandText = query;
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Merchandise m = new Merchandise
+                        {
+                            Name = reader["Name"] + "",
+                            Size = reader["Size"] + "",
+                            Inventory = Int32.Parse(reader["Inv"] + ""),
+                            Price = decimal.Parse(reader["Price"] + "")
+                        };
+                        VendorItem vi = new VendorItem(m,
+                            Int32.Parse(reader["vmID"] + ""),
+                            Int32.Parse(reader["UnitSize"] + ""),
+                            decimal.Parse(reader["UnitPrice"] + ""),
+                            Int32.Parse(reader["VendorID"] + ""));
+
+                        oList[i].addItem(vi, Int32.Parse(reader["quant"] + ""));
+                    }
+                }
+
+                reader.Close();
+                CloseConnection();
             }
 
             return oList;
@@ -545,11 +619,15 @@ namespace Nexus
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
-                vmID = Int32.Parse(reader["vmID"] + "");
-                merchID = Int32.Parse(reader["ItemID"] + "");
-                vendorID = Int32.Parse(reader["VendorID"] + "");
-                uSize = Int32.Parse(reader["UnitSize"] + "");
-                uPrice = Decimal.Parse(reader["UnitPrice"] + "");
+
+                if (reader.Read())
+                {
+                    vmID = Int32.Parse(reader["vmID"] + "");
+                    merchID = Int32.Parse(reader["ItemID"] + "");
+                    vendorID = Int32.Parse(reader["VendorID"] + "");
+                    uSize = Int32.Parse(reader["UnitSize"] + "");
+                    uPrice = Decimal.Parse(reader["UnitPrice"] + "");
+                }
 
                 reader.Close();
                 CloseConnection();
@@ -639,19 +717,32 @@ namespace Nexus
             };
             string oQuery = "SELECT * FROM Orders WHERE OrderID=" + id.ToString();
             List<int> vmIDs = new List<int>();
-
+            int vendorID = -1;
             if (OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(oQuery, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                o.OrderID = Int32.Parse(reader["OrderID"] + "");
-                o.OrderVendor = getVendor(Int32.Parse(reader["VendorID"] + ""));
-                o.items = getOrderItem(o.OrderID);
-                o.CalcTotal();
+                if (reader.Read())
+                {
+                    o.OrderID = Int32.Parse(reader["OrderID"] + "");
+                    vendorID = Int32.Parse(reader["VendorID"] + "");
+                    o.Placed = DateTime.Parse(reader["Placed"] + "");
+                    o.Received = DateTime.Parse(reader["Received"] + "");
+                    o.CalcTotal();
+                }
 
                 reader.Close();
                 CloseConnection();
+            }
+
+            if (o.OrderID != -1)
+            {
+                o.items = getOrderItem(o.OrderID);
+                if(vendorID != -1)
+                {
+                    o.OrderVendor = getVendor(vendorID);
+                }
             }
             return o;
         }

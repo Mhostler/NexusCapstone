@@ -10,7 +10,8 @@
 
     <Grid>
         <Button x:Name="HomeButton" Content="Home" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="HomeButton_Click"/>
-        <Button x:Name="getTransButton" Content="Get New Transactions" HorizontalAlignment="Left" Margin="312.5,225,0,0" VerticalAlignment="Top" Width="175" Click="getTransButton_Click"/>
-        
+        <Button x:Name="getTransButton" Content="Get New Transactions" HorizontalAlignment="Left" Margin="310,110,0,0" VerticalAlignment="Top" Width="176" Click="getTransButton_Click"/>
+        <ScrollViewer x:Name="TransactionScrollViewer" HorizontalAlignment="Left" Height="305" Margin="280,135,0,0" VerticalAlignment="Top" Width="236" Content="New Transaction Dates:"/>
+
     </Grid>
 </Page>
