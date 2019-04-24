@@ -383,23 +383,23 @@ namespace Nexus
 
         public Transaction[] GetTransactions(DateTime dateTime)
         {
-            int num = 0;
             if (orders != null)
             {
                 Transaction[] trans = new Transaction[orders.Count];
-                Transaction[] results = new Transaction[orders.Count];
+                List<Transaction> results = new List<Transaction>();
                 for (int i = 0; i < orders.Count; i++)
                 {
                     trans[i] = orders[i].getTran(dateTime);
                     if (trans[i] != null)
                     {
-                        results[num] = trans[i];
-                        num++;
+                        // add new transactions to return list
+                        results.Add(trans[i]);
                     }
                 }
-                return results;
+                return results.ToArray();
             } else
             {
+                // report no transactions found
                 Console.WriteLine("no transactions found!");
                 return null;
             }
