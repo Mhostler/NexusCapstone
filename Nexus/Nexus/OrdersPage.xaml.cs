@@ -43,9 +43,23 @@ namespace Nexus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Order ord = new Order();
-        }
+            if (Ord.Text != "ID")
+            {
+              Order ord = new Order();
+            int id = Int32.Parse(Ord.Text);
+            
+            
+                List<Order> Idz = new List<Order>();
+                Idz.Add(DBHandler.getOrder(id));
+                List.ItemsSource = Idz;
 
+
+            }
+            else {
+
+                MessageBox.Show ("Invalid ID. Please check the data type.");
+            }
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Order or = new Order();
@@ -60,7 +74,7 @@ namespace Nexus
         private void AllOrder_Click(object sender, RoutedEventArgs e)
         {
             Order or = new Order();
-            
+            List.ItemsSource = DBHandler.getAllOrders();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

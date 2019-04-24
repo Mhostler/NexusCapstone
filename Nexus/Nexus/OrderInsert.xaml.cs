@@ -63,13 +63,19 @@ namespace Nexus
             or.Placed = DateTime.Now;
             or.Received = DateTime.Now;
             or.OrderVendor = v[Vend.SelectedIndex];
-            or.addItem(vi, items);
+            if (Vend.SelectedIndex == -1
+                || Merch.SelectedIndex == -1
+                || Norder.Text == "# of orders"
+                || or.Placed == null)
+            {
+                MessageBox.Show("Boxes not selected or default values placed.");
+            }
+            else
+            {
+                or.addItem(vi, items);
+                or.InsertOrder();
 
-                
-            
-          or.InsertOrder();
-
-            
+            }
             
             
 
