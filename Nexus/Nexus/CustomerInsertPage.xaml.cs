@@ -51,6 +51,7 @@ namespace Nexus
                 };
 
                 c.InsertCustomer();
+                MessageBox.Show("Customer Inserted");
             }
         }
 
