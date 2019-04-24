@@ -73,8 +73,8 @@ namespace Nexus
 
         private void AllOrder_Click(object sender, RoutedEventArgs e)
         {
-            Order or = new Order();
-            List.ItemsSource = DBHandler.getAllOrders();
+            List<Order> oList = DBHandler.getAllOrders();
+            List.ItemsSource = oList;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

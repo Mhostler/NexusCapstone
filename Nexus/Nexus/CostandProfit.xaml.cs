@@ -90,6 +90,7 @@ namespace Nexus
             DateTime m = new DateTime(Int32.Parse(YearComboBox.SelectedItem.ToString()),
                 MonthComboBox.SelectedIndex + 1, 1);
 
+            DayComboBox.Items.Clear();
             for(DateTime end = m.AddMonths(1); m < end; m = m.AddDays(1))
             {
                 DayComboBox.Items.Add(m.Day.ToString());
