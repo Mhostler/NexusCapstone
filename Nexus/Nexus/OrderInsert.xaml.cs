@@ -74,7 +74,7 @@ namespace Nexus
             {
                 or.addItem(vi, items);
                 or.InsertOrder();
-
+                MessageBox.Show("Insertion Successful");
             }
             
             

@@ -35,19 +35,28 @@ namespace Nexus
             this.NavigationService.Navigate(uri);
         }
 
-       
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Vendor vend = new Vendor();
-           
-            vend.Id = Int32.Parse(Idboxv.Text);
-           
-            int ids = vend.Id;
-            
-            List.ItemsSource = DBHandler.getMerchByVendor(ids);
-        }
+            if (Idboxm.Text == "ID"
+               || Idboxv.Text == "ID")
+            {
+                MessageBox.Show("Default Values should be changed.");
 
+            }
+            else
+            {
+                Vendor vend = new Vendor();
+
+                vend.Id = Int32.Parse(Idboxv.Text);
+
+                int ids = vend.Id;
+
+                List.ItemsSource = DBHandler.getMerchByVendor(ids);
+
+            }
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -60,12 +69,15 @@ namespace Nexus
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Merchandise m = new Merchandise();
-            m.ItemID = Int32.Parse(Idboxm.Text);
-            int idds = m.ItemID;
-            List<Merchandise> Idz = new List<Merchandise>();
-            Idz.Add(DBHandler.getMerch(idds));
-            List.ItemsSource = Idz;
+           
+             
+                Merchandise m = new Merchandise();
+                m.ItemID = Int32.Parse(Idboxm.Text);
+                int idds = m.ItemID;
+                List<Merchandise> Idz = new List<Merchandise>();
+                Idz.Add(DBHandler.getMerch(idds));
+                List.ItemsSource = Idz;
+            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

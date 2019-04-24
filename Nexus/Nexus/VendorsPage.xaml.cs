@@ -42,27 +42,34 @@ namespace Nexus
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            Vendor v = new Vendor();
+           
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Vendor v = new Vendor();
+           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Vendor V = new Vendor();
+           
             List.ItemsSource = DBHandler.getAllVendor();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Vendor V = new Vendor();
-            V.Id = Int32.Parse(IdBox.Text);
-            List<Vendor> Idz = new List<Vendor>();
-            Idz.Add(DBHandler.getVendor(V.Id));
-            List.ItemsSource = Idz;
+            if (IdBox.Text != "Insert ID")
+            {
+                Vendor V = new Vendor();
+                V.Id = Int32.Parse(IdBox.Text);
+                List<Vendor> Idz = new List<Vendor>();
+                Idz.Add(DBHandler.getVendor(V.Id));
+                List.ItemsSource = Idz;
+            }
+            else {
+                MessageBox.Show("Default values should be changed.");
+
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

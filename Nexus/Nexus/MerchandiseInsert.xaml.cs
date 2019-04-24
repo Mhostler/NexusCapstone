@@ -27,15 +27,26 @@ namespace Nexus
 
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
-            Merchandise m = new Merchandise
-            { 
-                Name = NameBox.Text,
-                Size = SizeBox.Text,
-                Inventory = Int32.Parse(InventoryBox.Text),
-                Price = Int32.Parse(PriceBox.Text)
-            };
-            m.InsertItem();
+            if (NameBox.Text != "Insert Name"
+                || SizeBox.Text != "Size"
+                || InventoryBox.Text != "#s of Inventory"
+                || PriceBox.Text != "Price")
+            {
+                Merchandise m = new Merchandise
+                {
+                    Name = NameBox.Text,
+                    Size = SizeBox.Text,
+                    Inventory = Int32.Parse(InventoryBox.Text),
+                    Price = Int32.Parse(PriceBox.Text)
+                };
+                m.InsertItem();
+                MessageBox.Show("Insertion Successful");
+            }
+            else
+            {
+                MessageBox.Show("Default Values should be changed");
 
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

@@ -45,14 +45,12 @@ namespace Nexus
         {
             if (Ord.Text != "ID")
             {
-              Order ord = new Order();
-            int id = Int32.Parse(Ord.Text);
-            
-            
-                List<Order> Idz = new List<Order>();
-                Idz.Add(DBHandler.getOrder(id));
-                List.ItemsSource = Idz;
-
+                 Order ord = new Order();
+                 int id = Int32.Parse(Ord.Text);
+                 List<Order> Idz = new List<Order>();
+                 Idz.Add(DBHandler.getOrder(id));
+                 List.ItemsSource = Idz;
+                
 
             }
             else {
@@ -62,13 +60,8 @@ namespace Nexus
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Order or = new Order();
-            or.OrderID = Int32.Parse(Ord.Text);
-            int ords = or.OrderID;
-            
+            List.ItemsSource = DBHandler.getOpenOrders();
 
-
-           
         }
 
         private void AllOrder_Click(object sender, RoutedEventArgs e)
