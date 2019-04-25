@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
+    /// <summary>
+    /// represents an order of new vendor items
+    /// </summary>
     class Order
     {
         public int OrderID { get; set; }
@@ -16,6 +19,9 @@ namespace Nexus
         private decimal total;
         public decimal Total { get { return total; } }
 
+        /// <summary>
+        /// default constructor sets values to zero
+        /// </summary>
         public Order()
         {
             items = new List<OrderItem>();
@@ -24,6 +30,11 @@ namespace Nexus
             total = 0;
         }
 
+        /// <summary>
+        /// adds an item into the order and its cost to the total
+        /// </summary>
+        /// <param name="vi">the item from the vendor to order</param>
+        /// <param name="quantity">the amount of items to purchase</param>
         public void addItem(VendorItem vi, int quantity)
         {
             OrderItem newItem = new OrderItem(vi, quantity);
@@ -33,6 +44,9 @@ namespace Nexus
             total += newItem.UnitPrice * newItem.Quantity;
         }
 
+        /// <summary>
+        /// inserts order and items into the database
+        /// </summary>
         public void InsertOrder()
         {
             String orderQuery = "INSERT INTO Orders (VendorID, Placed, Received) VALUES (" +
@@ -52,6 +66,9 @@ namespace Nexus
             DBHandler.ExecuteMultipleNoReturn(itemQueries);
         }
 
+        /// <summary>
+        /// updates order and orderitem values in the database
+        /// </summary>
         public void UpdateOrder()
         {
             string OrderQuery = "UPDATE Orders SET VendorID=" + OrderVendor.Id.ToString() + ", " +
@@ -70,6 +87,10 @@ namespace Nexus
             DBHandler.ExecuteMultipleNoReturn(itemQueries);
         }
 
+        /// <summary>
+        /// recalculate the total
+        /// </summary>
+        /// <returns>total value of order</returns>
         public decimal CalcTotal()
         {
             decimal tot = 0.0M;

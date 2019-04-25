@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
+    /// <summary>
+    /// Representation of a vendor and they're information
+    /// </summary>
     class Vendor
     {
         public int Id { get; set; }
@@ -19,6 +22,9 @@ namespace Nexus
         public String International { get; set; }
         public List<VendorItem> catalogue;
 
+        /// <summary>
+        /// default constructor sets values to zero
+        /// </summary>
         public Vendor()
         {
             Id = 0;
@@ -33,6 +39,9 @@ namespace Nexus
             catalogue = new List<VendorItem>();
         }
 
+        /// <summary>
+        /// inserts vendor to database
+        /// </summary>
         public void InsertVendor()
         {
             String query = "INSERT INTO Vendor (Name, Email, Phone, Addr, City, State, Zip, International) VALUES(" +
@@ -42,6 +51,9 @@ namespace Nexus
             DBHandler.ExecuteNoReturn(query);
         }
 
+        /// <summary>
+        /// updates vendor in database
+        /// </summary>
         public void UpdateVendor()
         {
             string query = "UPDATE Vendor SET Name='" + Name + "', Email='" + Email + "', Phone='" + Phone + "', Addr='" + Addr +
@@ -50,6 +62,9 @@ namespace Nexus
             DBHandler.ExecuteNoReturn(query);
         }
 
+        /// <summary>
+        /// gets the list of items for the vendor
+        /// </summary>
         public void getCatalogue()
         {
             catalogue = DBHandler.SelectVendorItems(this);

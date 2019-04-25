@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['page1',['Page1',['../class_nexus_1_1_page1.html',1,'Nexus']]],
-  ['product',['Product',['../class_nexus_1_1_product.html',1,'Nexus']]]
+  ['mainwindow',['MainWindow',['../class_nexus_1_1_main_window.html',1,'Nexus']]],
+  ['merchandise',['Merchandise',['../class_nexus_1_1_merchandise.html',1,'Nexus']]],
+  ['merchandiseinsert',['MerchandiseInsert',['../class_nexus_1_1_merchandise_insert.html',1,'Nexus']]],
+  ['merchpage',['MerchPage',['../class_nexus_1_1_merch_page.html',1,'Nexus']]]
 ];
