@@ -8,19 +8,26 @@ using MySql.Data.MySqlClient;
 
 namespace Nexus
 {
+    /*
+     * Summary: Handles connections to the database as well as retreival
+     */
     static class DBHandler
     {
-        private static readonly string server = "nexusgifts.c79k1z6krivv.us-east-2.rds.amazonaws.com";
-        private static readonly string database = "NexusDB";
-        private static readonly string user = "Nexus";
-        private static readonly string pass = "Capstone2019";
+        
+        private static readonly string server = "nexusgifts.c79k1z6krivv.us-east-2.rds.amazonaws.com";/**< string the url location of the database */
+        private static readonly string database = "NexusDB";/**< Name of the database schema to be used */
+        private static readonly string user = "Nexus"; /**< The user being logged into */
+        private static readonly string pass = "Capstone2019"; /**< Password for the DB User */
         private static readonly string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-                database + ";" + "UID=" + user + ";" + "PASSWORD=" + pass + ";";
-        private static MySqlConnection connection = new MySqlConnection(connectionString);
+                database + ";" + "UID=" + user + ";" + "PASSWORD=" + pass + ";"; /**< string to begin handshaking process with mysql */
+        private static MySqlConnection connection = new MySqlConnection(connectionString); /**< variable containing the connection */
 
-        private static readonly string EarningsTable = "DailyEarnings";
-        private static readonly string TestEarningsTable = "TestEarnings";
+        private static readonly string EarningsTable = "DailyEarnings"; /**< Table for company's daily earnings */
+        private static readonly string TestEarningsTable = "TestEarnings"; /**< Test table to be used untill full earnings is entered */
 
+        /*
+         * OpenConnection provides an open connection to the database
+         */
         private static bool OpenConnection()
         {
             try
@@ -46,6 +53,10 @@ namespace Nexus
             }
         }
 
+        /// <summary>
+        /// Closes connection to the database after processing
+        /// </summary>
+        /// <returns>boolean on successful close or not</returns>
         private static bool CloseConnection()
         {
             try
@@ -60,6 +71,10 @@ namespace Nexus
             }
         }
 
+        /// <summary>
+        /// Execute a provided string that won't require a return value
+        /// </summary>
+        /// <param name="query">query to be executed</param>
         public static void ExecuteNoReturn(String query)
         {
             //open connection
@@ -76,6 +91,10 @@ namespace Nexus
             }
         }
 
+        /// <summary>
+        /// Executes multiple queries without any return values
+        /// </summary>
+        /// <param name="queries">Array of queries to be executed</param>
         public static void ExecuteMultipleNoReturn(String [] queries)
         {
             if (OpenConnection() == true)
@@ -95,21 +114,26 @@ namespace Nexus
             }
         }
 
+        /// <summary>
+        /// Selects the ID of the most recent order
+        /// </summary>
+        /// <param name="VendorID">Vendor to which the order was placed</param>
+        /// <param name="date">When the order was placed</param>
+        /// <returns>ID of the most recent order</returns>
         public static int SelectMostRecentOrder(int VendorID, DateTime date)
         {
-            String d = date.ToString("yyyy-MM-dd");
-            List<int> list = new List<int>();
+            String d = date.ToString("yyyy-MM-dd"); /**< string representation of the order date */
+            List<int> list = new List<int>(); /**< list of integer values retrieved from the database matching the query */
 
-            String query = "SELECT OrderID FROM Orders WHERE VendorID=" + VendorID.ToString() + " AND Placed=" + d;
+            String query = "SELECT OrderID FROM Orders WHERE VendorID=" + VendorID.ToString() + " AND Placed=" + d; /**< query to find all the orders related to the vendor */
 
             if(OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand(query, connection); /**< creates the connection and issues the command*/
+                MySqlDataReader reader = cmd.ExecuteReader(); /**< Executes the command, returning the result of the query*/
 
                 while (reader.Read())
                 {
-                    
                     list.Add((int)reader["VendorID"]);
                 }
 
@@ -122,6 +146,12 @@ namespace Nexus
             return -1;
         }
 
+        /// <summary>
+        /// Gets the total value of all the orders within the date range
+        /// </summary>
+        /// <param name="start">earlier date to start query</param>
+        /// <param name="end">later date, end of query</param>
+        /// <returns>decimal value representing the earnigns from the range</returns>
         public static decimal getOrderTotalByRange(DateTime start, DateTime end)
         {
             string query = "SELECT OrderItems.Quantity as Quant, VendorMerch.UnitPrice as Price " +
@@ -148,6 +178,11 @@ namespace Nexus
             return total;
         }
 
+        /// <summary>
+        /// Returns the ID of the most recent transaction ID by customer
+        /// </summary>
+        /// <param name="CustID">customer buying the transaction</param>
+        /// <returns>ID of the most recent transaction</returns>
         public static int SelectMostRecentTransaction(int CustID)
         {
             List<int> list = new List<int>();
@@ -173,6 +208,11 @@ namespace Nexus
             return -1;
         }
 
+        /// <summary>
+        /// Select all of the items associated with a vendor
+        /// </summary>
+        /// <param name="vend">vendor to retrieve</param>
+        /// <returns>List of vendor Items</returns>
         public static List<VendorItem> SelectVendorItems(Vendor vend)
         {
             List<VendorItem> list = new List<VendorItem>();
@@ -210,6 +250,10 @@ namespace Nexus
             return list;
         }
 
+        /// <summary>
+        /// the last order of them all
+        /// </summary>
+        /// <returns>ID of the last order</returns>
         public static int SelectLastOrder()
         {
             string query = "SELECT MAX(OrderID) from Orders";
@@ -227,6 +271,10 @@ namespace Nexus
             return -1;
         }
 
+        /// <summary>
+        /// Every order in the DB
+        /// </summary>
+        /// <returns>List of all orders stored</returns>
         public static List<Order> getAllOrders()
         {
             List<Order> oList = new List<Order>();
@@ -297,6 +345,10 @@ namespace Nexus
             return oList;
         }
 
+        /// <summary>
+        /// Orders that do not have a finalized date
+        /// </summary>
+        /// <returns>list of orders without receival dates</returns>
         public static List<Order> getOpenOrders()
         {
             List<Order> oList = new List<Order>();
@@ -369,6 +421,12 @@ namespace Nexus
             return oList;
         }
 
+        /// <summary>
+        /// Gets the orders within a range of time
+        /// </summary>
+        /// <param name="start">starting day of order placement</param>
+        /// <param name="end">last date for order placement</param>
+        /// <returns>list of returned orders</returns>
         public static List<Order> getOrderByRange(DateTime start, DateTime end)
         {
             List<Order> oList = new List<Order>();
@@ -443,6 +501,11 @@ namespace Nexus
             return oList;
         }
 
+        /// <summary>
+        /// Gets a vendor with a given ID
+        /// </summary>
+        /// <param name="id">the ID of the vendor</param>
+        /// <returns>Filled vendor class</returns>
         public static Vendor getVendor(int id)
         {
             Vendor v = new Vendor();
@@ -475,6 +538,10 @@ namespace Nexus
             return v;
         }
 
+        /// <summary>
+        /// Gets every vendor stored in the DB
+        /// </summary>
+        /// <returns>list of vendors</returns>
         public static List<Vendor> getAllVendor()
         {
             List<Vendor> vl = new List<Vendor>();
@@ -512,24 +579,44 @@ namespace Nexus
             return vl;
         }
 
+        /// <summary>
+        /// gets a filled customer object by ID
+        /// </summary>
+        /// <param name="id">ID of the customer</param>
+        /// <returns>Filled customer class</returns>
         public static Customer getCustomerById(int id)
         {
             string query = "SELECT * FROM Customer WHERE Customer.CustID=" + id.ToString();
             return getCustomer(query);
         }
 
+        /// <summary>
+        /// gets a filled customer object by Email
+        /// </summary>
+        /// <param name="eMail">email to query</param>
+        /// <returns>Filled customer class</returns>
         public static Customer getCustomerByEmail(string eMail)
         {
             string query = "SELECT * FROM Customer WHERE Email='" + eMail + "'";
             return getCustomer(query);
         }
 
+        /// <summary>
+        /// gets a customer given a phone number
+        /// </summary>
+        /// <param name="phone">phone to search for</param>
+        /// <returns>Filled customer class</returns>
         public static Customer getCustomerByPhone(string phone)
         {
             string query = "SELECT * FROM Customer WHERE Phone='" + phone + "'";
             return getCustomer(query);
         }
 
+        /// <summary>
+        /// uses a given string to fill in a single customer object
+        /// </summary>
+        /// <param name="q">provided query</param>
+        /// <returns>Filled customer value</returns>
         private static Customer getCustomer(string q)
         {
             Customer c = new Customer();
@@ -554,6 +641,10 @@ namespace Nexus
             return c;
         }
 
+        /// <summary>
+        /// Returns a list of all customers stored
+        /// </summary>
+        /// <returns>list of all customers</returns>
         public static List<Customer> getAllCustomer()
         {
             List<Customer> cust = new List<Customer>();
@@ -588,6 +679,11 @@ namespace Nexus
             return cust;
         }
 
+        /// <summary>
+        /// Returns a filled Merchandise given an ID
+        /// </summary>
+        /// <param name="id">ID to query</param>
+        /// <returns>Filled merchandise class</returns>
         public static Merchandise getMerch(int id)
         {
             Merchandise m = new Merchandise
@@ -615,6 +711,11 @@ namespace Nexus
             return m;
         }
 
+        /// <summary>
+        /// A list of merchanise items associated with a vendor
+        /// </summary>
+        /// <param name="VendorID">vendor making the Merchandise</param>
+        /// <returns>List of merchandise items</returns>
         public static List<Merchandise> getMerchByVendor(int VendorID)
         {
             string query = "SELECT Merch.ItemID, Merch.Name, Merch.Size, Merch.Inventory, Merch.Price " + 
@@ -649,6 +750,10 @@ namespace Nexus
             return ml;
         }
 
+        /// <summary>
+        /// Returns all the merchandise
+        /// </summary>
+        /// <returns>list of all merchandise</returns>
         public static List<Merchandise> getAllMerch()
         {
             List<Merchandise> ml = new List<Merchandise>();
@@ -677,6 +782,11 @@ namespace Nexus
             return ml;
         }
 
+        /// <summary>
+        /// Returns a vendor item given an ID
+        /// </summary>
+        /// <param name="id">ID to search for</param>
+        /// <returns>filled vendoritem class</returns>
         public static VendorItem getVendorItem(int id)
         {
             VendorItem vi;
@@ -717,6 +827,11 @@ namespace Nexus
             return vi;
         }
 
+        /// <summary>
+        /// gets the orderitems associated with an order
+        /// </summary>
+        /// <param name="orderID">Order to search for</param>
+        /// <returns>list of items associated with an order</returns>
         public static List<OrderItem> getOrderItem(int orderID)
         {
             List<OrderItem> items = new List<OrderItem>();
@@ -749,6 +864,11 @@ namespace Nexus
             return items;
         }
 
+        /// <summary>
+        /// Gets the transaction items associated with a transaction
+        /// </summary>
+        /// <param name="Tid">ID of transaction</param>
+        /// <returns>List of transaction's items</returns>
         public static List<TransactionItem> getTransactionItem(int Tid)
         {
             List<TransactionItem> items = new List<TransactionItem>();
@@ -781,6 +901,11 @@ namespace Nexus
             return items;
         }
 
+        /// <summary>
+        /// Get an order by ID
+        /// </summary>
+        /// <param name="id">Order ID to fulfill</param>
+        /// <returns>filled Order Object</returns>
         public static Order getOrder(int id)
         {
             Order o = new Order
@@ -819,6 +944,10 @@ namespace Nexus
             return o;
         }
 
+        /// <summary>
+        /// returns every transaction
+        /// </summary>
+        /// <returns>list of all transactions</returns>
         public static List<Transaction> getAllTransactions()
         {
             List<Transaction> trans = new List<Transaction>();
@@ -852,6 +981,10 @@ namespace Nexus
             return trans;
         }
 
+        /// <summary>
+        /// Sums the total sales from each vendor's sales
+        /// </summary>
+        /// <returns>List of key value pairs with vendor and total</returns>
         public static List<KeyValuePair<Vendor, decimal>> getAllTransactionTotalsByVendor()
         {
             string query = "select VendorMerch.VendorID as VendorID, TItem.Quantity as Quantity, Merch.Price as Price " +
@@ -897,6 +1030,11 @@ namespace Nexus
             return pairs;
         }
 
+        /// <summary>
+        /// gets a transaction given an ID
+        /// </summary>
+        /// <param name="id">ID of the transaction</param>
+        /// <returns>Filled Transaction object</returns>
         public static Transaction getTransaction(int id)
         {
             Transaction t = new Transaction
@@ -926,6 +1064,12 @@ namespace Nexus
             return t;
         }
 
+        /// <summary>
+        /// Gets the total from transactions based on a date range
+        /// </summary>
+        /// <param name="start">start of date range</param>
+        /// <param name="end">end of date range</param>
+        /// <returns>list of key value pairs of item name and total</returns>
         public static List<KeyValuePair<string, decimal>> getTransactionTotalByRange(DateTime start, DateTime end)
         {
             List<decimal> totals = new List<decimal>();
@@ -974,6 +1118,10 @@ namespace Nexus
             return kvp;
         }
 
+        /// <summary>
+        /// Returns the ID of the last transaction
+        /// </summary>
+        /// <returns>ID of the last transaction</returns>
         public static int getLastTransactionID()
         {
             string query = "SELECT max(TransactionID) as newest FROM Transactions";
@@ -996,6 +1144,10 @@ namespace Nexus
             return id;
         }
 
+        /// <summary>
+        /// Gets the date value of the last transaction
+        /// </summary>
+        /// <returns>date of the last transaction</returns>
         public static DateTime getLastTransactionDate()
         {
             string query = "SELECT max(Day) as newest FROM Transactions";
@@ -1018,6 +1170,10 @@ namespace Nexus
             return start;
         }
 
+        /// <summary>
+        /// Gets the date of the first transaction
+        /// </summary>
+        /// <returns>date of the first transaction stored</returns>
         public static DateTime getFirstTransactionDate()
         {
             string query = "SELECT min(Day) as earliest FROM Transactions;";
@@ -1040,6 +1196,13 @@ namespace Nexus
             return start;
         }
 
+        /// <summary>
+        /// range of earnings from the db
+        /// </summary>
+        /// <param name="start">date to start search</param>
+        /// <param name="end">date to end search</param>
+        /// <param name="origin">whether to use the test values (0) or the real values</param>
+        /// <returns></returns>
         public static List<Earnings> getEarningsByRange(DateTime start, DateTime end, int origin = 0)
         {
             string query;
@@ -1078,6 +1241,11 @@ namespace Nexus
             return el;
         }
 
+        /// <summary>
+        /// gets the earliest date in earnings
+        /// </summary>
+        /// <param name="origin">(0) for testing table and anything else for real table values</param>
+        /// <returns>date of the earliest earning</returns>
         public static DateTime getFirstEarningsDate(int origin = 0)
         {
             string query;
@@ -1108,6 +1276,11 @@ namespace Nexus
             return day;
         }
 
+        /// <summary>
+        /// The date of the latest earnings
+        /// </summary>
+        /// <param name="origin">(0) test table or otherwise for real values</param>
+        /// <returns>date of latest earnings</returns>
         public static DateTime getLastEarningsDate(int origin = 0)
         {
             string query;

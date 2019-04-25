@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
+    /// <summary>
+    /// Stores the information for an earnings record
+    /// </summary>
     class Earnings
     {
         public int Id { get; set; }
@@ -19,6 +22,10 @@ namespace Nexus
                 return Cash + Credit;
             }
         }
+
+        /// <summary>
+        /// default constructor sets values to zero
+        /// </summary>
         public Earnings()
         {
             Id = 0;
@@ -26,6 +33,9 @@ namespace Nexus
             Credit = 0;
         }
 
+        /// <summary>
+        /// inserts earnings into database
+        /// </summary>
         public void Insert()
         {
             string query = "INSERT INTO DailyEarnings (Day, Cash, Credit) VALUES ('" + Day.ToString("yyyy-MM-dd") +
@@ -34,6 +44,9 @@ namespace Nexus
             DBHandler.ExecuteNoReturn(query);
         }
 
+        /// <summary>
+        /// updates earnings in database to new values
+        /// </summary>
         public void Update()
         {
             string query = "UPDATE DailyEarnings SET Day='" + Day.ToString("yyyy-MM-dd") + "', Cash=" + Cash.ToString() + ", Credit="

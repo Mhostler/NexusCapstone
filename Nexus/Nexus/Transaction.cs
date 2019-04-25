@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
+    /// <summary>
+    /// Transactions represent customers buying from our business
+    /// </summary>
      public class Transaction
     {
         public int TransactionID { get; set; }
@@ -30,6 +33,9 @@ namespace Nexus
         }
         public decimal Total { get; protected set; }
 
+        /// <summary>
+        /// default constructor sets to zero values
+        /// </summary>
         public Transaction()
         {
             TList = new List<TransactionItem>();
@@ -39,6 +45,11 @@ namespace Nexus
             Total = 0.0M;
         }
 
+        /// <summary>
+        /// adds an item to the transaction
+        /// </summary>
+        /// <param name="m">item to add</param>
+        /// <param name="quantity">amount of items being purchased</param>
         public void AddItem(Merchandise m, int quantity)
         {
             TransactionItem t = new TransactionItem();
@@ -48,6 +59,9 @@ namespace Nexus
             TList.Add(t);
         }
 
+        /// <summary>
+        /// inserts a transaction into the database
+        /// </summary>
         public void InsertTransaction()
         {
             //TODO set ID = to newly inserted transaction
