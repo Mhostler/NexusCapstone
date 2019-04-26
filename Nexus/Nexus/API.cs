@@ -12,6 +12,10 @@ namespace Nexus
 {
     class API
     {
+        /// <summary>
+        /// This method request products from the shopify api and storing it into an object array and return the array
+        /// </summary>
+        /// <param name="bar"></param>
         public Merchandise[][] getInventory()
         {
             // Create a request for the URL. 
@@ -62,6 +66,10 @@ namespace Nexus
             return merch;
         }
 
+        /// <summary>
+        /// This method request customers from the shopify api and storing it into an object array and return the array
+        /// </summary>
+        /// <param name=""></param>
         public Customer[] getCustomers()
         {
             // Create a request for the URL. 
@@ -162,6 +170,10 @@ namespace Nexus
             return trans;
         } */
 
+        /// <summary>
+        /// This method request orders from the shopify api that are after the given dateTime and storing it into an object array and return the array
+        /// </summary>
+        /// <param name="dateTime"></param>
         public Transaction[] getTrans(DateTime dateTime)
         {
             // Create a request for the URL. 

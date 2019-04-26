@@ -340,6 +340,10 @@ namespace Nexus
         public Payment_Details payment_details { get; set; }
         public Customers customer { get; set; }
 
+        /// <summary>
+        /// this method checks to make sure the transaction are new and then converts it to our programs transaction format and adds it to the database
+        /// </summary>
+        /// <param name="dateTime"></param>
         public Transaction getTran(DateTime dateTime)
         {
             Transaction tran = new Transaction();
