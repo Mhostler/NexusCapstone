@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nexus
 {
+    /// <summary>
+    /// Class representing customer information
+    /// </summary>
     public class Customer
     {
         public int Id { get; set; }
@@ -17,6 +20,9 @@ namespace Nexus
         public String State { get; set; }
         public String Zip { get; set; }
 
+        /// <summary>
+        /// default constructor fills in emtpy values
+        /// </summary>
         public Customer()
         {
             Id = 0;
@@ -29,6 +35,9 @@ namespace Nexus
             Zip = "";
         }
 
+        /// <summary>
+        /// Sends an update query to the database to save values
+        /// </summary>
         public void UpdateCustomer()
         {
             string query = "UPDATE Customer SET Name='" + Name + "', Email='" + Email + "', Phone='" + Phone + "', Addr='" + Address +
@@ -37,6 +46,9 @@ namespace Nexus
             DBHandler.ExecuteNoReturn(query);
         }
 
+        /// <summary>
+        /// Inserts the customer into the database
+        /// </summary>
         public void InsertCustomer()
         {
             string query = "INSERT INTO Customer (Name, Email, Phone, Addr, City, State, Zip) VALUES ('" +
