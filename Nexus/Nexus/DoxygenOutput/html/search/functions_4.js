@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['image',['Image',['../class_nexus_1_1_image.html',1,'Nexus']]],
-  ['image2',['Image2',['../class_nexus_1_1_image2.html',1,'Nexus']]],
   ['insert',['Insert',['../class_nexus_1_1_earnings.html#aea1a15de1d4361faf5cce3c17263c9ea',1,'Nexus::Earnings']]],
   ['insertcustomer',['InsertCustomer',['../class_nexus_1_1_customer.html#a38500ece8c84115d0d617f28744adfb6',1,'Nexus::Customer']]],
   ['insertitem',['InsertItem',['../class_nexus_1_1_merchandise.html#a274386cb44b2d3728417fb93f2f1f349',1,'Nexus::Merchandise']]],

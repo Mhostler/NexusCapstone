@@ -74,20 +74,26 @@ $(function() {
 <div class="title">Nexus.Order Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>represents an order of new vendor items  
+ <a href="class_nexus_1_1_order.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac3837ea85162c2370ecd133ff9d782d8"><td class="memItemLeft" align="right" valign="top"><a id="ac3837ea85162c2370ecd133ff9d782d8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addItem</b> (<a class="el" href="class_nexus_1_1_vendor_item.html">VendorItem</a> vi, int quantity)</td></tr>
+<tr class="memitem:a3b921a97a9e8c1521b6851d7dc853c86"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nexus_1_1_order.html#a3b921a97a9e8c1521b6851d7dc853c86">Order</a> ()</td></tr>
+<tr class="memdesc:a3b921a97a9e8c1521b6851d7dc853c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor sets values to zero  <a href="#a3b921a97a9e8c1521b6851d7dc853c86">More...</a><br /></td></tr>
+<tr class="separator:a3b921a97a9e8c1521b6851d7dc853c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3837ea85162c2370ecd133ff9d782d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nexus_1_1_order.html#ac3837ea85162c2370ecd133ff9d782d8">addItem</a> (<a class="el" href="class_nexus_1_1_vendor_item.html">VendorItem</a> vi, int quantity)</td></tr>
+<tr class="memdesc:ac3837ea85162c2370ecd133ff9d782d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds an item into the order and its cost to the total  <a href="#ac3837ea85162c2370ecd133ff9d782d8">More...</a><br /></td></tr>
 <tr class="separator:ac3837ea85162c2370ecd133ff9d782d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac63f22cc6f4eb3370cff14c3f18b8e47"><td class="memItemLeft" align="right" valign="top"><a id="ac63f22cc6f4eb3370cff14c3f18b8e47"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InsertOrder</b> ()</td></tr>
+<tr class="memitem:ac63f22cc6f4eb3370cff14c3f18b8e47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nexus_1_1_order.html#ac63f22cc6f4eb3370cff14c3f18b8e47">InsertOrder</a> ()</td></tr>
+<tr class="memdesc:ac63f22cc6f4eb3370cff14c3f18b8e47"><td class="mdescLeft">&#160;</td><td class="mdescRight">inserts order and items into the database  <a href="#ac63f22cc6f4eb3370cff14c3f18b8e47">More...</a><br /></td></tr>
 <tr class="separator:ac63f22cc6f4eb3370cff14c3f18b8e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2004f94769cba84c095d0b7822696ecf"><td class="memItemLeft" align="right" valign="top"><a id="a2004f94769cba84c095d0b7822696ecf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateOrder</b> ()</td></tr>
+<tr class="memitem:a2004f94769cba84c095d0b7822696ecf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nexus_1_1_order.html#a2004f94769cba84c095d0b7822696ecf">UpdateOrder</a> ()</td></tr>
+<tr class="memdesc:a2004f94769cba84c095d0b7822696ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">updates order and orderitem values in the database  <a href="#a2004f94769cba84c095d0b7822696ecf">More...</a><br /></td></tr>
 <tr class="separator:a2004f94769cba84c095d0b7822696ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20b17ecce67caf3faeb03bd7ceae522c"><td class="memItemLeft" align="right" valign="top"><a id="a20b17ecce67caf3faeb03bd7ceae522c"></a>
-decimal&#160;</td><td class="memItemRight" valign="bottom"><b>CalcTotal</b> ()</td></tr>
+<tr class="memitem:a20b17ecce67caf3faeb03bd7ceae522c"><td class="memItemLeft" align="right" valign="top">decimal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nexus_1_1_order.html#a20b17ecce67caf3faeb03bd7ceae522c">CalcTotal</a> ()</td></tr>
+<tr class="memdesc:a20b17ecce67caf3faeb03bd7ceae522c"><td class="mdescLeft">&#160;</td><td class="mdescRight">recalculate the total  <a href="#a20b17ecce67caf3faeb03bd7ceae522c">More...</a><br /></td></tr>
 <tr class="separator:a20b17ecce67caf3faeb03bd7ceae522c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -114,6 +120,164 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>Received</b><code
 decimal&#160;</td><td class="memItemRight" valign="bottom"><b>Total</b><code> [get]</code></td></tr>
 <tr class="separator:a29e7d8479bd7335d3bfb61c007865a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>represents an order of new vendor items </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3b921a97a9e8c1521b6851d7dc853c86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b921a97a9e8c1521b6851d7dc853c86">&#9670;&nbsp;</a></span>Order()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Nexus.Order.Order </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>default constructor sets values to zero </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac3837ea85162c2370ecd133ff9d782d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3837ea85162c2370ecd133ff9d782d8">&#9670;&nbsp;</a></span>addItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Nexus.Order.addItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_nexus_1_1_vendor_item.html">VendorItem</a>&#160;</td>
+          <td class="paramname"><em>vi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>quantity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>adds an item into the order and its cost to the total </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vi</td><td>the item from the vendor to order</td></tr>
+    <tr><td class="paramname">quantity</td><td>the amount of items to purchase</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a20b17ecce67caf3faeb03bd7ceae522c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20b17ecce67caf3faeb03bd7ceae522c">&#9670;&nbsp;</a></span>CalcTotal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decimal Nexus.Order.CalcTotal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>recalculate the total </p>
+<dl class="section return"><dt>Returns</dt><dd>total value of order</dd></dl>
+
+</div>
+</div>
+<a id="ac63f22cc6f4eb3370cff14c3f18b8e47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac63f22cc6f4eb3370cff14c3f18b8e47">&#9670;&nbsp;</a></span>InsertOrder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Nexus.Order.InsertOrder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>inserts order and items into the database </p>
+
+</div>
+</div>
+<a id="a2004f94769cba84c095d0b7822696ecf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2004f94769cba84c095d0b7822696ecf">&#9670;&nbsp;</a></span>UpdateOrder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Nexus.Order.UpdateOrder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>updates order and orderitem values in the database </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Order.cs</li>
 </ul>

@@ -124,7 +124,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5c3ac4d571bf44c2c720fb4ad3a88e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all customers stored  <a href="#a5c3ac4d571bf44c2c720fb4ad3a88e10">More...</a><br /></td></tr>
 <tr class="separator:a5c3ac4d571bf44c2c720fb4ad3a88e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f5e39ff6253f2b190b7f19b3dd2352"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_nexus_1_1_merchandise.html">Merchandise</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nexus_1_1_d_b_handler.html#a33f5e39ff6253f2b190b7f19b3dd2352">getMerch</a> (int id)</td></tr>
-<tr class="memdesc:a33f5e39ff6253f2b190b7f19b3dd2352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a filled <a class="el" href="class_nexus_1_1_merchandise.html">Merchandise</a> given an ID  <a href="#a33f5e39ff6253f2b190b7f19b3dd2352">More...</a><br /></td></tr>
+<tr class="memdesc:a33f5e39ff6253f2b190b7f19b3dd2352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a filled <a class="el" href="class_nexus_1_1_merchandise.html" title="represents a merchandise item">Merchandise</a> given an ID  <a href="#a33f5e39ff6253f2b190b7f19b3dd2352">More...</a><br /></td></tr>
 <tr class="separator:a33f5e39ff6253f2b190b7f19b3dd2352"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2171aad82505f13ecdf1ccbbed4da07"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_nexus_1_1_merchandise.html">Merchandise</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nexus_1_1_d_b_handler.html#ab2171aad82505f13ecdf1ccbbed4da07">getMerchByVendor</a> (int VendorID)</td></tr>
 <tr class="memdesc:ab2171aad82505f13ecdf1ccbbed4da07"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of merchanise items associated with a vendor  <a href="#ab2171aad82505f13ecdf1ccbbed4da07">More...</a><br /></td></tr>
@@ -748,7 +748,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a filled <a class="el" href="class_nexus_1_1_merchandise.html">Merchandise</a> given an ID </p>
+<p>Returns a filled <a class="el" href="class_nexus_1_1_merchandise.html" title="represents a merchandise item">Merchandise</a> given an ID </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>ID to query</td></tr>
@@ -786,7 +786,7 @@ Static Public Member Functions</h2></td></tr>
 <p>A list of merchanise items associated with a vendor </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">VendorID</td><td>vendor making the <a class="el" href="class_nexus_1_1_merchandise.html">Merchandise</a></td></tr>
+    <tr><td class="paramname">VendorID</td><td>vendor making the <a class="el" href="class_nexus_1_1_merchandise.html" title="represents a merchandise item">Merchandise</a></td></tr>
   </table>
   </dd>
 </dl>
@@ -849,11 +849,11 @@ Static Public Member Functions</h2></td></tr>
 <p>Get an order by ID </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td><a class="el" href="class_nexus_1_1_order.html">Order</a> ID to fulfill</td></tr>
+    <tr><td class="paramname">id</td><td><a class="el" href="class_nexus_1_1_order.html" title="represents an order of new vendor items">Order</a> ID to fulfill</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>filled <a class="el" href="class_nexus_1_1_order.html">Order</a> Object</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>filled <a class="el" href="class_nexus_1_1_order.html" title="represents an order of new vendor items">Order</a> Object</dd></dl>
 
 </div>
 </div>
@@ -930,7 +930,7 @@ Static Public Member Functions</h2></td></tr>
 <p>gets the orderitems associated with an order </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">orderID</td><td><a class="el" href="class_nexus_1_1_order.html">Order</a> to search for</td></tr>
+    <tr><td class="paramname">orderID</td><td><a class="el" href="class_nexus_1_1_order.html" title="represents an order of new vendor items">Order</a> to search for</td></tr>
   </table>
   </dd>
 </dl>
@@ -1015,7 +1015,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Filled <a class="el" href="class_nexus_1_1_transaction.html">Transaction</a> object</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Filled <a class="el" href="class_nexus_1_1_transaction.html" title="Transactions represent customers buying from our business">Transaction</a> object</dd></dl>
 
 </div>
 </div>
@@ -1235,7 +1235,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Selects the ID of the most recent order </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">VendorID</td><td><a class="el" href="class_nexus_1_1_vendor.html">Vendor</a> to which the order was placed</td></tr>
+    <tr><td class="paramname">VendorID</td><td><a class="el" href="class_nexus_1_1_vendor.html" title="Representation of a vendor and they&#39;re information">Vendor</a> to which the order was placed</td></tr>
     <tr><td class="paramname">date</td><td>When the order was placed</td></tr>
   </table>
   </dd>
